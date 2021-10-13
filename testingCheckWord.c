@@ -103,6 +103,7 @@ int hundredsCheck (char *password, char *word) {
         //int same = compare(password, crypted); // compare
         //printf("SAME: %d", same);
         if (same == 0){
+          puts("PASSWORD FOUND");
           return 1; 
         }
         
