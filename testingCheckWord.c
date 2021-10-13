@@ -96,7 +96,7 @@ int hundredsCheck (char *password, char *word) {
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
       for(int k = 0; k < 10; k++){ 
-        //printf("(hundreds) buf = %s\n", buf);
+        printf("(hundreds) buf = %s\n", buf);
         char *crypted = crypting(buf); // crypt
         int same = compare(password, crypted); // compare
         if (same == 1){
@@ -164,182 +164,6 @@ int thousandsCheck (char *password, char *word) {
   }
 }
 
-// ----- old hundreds calculations ------
-    // for (int i = 99; i <= 1000  ; i++) {
-    //   printf(" buf = %s\n", buf);
-    //   char *crypted = crypting(buf); // crypt
-    //   int same = compare(password, crypted); // compare
-    //     if(same == 1){
-    //       return 1; 
-    //     }
-      
-    //     buf[wordlen]++;
-    //     // if (i % 10 == 0) {
-          
-    //     //   buf[wordlen+1]++; // tens 
-    //     //   buf[wordlen+2]= '0' ; // ones 
-    //       if(i%100 == 0 ){
-    //         buf[wordlen]++; // hundreds 
-    //         buf[wordlen+1]= '0'; // tens =0
-    //         buf[wordlen+2]= '0'; // ones =0
-
-    //       }
-    //     //}
-        
-    //     // buf[wordlen+2]++;
-    //     // else if (i%100 ==  0){
-    //         // increment the 100's place 
-    //         // set the tens place = 0 
-    //         // set the ones place =0
-    //     // }
-    //   }
-
-// ----- attempted optimization -----
-// int checkSuffix(char *password , char *word, int suffixSize ) {
-//   int wordlen = strlen(word); // store dict word length
-//   int buflen = (suffixSize + wordlen * sizeof(char)); // buffer length = 'ones place + word length
-//   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
-//   sprintf(buf, "%s", word); // puts null terminator after inserting word
-//   buf[wordlen] = '0'; 
-//   if (suffixSize == 1) {
-//     for (int i = 0; i < 10; i++) {
-//       printf("buf = %s\n", buf);
-//       char *crypted = crypting(buf); // crypt
-//       int same = compare(password, crypted); // compare
-//        if(same == 1){
-//           return 1; 
-//         }
-//       buf[wordlen]++;
-//     }
-//   } else if (suffixSize == 2) {
-//     buf[wordlen] = '0';
-//     buf[wordlen+1] = '0'; 
-//       for (int i = 10; i <= 99  ; i++) {
-//         printf("buf = %s\n", buf);
-//         char *crypted = crypting(buf); // crypt
-//         int same = compare(password, crypted); // compare
-//          if(same == 1){
-//           return 1; 
-//         }  
-//         buf[wordlen+1]++; // += i?
-//         if(i%10 ==0){
-//           buf[wordlen] = '0';
-//           buf[wordlen+1]++;
-//         }
-//       }
-//   } else if (suffixSize == 3) {
-//      buf[wordlen] = '0';
-//      buf[wordlen+1] = '0'; 
-//      buf[wordlen+2] = '0';
-//       for (int i = 100; i <= 999  ; i++) {
-//         printf("buf = %s\n", buf);
-//         char *crypted = crypting(buf); // crypt
-//         int same = compare(password, crypted); // compare
-//          if(same == 1){
-//           return 1; 
-//         }    
-//         buf[wordlen+2]++;
-//       }
-//   } else if (suffixSize == 4){
-//      buf[wordlen] = '0';
-//      buf[wordlen+1] = '0'; 
-//      buf[wordlen+2] = '0';
-//      buf[wordlen+3] = '0';
-//      for (int i = 1000 ;i <= 9999; i++) {
-//         printf("buf = %s\n", buf);
-//         char *crypted = crypting(buf); // crypt
-//         int same = compare(password, crypted); // compare
-//         if(same == 1){
-//           return 1; 
-//         }
-//         buf[wordlen+3]++;
-//       }
-//   }
-// }
-// // (use string compare, == compares pointers)
-
-// ------ unused for the moment (original function by Kalyn) ------
-// int checkWord(char *password , char *word) {
-//   int maxLen = 40; // maximum word length
-//   int buflen = maxLen * sizeof(word) * sizeof(char); // buffer length = max * array length * char size
-//   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
-//   memset(buf, '#', buflen); // fills with null terminators
-
-//   int wordlen = strlen(word); // store dict word length
-
-//   sprintf(buf, "%s", word); // puts null terminator after inserting word
-
-//   puts("");
-//   // test printing
-//   for (int i = 0; i < buflen; i++){
-//     printf("%c", buf[i]);
-//   }
-//   puts("\n");
-
-//   // ------ CREATING EVERY POSSIBLE SUFFIX ------
-//   // TODO: change 4s to 10s...
-//   // TODO: figure out how to find suffixes & prefixes that are less than 4 digits
-//   // TODO: add prefixes
-
-//   // initalize to 0 so ++ incrementing works properly
-//   buf[wordlen] = '0'; 
-//   buf[wordlen + 1] = '0'; // dont want to initalize them all in the beginning since aardvark123 & aardvark1230 are different
-//   buf[wordlen + 2] = '0';
-//   buf[wordlen + 3] = '0';
-
-//   buf[wordlen + 4] = '\0'; // place null terminator after suffix number prior to crypting
-//   for (int i = 1; i < 4; i++) {
-//     printf("buf = %s\n", buf);
-//     char *crypted = crypting(buf); // crypt
-//     int same = compare(password, crypted); // compare
-
-//     // no need to keep checking if the password has been found
-//     if (same == 0)
-//       break;
-
-//     buf[wordlen]++;
-//     buf[wordlen + 1] = '0'; 
-//     for (int j = 1; j < 4; j++) {
-//       printf("buf = %s\n", buf);
-//       buf[wordlen + 4] = '\0'; 
-//       char *crypted = crypting(buf);
-//       int same = compare(password, crypted);
-
-//       if (same == 0)
-//         break;
-
-//       buf[wordlen + 1]++; // word1100
-//       buf[wordlen + 2] = '0';
-//       for (int k = 1; k < 4; k++) {
-//         printf("buf = %s\n", buf);
-//         buf[wordlen + 4] = '\0'; 
-//         char *crypted = crypting(buf); 
-//         int same = compare(password, crypted);
-
-//         // no need to keep checking if the password has been found
-//         if (same == 0)
-//           break;
-
-//         buf[wordlen + 2]++; // word1110
-//         buf[wordlen + 3] = '0';
-//         for (int l = 1; l < 4; l++) {
-//           printf("buf = %s\n", buf);
-//           buf[wordlen + 4] = '\0'; // place null terminator after suffix number prior to crypting
-//           char *crypted = crypting(buf); // crypt
-//           int same = compare(password, crypted); // compare
-
-//           // no need to keep checking if the password has been found
-//           if (same == 0)
-//             break;
-
-//           buf[wordlen + 3]++; // word1111
-//         } // end of word1111
-//       } // end of word1110
-//     } // end of word1100
-//   } // end of word1000
-//   return 0;
-// }
-
 // checks dictionary word for each suffix size
 int checkWord(char *password , char *word) {
 
@@ -367,13 +191,10 @@ int main () {
   char *testing = "aardvark123";
   char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO"; // aardvark123
 
-  // testing purposes:
-  // char *crypted = crypting(password);
-  // printf("Crypted word: ");
-  // for (int i = 0; i < strlen(crypted); i++)
-  //   printf("%c", crypted[i]);
-  
-  checkWord(password, word);
+  int res = hundredsCheck(password, word);
+  printf("Result: %d", res);
+
+  //checkWord(password, word);
 
   return 0;
 }
