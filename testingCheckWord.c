@@ -99,9 +99,10 @@ int hundredsCheck (char *password, char *word) {
         printf("(hundreds) buf = %s\n", buf);
         char *crypted = crypting(buf); // crypt
         printf("crypted buf (hundreds): %s\n", crypted);
-        int same = compare(password, crypted); // compare
-        printf("SAME: %d", same);
-        if (same == 1){
+        int same = strcmp(password, crypted);
+        //int same = compare(password, crypted); // compare
+        //printf("SAME: %d", same);
+        if (same == 0){
           return 1; 
         }
         
