@@ -15,7 +15,7 @@ char* crypting(char *password) {
   return result;
 }
 
-// ********************* NEVER SAYING THE PASSWORD HAS BEEN CRACKED ************************
+// ********************* NEVER SAYING THE PASSWORD HAS BEEN CRACKED *************************
 // checks if hashed word is same as hashed password
 // returns 1 if they are the same and 0 if not
 int compare(char *password, char *crypted) {
@@ -365,7 +365,7 @@ int checkWord(char *password , char *word) {
 int main () {
   char *word = "aardvark";
   char *testing = "aardvark123";
-  char *password = "$1$ab$koTc2TaVJm9d6HbDym1ZO"; // aardvark123
+  char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO"; // aardvark123
 
   // testing purposes:
   // char *crypted = crypting(password);
