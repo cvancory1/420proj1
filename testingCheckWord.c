@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-//#include <crypt.h> - mac doesn't know what this is
+#include <crypt.h>// - mac doesn't know what this is
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
