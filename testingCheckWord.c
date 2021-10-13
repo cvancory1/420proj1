@@ -98,6 +98,7 @@ int hundredsCheck (char *password, char *word) {
       for(int k = 0; k < 10; k++){ 
         printf("(hundreds) buf = %s\n", buf);
         char *crypted = crypting(buf); // crypt
+        printf("crypted buf (hundreds): %s\n", crypted);
         int same = compare(password, crypted); // compare
         if (same == 1){
           return 1; 
