@@ -100,6 +100,7 @@ int hundredsCheck (char *password, char *word) {
         char *crypted = crypting(buf); // crypt
         printf("crypted buf (hundreds): %s\n", crypted);
         int same = compare(password, crypted); // compare
+        printf("SAME: %d", same);
         if (same == 1){
           return 1; 
         }
@@ -190,7 +191,7 @@ int checkWord(char *password , char *word) {
 int main () {
   char *word = "aardvark";
   char *testing = "aardvark123";
-  char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO"; // aardvark123
+  char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/ "; // aardvark123
 
   int res = hundredsCheck(password, word);
   printf("Result: %d", res);
