@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-//#include <crypt.h> //- mac doesn't know what this is
+#include <crypt.h> //- mac doesn't know what this is
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -224,10 +224,11 @@ int hundsCheckPrefix(char *password, char *word) {
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
-  char *prefix = malloc(3 * sizeof(char)); // two char spots
+  char *prefix = malloc(4 * sizeof(char)); 
   prefix[0] = '0';
   prefix[1] = '0';
   prefix[2] = '0';
+  prefix[3] = '\0';
   char *prefixword = strcat(prefix, buf);
   //printf("original prefixword = %s\n", prefixword);
   
