@@ -230,7 +230,7 @@ int hundsCheckPrefix(char *password, char *word) {
   prefix[2] = '0';
   char *prefixword = strcat(prefix, word);
   printf("original prefixword = %s\n", prefixword);
-
+  
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
       for(int k = 0; k < 10; k++){ 
