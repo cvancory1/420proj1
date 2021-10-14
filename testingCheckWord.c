@@ -101,11 +101,11 @@ int hundredsCheck (char *password, char *word) {
         printf("crypted buf (hundreds): %s\n", crypted);
         int same = strcmp(password, crypted);
         //int same = compare(password, crypted); // compare
-        //printf("SAME: %d", same);
-        if (same == 0){
-          puts("PASSWORD FOUND");
-          return 1; 
-        }
+        printf("SAME: %d", same);
+        // if (same == 0){
+        //   puts("PASSWORD FOUND");
+        //   return 1; 
+        // }
         
         buf[wordlen+2]++; // ones place 
 
