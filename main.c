@@ -232,36 +232,26 @@ Chloe VanCory and Kalyn Howes
 
 
   /*
-    Parse every words from every nodes local dictionary to crpyt and test ater 
+    ALL NODES - Parse every words from every nodes local dictionary to crpyt and test ater 
+
   */
 
 
-//  printf("here\n");
-  if(rank == ROOT){
-    // printf("here2");
-
+    /* ALL NODES - parse their first word in the localdict */ 
     char * currentWord = strtok(localDict, "\n" );
+    //checkword(currentWord , shadowUsers[currentUserIndex].pwd);
 
-      // printf("rank = %d currentWord = %s\n", rank, strtok(localDict, " "));
-      // printf("rank = %d currentWord = %s\n", rank, strtok(localDict, " "));
-
-      // printf("currentWord = %s\n", currentWord);
-
-    do{
-      // printf("hi ");
-      printf("currentWord = %s\n", currentWord);
-      currentWord = strtok(NULL, "\n" );
+    while(currentWord != NULL ){
       // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
+      printf("rank = %d currentWord = %s\n", rank, currentWord);
+      currentWord = strtok(NULL, "\n" );
 
-      /* KALYN I THINK YOU WOULD INSERT YOUR LOGIC HERE. have to recopy this into main2.c since this is updated
-      // also need to add your function to this
+       /* KALYN I THINK YOU WOULD INSERT YOUR LOGIC HERE. have to recopy this into main2.c since this is updated
+        */
 
+    }
+    
 
-    }while(currentWord != NULL );
-  
-
-
-  }
   
   
 
