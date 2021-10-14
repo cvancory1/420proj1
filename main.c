@@ -80,10 +80,10 @@ Chloe VanCory and Kalyn Howes
       shadowUsers[index].alg = alg;
       shadowUsers[index].id = id;
       shadowUsers[index].pwd = pwd;
-      printf("i= %d username=%s\n",index, shadowUsers[index].username);
-      printf("alg=%s\n", shadowUsers[index].alg);
-      printf("id=%s\n", shadowUsers[index].id);
-      printf("pwd=%s\n\n", shadowUsers[index].pwd);
+      // printf("i= %d username=%s\n",index, shadowUsers[index].username);
+      // printf("alg=%s\n", shadowUsers[index].alg);
+      // printf("id=%s\n", shadowUsers[index].id);
+      // printf("pwd=%s\n\n", shadowUsers[index].pwd);
 
       index++;
       
@@ -96,22 +96,22 @@ Chloe VanCory and Kalyn Howes
     }
     fclose(shadowPtr);
 
-    if(rank ==ROOT){
+    // if(rank ==ROOT){
 
 
     
-    // ERROR CHECKING 
-    for(int i =0; i < numUsers ;i++){
-    puts("-------");
+    /* ERROR CHECKING */
+    // for(int i =0; i < numUsers ;i++){
+    // puts("-------");
 
-        printf("i= %d username=%s\n",i, shadowUsers[i].username);
-        printf("alg=%s\n", shadowUsers[i].alg);
-        printf("id=%s\n", shadowUsers[i].id);
-        printf("pwd=%s\n\n", shadowUsers[i].pwd);
+    //     printf("i= %d username=%s\n",i, shadowUsers[i].username);
+    //     printf("alg=%s\n", shadowUsers[i].alg);
+    //     printf("id=%s\n", shadowUsers[i].id);
+    //     printf("pwd=%s\n\n", shadowUsers[i].pwd);
 
-      }
+    //   }
 
-    }
+    // }
 
 
     /*  
@@ -152,7 +152,7 @@ Chloe VanCory and Kalyn Howes
 
                 if(lineCount == (WORDCOUNT / worldSize)){
                   // printf("here - line count =%d\n",lineCount);
-                printf("sendcnt[%d]=%d\n",index ,sendcnt[index]);
+                // printf("sendcnt[%d]=%d\n",index ,sendcnt[index]);
 
                   lineCount = 0;
                   index++;
@@ -235,20 +235,30 @@ Chloe VanCory and Kalyn Howes
     Parse every words from every nodes local dictionary to crpyt and test ater 
   */
 
-  
-  char * currentWord = strtok(localDict, "$" );
-  while(currentWord ! = NULL){
 
-    checkword(currentWord , shadowUsers[currentUserIndex].pwd);
+ printf("here\n");
+  if(rank == ROOT){
+    printf("here2");
+
+    // char * currentWord = strtok(localDict, " " );
+      // printf("rank = %d currentWord = %s\n", rank, strtok(localDict, " "));
+      // printf("rank = %d currentWord = %s\n", rank, strtok(localDict, " "));
+
+      // printf("currentWord = %s\n", currentWord);
+
+    // while(currentWord == strtok(NULL, " ") ){
+    //   printf("currentWord = %s\n", currentWord);
+    //   // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
+
+    // }
 
   }
   
+  
 
 
 
-
-
-// after every few itertations do an all reduce 
+  // after every few itertations do an all reduce 
  
 
 
@@ -256,4 +266,4 @@ Chloe VanCory and Kalyn Howes
 
     MPI_Finalize();
     return 0;
-  }
+}
