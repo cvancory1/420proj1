@@ -18,11 +18,11 @@ char* crypting(char *password) {
 // ********************* NEVER SAYING THE PASSWORD HAS BEEN CRACKED *************************
 // checks if hashed word is same as hashed password
 // returns 1 if they are the same and 0 if not
-int compare(char *password, char *crypted) {
+int compare(char *password, char *crypted, char *nonhashedpass) {
   int ret = 0;
   if (strcmp(password, crypted) == 0) {
     puts("PASSWORD HAS BEEN CRACKED!");
-    printf("The password is: %s\n", password);
+    printf("The password is: %s\n", nonhashedpass);
     printf("\nThe crypted version is: %s\n", crypted);
     ret = 1; // set to 1 since its found
   } else {
@@ -44,7 +44,7 @@ int onesCheck(char *password, char *word) {
     //printf("(ones) buf = %s\n", buf);
 
     char *crypted = crypting(buf); // crypt
-    int same = compare(password, crypted); // compare
+    int same = compare(password, crypted, buf); // compare
     if(same == 1) {
       return 1; 
     }
@@ -66,7 +66,7 @@ int tensCheck (char *password, char *word) {
   for (int i = 9; i <= 100; i++) {
       //printf("(tens) buf = %s\n", buf);
       char *crypted = crypting(buf); // crypt
-      int same = compare(password, crypted); // compare
+      int same = compare(password, crypted, buf); // compare
       if(same == 1){
         return 1; 
       }
@@ -96,7 +96,7 @@ int hundredsCheck (char *password, char *word) {
         //printf("(hundreds) buf = %s\n", buf);
         char *crypted = crypting(buf); // crypt
         //printf("crypted buf (hundreds): %s\n", crypted);
-        int same = compare(password, crypted); // compare
+        int same = compare(password, crypted, buf); // compare
         //printf("SAME: %d", same);
         if (same == 1) { // compare returns 1 if found, not 0
           return 1; 
@@ -137,7 +137,7 @@ int thousandsCheck (char *password, char *word) {
         for (int l = 0; l < 10; l++) {
           //printf("(thousands) buf = %s\n", buf);
           char *crypted = crypting(buf); // crypt
-          int same = compare(password, crypted); // compare
+          int same = compare(password, crypted, buf); // compare
           if (same == 1){
             return 1; 
           }
@@ -191,7 +191,7 @@ int main () {
   char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
 
   int res = hundredsCheck(password, word);
-  printf("Result: %d", res);
+  //printf("Result: %d", res);
 
   //checkWord(password, word);
 
