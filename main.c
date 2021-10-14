@@ -220,12 +220,31 @@ Chloe VanCory and Kalyn Howes
    
 
 
-    
+  /*
+    set up "shared array " that will indicate whether we have found a users password or not
+  */
+
+  int * usrPwd = malloc(worldSize * sizeof(int));
+  for(int i=0; i< worldSize ;i++){
+    usrPwd[i] = 0;
+  }
+  int currentUserIndex =0; // index of the current users paswds all nodes are trying to find 
+
+
   /*
     Parse every words from every nodes local dictionary to crpyt and test ater 
   */
 
-  // while()
+  
+  char * currentWord = strtok(localDict, "$" );
+  while(currentWord ! = NULL){
+
+    checkword(currentWord , shadowUsers[currentUserIndex].pwd);
+
+  }
+  
+
+
 
 
 
