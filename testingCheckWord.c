@@ -21,15 +21,10 @@ char* crypting(char *password) {
 int compare(char *password, char *crypted) {
   int ret = 0;
   if (strcmp(password, crypted) == 0) {
-    printf("Password has been cracked. The password is: \n");
-    for (int i = 0; i < strlen(password); i++) {
-      printf("%c", password[i]);
-    }
-    printf("\nThe crypted version is: \n");
-    for (int i = 0; i < strlen(crypted); i++) {
-          printf("%c", crypted[i]);
-    }
-    ret = 1; // set to 0 since its found
+    puts("PASSWORD HAS BEEN CRACKED!");
+    printf("The password is: %s\n", password);
+    printf("\nThe crypted version is: %s\n", crypted);
+    ret = 1; // set to 1 since its found
   } else {
     //printf("Password has not been cracked :(\n");
     ret = 0;
