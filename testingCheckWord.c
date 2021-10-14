@@ -240,14 +240,18 @@ int checkWord(char *password , char *word) {
 }
 
 int main () {
-  char *word = "abashed";
+  char *word = "abase";
   //char *testing = "aardvark123";
+
+  // suffix checking
   //char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
   //char *password = "$1$ab$EN4HdMyFfvk9VYCCEIIJs0"; //abandon9365
   //char *password = "$1$ab$nceComwr03PR64UjgZOTM/"; // abashed8
   //char *password = "$1$ab$6mj6pLEZbyGKA9.J6InfW0"; // abase11
 
-  char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
+  // prefix checking
+  //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
+  char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
 
   checkWord(password, word);
 
