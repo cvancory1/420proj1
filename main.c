@@ -20,48 +20,27 @@ Chloe VanCory and Kalyn Howes
 
 #define ROOT 0
 // #define WORDCOUNT 235888 TODO : change later
-char *bufArr(int *arr, int n) {
-  char *buf = malloc(n * (4 + 1) + 1);
-  buf[0] = '\0';
+// char *bufArr(int *arr, int n) {
+//   char *buf = malloc(n * (4 + 1) + 1);
+//   buf[0] = '\0';
 
-  const char *fmt = "%4d ";
-  char tmp[4 + 1 + 1];  // same width as fmt plus a null term
+//   const char *fmt = "%4d ";
+//   char tmp[4 + 1 + 1];  // same width as fmt plus a null term
 
-  for (int i = 0; i < n; i++) {
-    sprintf(tmp, fmt, arr[i]);
-    strcat(buf, tmp);
-  }
+//   for (int i = 0; i < n; i++) {
+//     sprintf(tmp, fmt, arr[i]);
+//     strcat(buf, tmp);
+//   }
 
-  return buf;
-}
-  int   checkWord(char* pswd, char* word) {
-    // TODO : Kayln hard code the salt and we will take care of that later
+//   return buf;
+// }
 
-    int N = 10;  // delete later
-    // int N= 9999;
-    for (int i = 1; i <= N; i++) {
-      char* prefixWord = malloc(4 * sizeof(char) + sizeof(word));  // check this
-      char* suffixWord = malloc(4 * sizeof(char) + sizeof(word));  // check this
-      // sprintf(prefixWord,"%d%s", N, word); // takes N + word and puts into
-      // string prefixword sprintf(suffixWord,"%s%d", word, N );
-      // printf("prefixWord = %s\n", prefixWord);
-      // printf("suffixWord = %s\n", suffixWord);
-
-      // TODO : still need to hash the word and compare
-      // TODO : dont use sprintf since it is some string maniuplation which is
-      // costly
-
-      if (strncmp(prefixWord, pswd, strlen(pswd)) == 0) {
-        printf("found word = %s\n", prefixWord);
-        return 1;
-      } else if (strncmp(prefixWord, pswd, strlen(pswd)) == 0) {
-        printf("found word = %s\n", prefixWord);
-        return 1;
-      }
-    }
-
-    return 0;  // dict word was not used in the password
-  }
+  // typedef struct Users {
+  //   char *  username;
+  //   char *  id;
+  //   char *  alg;
+  //   char *  pwd;
+  // } Users;
 
   int main(int argc, char** argv) {
     MPI_Init(&argc, &argv);
@@ -73,186 +52,136 @@ char *bufArr(int *arr, int n) {
     MPI_Comm_size(world, &worldSize);
     MPI_Comm_rank(world, &rank);
     MPI_Get_processor_name(name, &nameLen);
-    MPI_File shadowfh, wordsfh;
-    MPI_Errhandler errorCheck;  // used to ensure the file has opened correctly
+    // MPI_File shadowfh, wordsfh;
+    // MPI_Errhandler errorCheck;  // used to ensure the file has opened correctly
 
-    /*****  READING FROM BOTH FILES- SHADOW + WORDS   **********/
 
-    // ALL NODES - read in the shadow file with username and pswds
-    // const char* fname = "shadow.txt";
-    const char* fname = "testShadow.txt";
-    errorCheck = MPI_File_open(world,            // comm
-                               fname,            // filename
-                               MPI_MODE_RDONLY,  // mode
-                               MPI_INFO_NULL,    // info structure
-                               &shadowfh);
 
-    // checks to see if the file exits and opens correctly
-    if (errorCheck != 0) {
-      if (rank == ROOT) {
-        printf("\n%s did not open correctly \n", fname);
+    /*
+        read and parse the shadow txt file to get the username,id,salt, password
+
+    */
+    // FILE * shadowPtr;
+    // shadowPtr = fopen ("shadow.txt", "r");
+    // char * line;
+
+    // Users shadowUsers; // TODO ask abotu this 
+
+    // while(fscanf(shadowPtr,"%s", line )!=EOF){
+      // char * username = strtok(line, ":" );
+      // char * alg = strtok(NULL, "$" );
+      // char * id = strtok(NULL, "$" );
+      // char * pwd = strtok(NULL, "$" );
+
+      // shadowUsers[0].username = username;
+      // shadowUsers.alg = alg;
+      // shadowUsers.id = id;
+      // shadowUsers.pwd = pwd;
+      
+      // printf("token=%s\n",username);
+      // printf("alg=%s\n",alg);
+      // printf("id=%s\n",id);
+      // printf("id=%s\n",pwd);
+
+
+    // }
+    // fclose(shadowPtr);
+
+
+    /*  
+      READING THE WORDS.TXT file 
+    */
+    int * sendcnt;
+    if(rank==ROOT){
+     sendcnt = malloc(worldSize * sizeof(int));
+       for(int i =0; i< worldSize ;i++){
+         sendcnt[i] =0;
+        // printf("sendcnt[%d]=%d\n",i ,sendcnt[i]);
       }
-      MPI_Finalize();  // all nodes need to call this
-      return 1;
+
     }
 
-    // calc how many bytes the shadowfile is to malloc into a buffer
-    MPI_Offset filesize;
-    MPI_File_get_size(shadowfh, &filesize);
-    char* shadowBuf = malloc(filesize + 1 * sizeof(char));
-
-    MPI_File_read_all(shadowfh, shadowBuf, filesize + 1, MPI_CHAR,
-                      MPI_STATUS_IGNORE);
-    if (rank == ROOT)
-      printf("\n---- PRINTING SHADOW FILE----\n%s\n", shadowBuf);
-
-
-
-
-
-
-
-
-
-
-
-    /******** ALL NODES - read a porition of the dict words file *****/
-
-    // const char* dict_fname = "words.txt";
-    const char* dict_fname = "testWords.txt";
-    errorCheck = MPI_File_open(world,            // comm
-                               dict_fname,       // filename
-                               MPI_MODE_RDONLY,  // mode
-                               MPI_INFO_NULL,    // info structure
-                               &wordsfh);
-
-    // checks to see if words.txt opened correctly
-    if (errorCheck != 0) {
-      if (rank == ROOT) {
-        printf("\n%s did not open correctly \n\n", dict_fname);
-      }
-      MPI_Finalize();
-      return 1;
-    }
-
-
-
-    MPI_File_get_size(wordsfh, &filesize);
-    // printf("%d \n", filesize/worldSize);
-
-    // char* dictBuff = malloc(filesize + 1 * sizeof(char));
-    // MPI_File_read(wordsfh, dictBuff, filesize + 1, MPI_CHAR,
-    //               MPI_STATUS_IGNORE);  // TODO Do a read at
-    // printf("----PRINTING WORDS FILE---- \n%s\n", dictBuff);
-
-    int WORDCOUNT = 100;  // for the temporary word count
-                          //  int WORDCOUNT =235888;
-    int * sendcnt = malloc(worldSize * sizeof(int));
-    int numBytes;
-    int lineCount=0;
+    int WORDCOUNT =100;
     int * offset;
-    int buffersize=1;
-    char buff[buffersize];
-    // int lineCount = 
-    // sendcnt = +10; // TODO neds to be in bytes , calc lines then how many bytes are in that number of lines 
-
-      printf("HERE =");
-
+    int fd;
+    fd= open("testWords.txt",O_RDONLY);
     if (rank == ROOT) {
-      int fd=-1;
-      fd= open("testWords.txt",O_RDONLY);
-      if(fd ==-1 ){
-        printf("Error opening the testwords.txt\n");
+   
 
+      int numBytes;
+      int index =0;
+      int lineCount=0;
+      int buffersize=1;
+      char buff[buffersize];
+
+      if(fd !=-1 ){
             while((numBytes=read(fd,buff,buffersize))>0){
-              if(buff[0] == '\0'){
-                  printf("HERE =");
-
+                // printf("%c",buff[0]);
+                sendcnt[index]++;
+              if(buff[0] == '\n'){
                 lineCount ++;
+                // printf("linecount= =%d\n",lineCount);
+
                 if(lineCount == (WORDCOUNT / worldSize)){
-                  printf("line count =%d",lineCount);
+                  // printf("here - line count =%d\n",lineCount);
+                printf("sendcnt[%d]=%d\n",index ,sendcnt[index]);
+
                   lineCount = 0;
+                  index++;
+
                 }
               }
-
                // printf(" %c",buff[0]);
             }
 
+      }else{
+        printf("Error opening the testwords.txt\n");
 
       }
 
     }
-      
-
-  //   // printf("send=%d\n", sendcnt);
-  //   offset = malloc(worldSize * sizeof(int));  // holds the index of where each node
-  //                                         // will read in from the file
-  //   offset[0] = 0;
-  //   for (int i = 1; i < worldSize; i++) {
-  //     offset[i] = offset[i - 1] + sendcnt;
-  //     // printf("i = %d offset = %d \n", i , offset[i]);
-  //   }
 
 
-  //   char* localDict = malloc(sendcnt * 255 * sizeof(char));
-  // // // is read at blocking? 
-  //   MPI_File_read_at(wordsfh,       // file handle
-  //                    offset[rank],  // file offset is this in bytes ? 
-  //                    localDict,     // buffer
-  //                    sendcnt,       // elements to read in buffer
-  //                    MPI_CHAR,      // MPI data tupe
-  //                    MPI_STATUS_IGNORE);
+    /* ROOT Calculated how much every node needs to read into their local dictionary 
+       use scatter to send this amount 
+    */
 
-  //   if(rank ==ROOT)
-  //     printf("Rank %d received %s\n", rank, localDict);
+    if (rank != ROOT) {
+      sendcnt = malloc(worldSize * sizeof(int));
+    }
 
-  //   if(rank == 1)
-  //     printf("\nRank %d received %s\n", rank, localDict); 
-
-    // printf("R = %d buf =%s\n", rank, localDict);
+   MPI_Bcast(sendcnt, worldSize, MPI_INT, ROOT, world);
+  //  printf("rank = %d sendcnt= %d\n",rank ,sendcnt[rank]);
 
 
+   /*
+       use lseek to position file pointers and then read into then in a portion of the words.txt into a local dictionary 
+   */ 
+
+    int * displc = malloc(worldSize * sizeof(int));
+    displc[0] = 0;
+    for(int i =1; i < worldSize ; i++){
+      displc[i] = sendcnt[i-1] +displc[i-1];
+      if(rank ==0)
+        printf("i =%d displc= %d\n",i, displc[i]);
+
+    }
+
+    char * localDict = malloc ( sendcnt[rank] * sizeof(char));
+    lseek(fd ,displc[rank], SEEK_SET);
+    read(fd , localDict ,sendcnt[rank] );
+
+    // if(rank == 4){
+    //   printf("rank = %d \nstring= %s END\n",rank ,localDict);
+    //   // TODO: why is it reading in like this at the ery end 
+    // }
 
 
+    
+  /*
+    Parse every words from every nodes local dictionary to crpyt and test ater 
+  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /***** TESTING THE CHECKWORD FUNCTION WILL BE USED WHERE EVERY NODE CALLS
-     * THIS ON THEIR OWN SUB ARRAY **********/
-
-    // char * pswd = malloc(10 *sizeof(char));
-    // char * word = malloc(10* sizeof(char));
-    // strcpy(pswd, "10test");
-    // strcpy(word, "test");
-    // checkWord(pswd, word);
-
-    // what is the difference between doing read by c system calls and then the
-    // mpi read
-
-    // printf("count=%d\n",count);
 
     MPI_Finalize();
     return 0;
