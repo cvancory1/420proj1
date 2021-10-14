@@ -198,7 +198,7 @@ int tensCheckPrefix(char *password, char *word) {
   char *prefix = malloc(1 * sizeof(char)); // two char spots
   prefix[0] = '0';
   prefix[1] = '0';
-  char *prefixword = strcat(prefix, word);
+  char *prefixword = strcat(prefix, buf);
 
   for (int i = 9; i <= 100; i++) {
     //printf("(tens) prefixword = %s\n", prefixword);
@@ -224,13 +224,13 @@ int hundsCheckPrefix(char *password, char *word) {
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
-  char *prefix = malloc(1 * sizeof(char)); // two char spots
+  char *prefix = malloc(3 * sizeof(char)); // two char spots
   prefix[0] = '0';
   prefix[1] = '0';
   prefix[2] = '0';
-  char *prefixword = strcat(prefix, word);
+  char *prefixword = strcat(prefix, buf);
   printf("original prefixword = %s\n", prefixword);
-  
+  /*
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
       for(int k = 0; k < 10; k++){ 
@@ -257,7 +257,7 @@ int hundsCheckPrefix(char *password, char *word) {
     prefixword[2]= '0'; // ones
     prefixword[1]='0';// tens
     prefixword[0]++; // hundreads
-  }
+  }*/
   return 0;
 }
 
