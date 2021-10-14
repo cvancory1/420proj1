@@ -221,8 +221,7 @@ int main () {
 
   char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
 
-  //checkWord(password, word);
-  onesCheckPrefix(password, word);
+  checkWord(password, word);
 
   return 0;
 }
