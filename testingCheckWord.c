@@ -3,19 +3,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+<<<<<<< HEAD
 #include <crypt.h>// - mac doesn't know what this is
+=======
+#include <crypt.h> //- mac doesn't know what this is
+>>>>>>> 955809e75cf266b6e6c99c321471e54de2463e23
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
   //printf("In crypt function -- pasword to be encrypted is %s\n", password);
   char* result = crypt(password, "$1$ab$"); // hardcode the salt - on Mac salt is second!!
-  //char* result = crypt("$1$ab$", password); // linux version
-
   //printf("In crypt function - your encrypted password is: %s\n", result);
   return result;
 }
 
-// ********************* NEVER SAYING THE PASSWORD HAS BEEN CRACKED *************************
 // checks if hashed word is same as hashed password
 // returns 1 if they are the same and 0 if not
 int compare(char *password, char *crypted, char *nonhashedpass) {
@@ -45,7 +46,7 @@ int onesCheck(char *password, char *word) {
 
     char *crypted = crypting(buf); // crypt
     int same = compare(password, crypted, buf); // compare
-    if(same == 1) {
+    if (same == 1) {
       return 1; 
     }
     buf[wordlen]++;
@@ -67,7 +68,7 @@ int tensCheck (char *password, char *word) {
       //printf("(tens) buf = %s\n", buf);
       char *crypted = crypting(buf); // crypt
       int same = compare(password, crypted, buf); // compare
-      if(same == 1){
+      if (same == 1){
         return 1; 
       }
       
@@ -166,29 +167,23 @@ int thousandsCheck (char *password, char *word) {
 // checks dictionary word for each suffix size
 int checkWord(char *password , char *word) {
 
-  if (onesCheck(password, word) == 1) {
+  if (onesCheck(password, word) == 1)
     return 1;
-  }
-
-  if (tensCheck(password, word ) == 1) {
+  if (tensCheck(password, word ) == 1)
     return 1;
-  }
-
-  if (hundredsCheck(password, word) == 1) {
+  if (hundredsCheck(password, word) == 1)
     return 1;
-  }
-
-  if (thousandsCheck(password, word) == 1) {
+  if (thousandsCheck(password, word) == 1)
     return 1;
-  }
   
   return 0; // false
 }
 
 int main () {
-  char *word = "aardvark";
+  char *word = "abandon";
   //char *testing = "aardvark123";
-  char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
+  //char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
+  char *password = "$1$ab$EN4HdMyFfvk9VYCCEIIJs0"; //abandon9365
 
   //int res = hundredsCheck(password, word);
   //printf("Result: %d", res);
