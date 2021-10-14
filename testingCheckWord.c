@@ -172,8 +172,9 @@ int onesCheckPrefix(char *password, char *word) {
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
-  char *prefix = malloc(1 * sizeof(char)); // one char spot
+  char *prefix = malloc(2 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
+  prefix[1] = '\0';
   char *prefixword = strcat(prefix, buf);
 
   for (int i = 0; i < 10; i++) {
@@ -195,9 +196,10 @@ int tensCheckPrefix(char *password, char *word) {
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
-  char *prefix = malloc(2 * sizeof(char)); // two char spots
+  char *prefix = malloc(3 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
   prefix[1] = '0';
+  prefix[2] = '\0';
   char *prefixword = strcat(prefix, buf);
 
   for (int i = 9; i <= 100; i++) {
@@ -224,7 +226,7 @@ int hundsCheckPrefix(char *password, char *word) {
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
-  char *prefix = malloc(4 * sizeof(char)); 
+  char *prefix = malloc(4 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
   prefix[1] = '0';
   prefix[2] = '0';
@@ -235,11 +237,11 @@ int hundsCheckPrefix(char *password, char *word) {
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
       for(int k = 0; k < 10; k++){ 
-        printf("(hundreds) prefixword = %s\n", prefixword);
+        //printf("(hundreds) prefixword = %s\n", prefixword);
         char *crypted = crypting(prefixword); // crypt
-        printf("crypted (hundreds): %s\n", crypted);
+        //printf("crypted (hundreds): %s\n", crypted);
         int same = compare(password, crypted, prefixword); // compare
-        printf("SAME: %d", same);
+        //printf("SAME: %d", same);
         if (same == 1) { // compare returns 1 if found, not 0
           return 1; 
         }
@@ -262,6 +264,55 @@ int hundsCheckPrefix(char *password, char *word) {
   return 0;
 }
 
+// checks password to dictionary word with prefixes 1000-9999
+int thousCheckPrefix (char *password, char *word) {
+  int wordlen = strlen(word); // store dict word length
+  int buflen = (4 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
+  char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
+  sprintf(buf, "%s", word); // puts null terminator after inserting word
+
+  char *prefix = malloc(5 * sizeof(char));  // one larger than prefix size for null
+  prefix[0] = '0';
+  prefix[1] = '0';
+  prefix[2] = '0';
+  prefix[3] = '0';
+  prefix[4] = '\0';
+  char *prefixword = strcat(prefix, buf);
+  printf("original prefixword = %s\n", prefixword);
+
+  for(int i = 0; i < 9; i++) {
+    for(int j = 0; j < 10; j++) {
+      for(int k = 0; k < 10; k++) { 
+        for (int l = 0; l < 10; l++) {
+          printf("(thousands) prefixword = %s\n", prefixword);
+          char *crypted = crypting(prefixword); // crypt
+          int same = compare(password, crypted, prefixword); // compare
+          if (same == 1){
+            return 1; 
+          }
+          
+          prefixword[3]++; // ones place 
+
+          // hacking - stops the loop early 
+          if(prefixword[0]==':' && prefixword[1]=='0' && prefixword[2]=='0' && prefixword[3]=='0') {
+            return 0;
+          }
+        }
+        prefixword[3] = '0'; // ones
+        prefixword[2]++; //tens
+      }
+      prefixword[3]= '0'; // ones
+      prefixword[2]= '0';// tens
+      prefixword[1]++; // hundreads
+    }
+    prefixword[3] = '0'; // ones
+    prefixword[2]= '0'; // tens
+    prefixword[1]= '0';// hundreds
+    prefixword[0]++; // thousands
+  }
+  return 0;
+}
+
 // checks dictionary word for each prefix & suffix size
 int checkWord(char *password , char *word) {
 
@@ -269,7 +320,9 @@ int checkWord(char *password , char *word) {
     return 1;
   if (tensCheckPrefix(password, word) == 1)
     return 1;
-  if(hundsCheckPrefix(password, word) == 1)
+  if (hundsCheckPrefix(password, word) == 1)
+    return 1;
+  if (thousCheckPrefix(password, word) == 1)
     return 1;
 
   /*
@@ -299,7 +352,8 @@ int main () {
   // prefix checking
   //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
   //char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
-  char *password = "$1$ab$i05qx2WzHLm2O92sVdTwm0"; // 997abandon
+  //char *password = "$1$ab$i05qx2WzHLm2O92sVdTwm0"; // 997abandon
+  char *password = "$1$ab$2uYJbJ8oxDCDv9Haijjp9/"; // 8569aardvark
 
   checkWord(password, word);
 
