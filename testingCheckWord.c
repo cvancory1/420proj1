@@ -278,17 +278,17 @@ int thousCheckPrefix (char *password, char *word) {
   prefix[3] = '0';
   prefix[4] = '\0';
   char *prefixword = strcat(prefix, buf);
-  printf("original prefixword = %s\n", prefixword);
+  //printf("original prefixword = %s\n", prefixword);
 
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
       for(int k = 0; k < 10; k++) { 
         for (int l = 0; l < 10; l++) {
-          printf("(thousands) prefixword = %s\n", prefixword);
+          //printf("(thousands) prefixword = %s\n", prefixword);
           char *crypted = crypting(prefixword); // crypt
-          printf("crypted (hundreds): %s\n", crypted);
+          //printf("crypted (hundreds): %s\n", crypted);
           int same = compare(password, crypted, prefixword); // compare
-          printf("SAME: %d\n", same);
+          //printf("SAME: %d\n", same);
           if (same == 1) {
             return 1; 
           }
@@ -326,8 +326,6 @@ int checkWord(char *password , char *word) {
     return 1;
   if (thousCheckPrefix(password, word) == 1)
     return 1;
-
-  /*
   if (onesCheck(password, word) == 1)
     return 1;
   if (tensCheck(password, word ) == 1)
@@ -336,7 +334,6 @@ int checkWord(char *password , char *word) {
     return 1;
   if (thousandsCheck(password, word) == 1)
     return 1;
-  */
   
   return 0; // false
 }
