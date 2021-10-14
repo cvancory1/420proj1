@@ -96,16 +96,15 @@ int hundredsCheck (char *password, char *word) {
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
       for(int k = 0; k < 10; k++){ 
-        printf("(hundreds) buf = %s\n", buf);
+        //printf("(hundreds) buf = %s\n", buf);
         char *crypted = crypting(buf); // crypt
-        printf("crypted buf (hundreds): %s\n", crypted);
+        //printf("crypted buf (hundreds): %s\n", crypted);
         int same = strcmp(password, crypted); // is currently saying crypted is 32 less than password
-        //int same = compare(password, crypted); // compare
-        printf("SAME: %d", same);
-        // if (same == 0){
-        //   puts("PASSWORD FOUND");
-        //   return 1; 
-        // }
+        int same = compare(password, crypted); // compare
+        //printf("SAME: %d", same);
+        if (same == 0) {
+          return 1; 
+        }
         
         buf[wordlen+2]++; // ones place 
 
