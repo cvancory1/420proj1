@@ -343,7 +343,7 @@ int main () {
   //char *testing = "aardvark123";
 
   // suffix checking
-  //char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
+  char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
   //char *password = "$1$ab$EN4HdMyFfvk9VYCCEIIJs0"; //abandon9365
   //char *password = "$1$ab$nceComwr03PR64UjgZOTM/"; // abashed8
   //char *password = "$1$ab$6mj6pLEZbyGKA9.J6InfW0"; // abase11
@@ -352,7 +352,7 @@ int main () {
   //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
   //char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
   //char *password = "$1$ab$i05qx2WzHLm2O92sVdTwm0"; // 997abandon
-  char *password = "$1$ab$2uYJbJ8oxDCDv9Haijjp9/"; // 8569aardvark
+  //char *password = "$1$ab$2uYJbJ8oxDCDv9Haijjp9/"; // 8569aardvark
 
   checkWord(password, word);
 
