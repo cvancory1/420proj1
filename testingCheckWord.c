@@ -164,25 +164,22 @@ int thousandsCheck (char *password, char *word) {
 }
 
 // ------------------------------------ PREFIX CHECKS ------------------------------------
-// checks password to dictionary word with prefixes 0-10
-// use strcat to add orefix string to the word buf?
+// checks password to dictionary word with prefixes 0-9
+// use strcat to add orefix string to the word buf
 int onesCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (2 + wordlen * sizeof(char)); // buffer length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
-
   char *prefix = malloc(1 * sizeof(char)); // one char spot
   prefix[0] = '0';
   char *prefixword = strcat(prefix, buf);
 
   for (int i = 0; i < 10; i++) {
-    printf("(ones) prefixword: %s\n", prefixword);
+    //printf("(ones) prefixword: %s\n", prefixword);
     char *crypted = crypting(prefixword); // crypt
-    printf("(ones) crypted: %s\n", crypted);
     int same = compare(password, crypted, prefixword); // compare
-    printf("(ones) SAME: %d\n", same);
     if (same == 1) {
       return 1; 
     }
@@ -191,10 +188,41 @@ int onesCheckPrefix(char *password, char *word) {
   return 0;
 }
 
+// checks password to dictionary word with prefixes 10-99
+int tensCheckPrefix(char *password, char *word) {
+  int wordlen = strlen(word); // store dict word length
+  int buflen = (2 + wordlen * sizeof(char)); // buffer length
+  char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
+  sprintf(buf, "%s", word); // puts null terminator after inserting word
+
+  char *prefix = malloc(2 * sizeof(char)); // two char spots
+  prefix[0] = '0';
+  prefix[1] = '0';
+  char *prefixword = strcat(prefix, buf);
+
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      //printf("(ones) prefixword: %s\n", prefixword);
+      char *crypted = crypting(prefixword); // crypt
+      int same = compare(password, crypted, prefixword); // compare
+      if (same == 1) {
+        return 1; 
+      }
+      prefixword[1]++;
+    }
+    prefixword[0]++;
+  }
+  return 0;
+}
+
+
+
 // checks dictionary word for each prefix & suffix size
 int checkWord(char *password , char *word) {
 
   if (onesCheckPrefix(password, word) == 1)
+    return 1;
+  if (tensCheckPrefix(password, word) == 1)
     return 1;
 
   /*
