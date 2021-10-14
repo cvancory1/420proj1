@@ -1,13 +1,8 @@
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-<<<<<<< HEAD
-#include <crypt.h>// - mac doesn't know what this is
-=======
 #include <crypt.h> //- mac doesn't know what this is
->>>>>>> 955809e75cf266b6e6c99c321471e54de2463e23
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
