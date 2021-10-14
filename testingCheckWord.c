@@ -21,9 +21,9 @@ char* crypting(char *password) {
 int compare(char *password, char *crypted, char *nonhashedpass) {
   int ret = 0;
   if (strcmp(password, crypted) == 0) {
-    puts("PASSWORD HAS BEEN CRACKED!");
+    puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
-    printf("\nThe crypted version is: %s\n", crypted);
+    printf("The crypted version is: %s\n", crypted);
     ret = 1; // set to 1 since its found
   } else {
     //printf("Password has not been cracked :(\n");
