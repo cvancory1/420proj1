@@ -28,6 +28,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   return ret;
 }
 
+// ------------------------------------ SUFFIX CHECKS ------------------------------------
 // checks password to dictionary word with suffixes 0-10
 int onesCheck(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
@@ -73,6 +74,7 @@ int tensCheck (char *password, char *word) {
         buf[wordlen+1]= '0' ; // ones 
       }
   }
+  return 0;
 }
 
 // checks password to dictionary word with suffixes 100-999
@@ -113,6 +115,7 @@ int hundredsCheck (char *password, char *word) {
     buf[wordlen+1]='0';// tens
     buf[wordlen]++; // hundreads
   }
+  return 0;
 }
 
 // checks password to dictionary word with suffixes 1000-9999
@@ -157,11 +160,44 @@ int thousandsCheck (char *password, char *word) {
     buf[wordlen+1]= '0';// hundreds
     buf[wordlen]++; // thousands
   }
+  return 0;
 }
 
-// checks dictionary word for each suffix size
+// ------------------------------------ PREFIX CHECKS ------------------------------------
+// checks password to dictionary word with prefixes 0-10
+// use strcat to add orefix string to the word buf?
+int onesCheckPrefix(char *password, char *word) {
+  int wordlen = strlen(word); // store dict word length
+  int buflen = (2 + wordlen * sizeof(char)); // buffer length
+  char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
+  sprintf(buf, "%s", word); // puts null terminator after inserting word
+
+
+  char *prefix = malloc(1 * sizeof(char)); // one char spot
+  prefix[0] = '0';
+  char *prefixword = strcat(prefix, buf);
+
+  for (int i = 0; i < 10; i++) {
+    printf("(ones) prefixword: %s\n", prefixword);
+    char *crypted = crypting(prefixword); // crypt
+    printf("(ones) crypted: %s\n", crypted);
+    int same = compare(password, crypted, prefixword); // compare
+    printf("(ones) SAME: %d\n", same);
+    if (same == 1) {
+      return 1; 
+    }
+    prefixword[0]++;
+  }
+  return 0;
+}
+
+// checks dictionary word for each prefix & suffix size
 int checkWord(char *password , char *word) {
 
+  if (onesCheckPrefix(password, word) == 1)
+    return 1;
+
+  /*
   if (onesCheck(password, word) == 1)
     return 1;
   if (tensCheck(password, word ) == 1)
@@ -170,22 +206,23 @@ int checkWord(char *password , char *word) {
     return 1;
   if (thousandsCheck(password, word) == 1)
     return 1;
+  */
   
   return 0; // false
 }
 
 int main () {
-  char *word = "abase";
+  char *word = "abashed";
   //char *testing = "aardvark123";
   //char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
   //char *password = "$1$ab$EN4HdMyFfvk9VYCCEIIJs0"; //abandon9365
   //char *password = "$1$ab$nceComwr03PR64UjgZOTM/"; // abashed8
-  char *password = "$1$ab$6mj6pLEZbyGKA9.J6InfW0"; // abase11
+  //char *password = "$1$ab$6mj6pLEZbyGKA9.J6InfW0"; // abase11
 
-  //int res = hundredsCheck(password, word);
-  //printf("Result: %d", res);
+  char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
 
-  checkWord(password, word);
+  //checkWord(password, word);
+  onesCheckPrefix(password, word);
 
   return 0;
 }
