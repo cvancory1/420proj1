@@ -103,14 +103,14 @@ int hundredsCheck (char *password, char *word) {
         //printf("crypted buf (hundreds): %s\n", crypted);
         int same = compare(password, crypted); // compare
         //printf("SAME: %d", same);
-        if (same == 0) {
+        if (same == 1) { // compare returns 1 if found, not 0
           return 1; 
         }
         
         buf[wordlen+2]++; // ones place 
 
         // hacking - stops the loop early 
-        if(buf[wordlen+2]==':' && buf[wordlen+1]=='9' && buf[wordlen]=='9') {
+        if (buf[wordlen+2]==':' && buf[wordlen+1]=='9' && buf[wordlen]=='9') {
           return 0;
         }
       
