@@ -187,13 +187,13 @@ int checkWord(char *password , char *word) {
 
 int main () {
   char *word = "aardvark";
-  char *testing = "aardvark123";
+  //char *testing = "aardvark123";
   char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
 
-  int res = hundredsCheck(password, word);
+  //int res = hundredsCheck(password, word);
   //printf("Result: %d", res);
 
-  //checkWord(password, word);
+  checkWord(password, word);
 
   return 0;
 }
