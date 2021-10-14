@@ -268,8 +268,8 @@ int checkWord(char *password , char *word) {
     return 1;
   if (tensCheckPrefix(password, word) == 1)
     return 1;
-  //if(hundsCheckPrefix(password, word) == 1)
-    //return 1;
+  if(hundsCheckPrefix(password, word) == 1)
+    return 1;
 
   /*
   if (onesCheck(password, word) == 1)
@@ -286,7 +286,7 @@ int checkWord(char *password , char *word) {
 }
 
 int main () {
-  char *word = "abase";
+  char *word = "abandon";
   //char *testing = "aardvark123";
 
   // suffix checking
@@ -297,8 +297,8 @@ int main () {
 
   // prefix checking
   //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
-  char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
-  //char *password = "$1$abjRgy.EBTO7jyNsYPC5xOs0"; // 529abandon
+  //char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
+  char *password = "$1$abjRgy.EBTO7jyNsYPC5xOs0"; // 529abandon
 
   checkWord(password, word);
 
