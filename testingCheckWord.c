@@ -342,7 +342,7 @@ int checkWord(char *password , char *word) {
 }
 
 int main () {
-  char *word = "abandon";
+  char *word = "aardvark";
   //char *testing = "aardvark123";
 
   // suffix checking
