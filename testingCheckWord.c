@@ -229,16 +229,16 @@ int hundsCheckPrefix(char *password, char *word) {
   prefix[1] = '0';
   prefix[2] = '0';
   char *prefixword = strcat(prefix, word);
-  //printf("prefixword = %s\n", prefixword);
+  printf("original prefixword = %s\n", prefixword);
 
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
       for(int k = 0; k < 10; k++){ 
-        //printf("(hundreds) prefixword = %s\n", prefixword);
+        printf("(hundreds) prefixword = %s\n", prefixword);
         char *crypted = crypting(prefixword); // crypt
-        //printf("crypted (hundreds): %s\n", crypted);
+        printf("crypted (hundreds): %s\n", crypted);
         int same = compare(password, crypted, prefixword); // compare
-        //printf("SAME: %d", same);
+        printf("SAME: %d", same);
         if (same == 1) { // compare returns 1 if found, not 0
           return 1; 
         }
