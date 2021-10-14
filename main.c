@@ -236,21 +236,30 @@ Chloe VanCory and Kalyn Howes
   */
 
 
- printf("here\n");
+//  printf("here\n");
   if(rank == ROOT){
-    printf("here2");
+    // printf("here2");
 
-    // char * currentWord = strtok(localDict, " " );
+    char * currentWord = strtok(localDict, "\n" );
+
       // printf("rank = %d currentWord = %s\n", rank, strtok(localDict, " "));
       // printf("rank = %d currentWord = %s\n", rank, strtok(localDict, " "));
 
       // printf("currentWord = %s\n", currentWord);
 
-    // while(currentWord == strtok(NULL, " ") ){
-    //   printf("currentWord = %s\n", currentWord);
-    //   // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
+    do{
+      // printf("hi ");
+      printf("currentWord = %s\n", currentWord);
+      currentWord = strtok(NULL, "\n" );
+      // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
 
-    // }
+      /* KALYN I THINK YOU WOULD INSERT YOUR LOGIC HERE. have to recopy this into main2.c since this is updated
+      // also need to add your function to this
+
+
+    }while(currentWord != NULL );
+  
+
 
   }
   
