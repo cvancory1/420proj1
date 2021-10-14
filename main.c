@@ -35,6 +35,10 @@ Chloe VanCory and Kalyn Howes
 //   return buf;
 // }
 
+
+
+
+
   typedef struct Users {
     char *  username;
     char *  id;
@@ -95,9 +99,7 @@ Chloe VanCory and Kalyn Howes
 
     }
     fclose(shadowPtr);
-
-    // if(rank ==ROOT){
-
+    printf("checkpt 1 ");
 
     
     /* ERROR CHECKING */
@@ -129,10 +131,11 @@ Chloe VanCory and Kalyn Howes
 
     }
 
-    int WORDCOUNT =100;
+    // int WORDCOUNT =100;
+    int WORDCOUNT = 235888;
     int * offset;
     int fd;
-    fd= open("testWords.txt",O_RDONLY);
+    fd= open("words.txt",O_RDONLY);
     if (rank == ROOT) {
    
 
@@ -168,6 +171,8 @@ Chloe VanCory and Kalyn Howes
     }
 
 
+    printf("checkpt 2 ");
+
     /* ROOT Calculated how much every node needs to read into their local dictionary 
        use scatter to send this amount 
     */
@@ -186,6 +191,7 @@ Chloe VanCory and Kalyn Howes
       calcs the displacement for each proccessor to lseek ( move file pointer ) to a specific place
       in the file
   */
+
     int * displc = malloc(worldSize * sizeof(int));
     displc[0] = 0;
     for(int i =1; i < worldSize ; i++){
@@ -197,6 +203,8 @@ Chloe VanCory and Kalyn Howes
 
 
 
+    printf("checkpt 3 ");
+
    /*
        use lseek to position file pointers and then read into then in a portion of the words.txt into a local dictionary 
    */ 
@@ -205,11 +213,13 @@ Chloe VanCory and Kalyn Howes
     int numRead = read(fd , localDict ,sendcnt[rank] );
     localDict[strlen(localDict)]= 0; // places the NULL term @ the end
 
-    // if(rank == 3){
-    //   printf("rank = %d \nstring= %sEND\n",rank ,localDict);
-    // printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
 
-    // }
+    /* ERROR CHECKING
+    if(rank == 3){
+      printf("rank = %d \nstring= %sEND\n",rank ,localDict);
+    printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
+
+    }
 
     if(rank == ROOT){
         for(int i =0; i < worldSize ;i++){
@@ -217,8 +227,11 @@ Chloe VanCory and Kalyn Howes
         }
       
     }
+    */
    
 
+
+  printf("checkpt 4 ");
 
   /*
     set up "shared array " that will indicate whether we have found a users password or not
@@ -231,10 +244,13 @@ Chloe VanCory and Kalyn Howes
   int currentUserIndex =0; // index of the current users paswds all nodes are trying to find 
 
 
-  /*
-    ALL NODES - Parse every words from every nodes local dictionary to crpyt and test ater 
 
-  */
+  printf("checkpt 5 ");
+  
+  // /*
+  //   ALL NODES - Parse every words from the nodes local dictionary to crpyt and test ater 
+
+  // */
 
 
     /* ALL NODES - parse their first word in the localdict */ 
@@ -243,26 +259,27 @@ Chloe VanCory and Kalyn Howes
 
     while(currentWord != NULL ){
       // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
-      printf("rank = %d currentWord = %s\n", rank, currentWord);
-      currentWord = strtok(NULL, "\n" );
+     
+      /* KALYN I THINK YOU WOULD INSERT YOUR LOGIC HERE.
+        have to recopy this into main2.c since this is updated now
 
-       /* KALYN I THINK YOU WOULD INSERT YOUR LOGIC HERE. have to recopy this into main2.c since this is updated
+        Gen Idea : 
+        if the checkwords function returns 1 have all other nodes upadte the usrPwd[index]=1
+        have them check after every 100 or so words. 
         */
 
+
+      // printf("rank = %d currentWord = %s\n", rank, currentWord);
+      currentWord = strtok(NULL, "\n" );
+
+       
     }
     
 
-  
-  
 
 
+  printf("FINAL");
 
-  // after every few itertations do an all reduce 
- 
-
-
-
-
-    MPI_Finalize();
-    return 0;
+  MPI_Finalize();
+  return 0;
 }
