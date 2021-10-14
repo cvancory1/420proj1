@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <crypt.h> //- mac doesn't know what this is
+//#include <crypt.h> //- mac doesn't know what this is
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -298,7 +298,7 @@ int main () {
   // prefix checking
   //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
   //char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
-  char *password = "$1$ab$jRgy.EBTO7jyNsYPC5xOs0"; // 529abandon
+  char *password = "$1$ab$i05qx2WzHLm2O92sVdTwm0"; // 997abandon
 
   checkWord(password, word);
 
