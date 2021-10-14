@@ -298,7 +298,7 @@ int main () {
   // prefix checking
   //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
   //char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
-  char *password = "$1$abjRgy.EBTO7jyNsYPC5xOs0"; // 529abandon
+  char *password = "$1$ab$jRgy.EBTO7jyNsYPC5xOs0"; // 529abandon
 
   checkWord(password, word);
 
