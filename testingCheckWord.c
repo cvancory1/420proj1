@@ -99,7 +99,6 @@ int hundredsCheck (char *password, char *word) {
         //printf("(hundreds) buf = %s\n", buf);
         char *crypted = crypting(buf); // crypt
         //printf("crypted buf (hundreds): %s\n", crypted);
-        int same = strcmp(password, crypted); // is currently saying crypted is 32 less than password
         int same = compare(password, crypted); // compare
         //printf("SAME: %d", same);
         if (same == 0) {
