@@ -283,11 +283,11 @@ Chloe VanCory and Kalyn Howes
       char * currentWord = strtok(localDict, "\n" );
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
-      // if(rank ==ROOT){
+      if(rank ==ROOT){
       check = checkWord(pwd , currentWord);
       // printf("IN MAIN");
 
-      // }
+      }
       // printf("RANK = %d BACK IN MAIN\n", rank);
       // if( check == 1 ){
       //   usrPwd[pswdIndex]=1; // this node found a password
