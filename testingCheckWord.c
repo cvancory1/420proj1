@@ -177,7 +177,7 @@ int onesCheckPrefix(char *password, char *word) {
   prefix[0] = '0';
   prefix[1] = '\0';
   sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
-  printf("prefixword = %s ", word);
+  // printf("prefixword = %s ", word);
 
   for (int i = 0; i < 10; i++) {
     //printf("(ones) prefixword: %s\n", prefixword);
