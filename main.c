@@ -269,7 +269,7 @@ Chloe VanCory and Kalyn Howes
     fscanf(shadowPtr,"%s", line );
     char * username = strtok(line, ":" );
     char * alg = strtok(NULL, "$" );
-    char * id = strtok(NULL, "$" );
+    char * salt = strtok(NULL, "$" );
     char * pwd = strtok(NULL, "$" );
 
 
@@ -281,7 +281,7 @@ Chloe VanCory and Kalyn Howes
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
       // if(rank ==ROOT){
-      check = checkWord(pwd , currentWord);
+      check = checkWord(strcat(salt,pwd) , currentWord);
       // printf("IN MAIN");
 
       // }
