@@ -196,7 +196,7 @@ int main(int argc, char** argv) {
   char * localDict = malloc ( sendcnt[rank]+1 * sizeof(char));
   lseek(fd ,displc[rank], SEEK_SET);
   int numRead = read(fd , localDict ,sendcnt[rank] );
-  localDict[strlen(localDict)]= '\0'; // places the NULL term @ the end
+  localDict[sendcnt[rank]+1]= '\0'; // places the NULL term @ the end
   printf(" rank = %d \nstring= %sEND\n",rank ,localDict);
 
 
