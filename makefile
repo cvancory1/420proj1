@@ -3,7 +3,7 @@
 program: main.o
 	mpicc -std=c99 -lcrypt main.o -o main
 	# mpicc -std=c99  main.o -o main
-	mpirun -n 1 ./main
+	mpirun -n 15 ./main
 
 main.o: main.c
 	mpicc  -std=c99 -c -lcrypt main.c
