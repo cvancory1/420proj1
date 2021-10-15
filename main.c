@@ -280,25 +280,25 @@ Chloe VanCory and Kalyn Howes
       char * currentWord = strtok(localDict, "\n" );
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
-      if(rank ==ROOT){
+      // if(rank ==ROOT){
       check = checkWord(currentWord , pwd);
 
 
-      }
-      printf("RANK = %d BACK IN MAIN\n", rank);
+      // }
+      // printf("RANK = %d BACK IN MAIN\n", rank);
       if( check == 1 ){
         usrPwd[pswdIndex]=1; // this node found a password
       }
 
-  //     int wordCounter = 1; // how many words of the local dict we have checked
-  //     while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
-  //       // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
-  //       // printf("rank = %d currentWord = %s\n", rank, currentWord);
-  //       currentWord = strtok(NULL, "\n" );
-  //       check = checkWord(currentWord , shadowUsers[pswdIndex].pwd);
-  //       if( check == 1 ){
-  //         usrPwd[pswdIndex]= 1; // this node found a password
-  //       }
+      // int wordCounter = 1; // how many words of the local dict we have checked
+      // while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
+      //   // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
+      //   // printf("rank = %d currentWord = %s\n", rank, currentWord);
+      //   currentWord = strtok(NULL, "\n" );
+      //   check = checkWord(currentWord , shadowUsers[pswdIndex].pwd);
+      //   if( check == 1 ){
+      //     usrPwd[pswdIndex]= 1; // this node found a password
+      //   }
 
   //       wordCounter++;
           
