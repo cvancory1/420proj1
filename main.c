@@ -266,11 +266,11 @@ Chloe VanCory and Kalyn Howes
 
   // */
 
-    // fscanf(shadowPtr,"%s", line );
-    // char * username = strtok(line, ":" );
-    // char * alg = strtok(NULL, "$" );
-    // char * id = strtok(NULL, "$" );
-    // char * pwd = strtok(NULL, "$" );
+    fscanf(shadowPtr,"%s", line );
+    char * username = strtok(line, ":" );
+    char * alg = strtok(NULL, "$" );
+    char * id = strtok(NULL, "$" );
+    char * pwd = strtok(NULL, "$" );
 
 
 
