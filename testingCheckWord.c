@@ -21,13 +21,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     // printf("The crypted is: %s\n", crypted);
     // printf("The nonhashedpass is: %s\n", nonhashedpass);
 
-    if(strcmp(nonhashedpass,"aardvark123")==1){
-    printf("The crypted is: %s\n", crypted);
-    printf("The password is: %s\n", password);
 
-
-
-    }
 
   if (strcmp(password, crypted) == 0) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
