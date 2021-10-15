@@ -281,7 +281,9 @@ Chloe VanCory and Kalyn Howes
 
   while(currentWord != NULL ){
     currentWord = strtok(NULL, "\n" );
-      check = checkWord(pwd , currentWord);
+      if( currentWord !=NULL ){
+        check = checkWord(pwd , currentWord);
+      }
 
 
   }
