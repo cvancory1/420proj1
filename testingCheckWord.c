@@ -254,9 +254,9 @@ int hundsCheckPrefix(char *password, char *word) {
         prefixword[2]++; // ones place 
 
         // hacking - stops the loop early 
-        if (prefixword[2]==':' && prefixword[1]=='9' && prefixword[0]=='9') {
-          return 0;
-        }
+        // if (prefixword[2]==':' && prefixword[1]=='9' && prefixword[0]=='9') {
+        //   return 0;
+        // }
       
       }
       prefixword[2]= '0'; // ones
