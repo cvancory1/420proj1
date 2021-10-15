@@ -168,7 +168,7 @@ int thousandsCheck (char *password, char *word) {
 // use strcat to add orefix string to the word buf
 int onesCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (2 + wordlen * sizeof(char)); // buffer length
+  // int buflen = (2 + wordlen * sizeof(char)); // buffer length
   // char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   // sprintf(buf, "%s", word); // puts null terminator after inserting word
 
