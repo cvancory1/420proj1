@@ -295,7 +295,7 @@ Chloe VanCory and Kalyn Howes
         // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
         // printf("rank = %d currentWord = %s\n", rank, currentWord);
         currentWord = strtok(NULL, "\n" );
-        // check = checkWord(currentWord , shadowUsers[pswdIndex].pwd);
+        check = checkWord(currentWord , shadowUsers[pswdIndex].pwd);
         // if( check == 1 ){
         //   usrPwd[pswdIndex]= 1; // this node found a password
         // }
