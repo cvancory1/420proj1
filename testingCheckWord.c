@@ -17,10 +17,10 @@ char* crypting(char *password) {
 // returns 1 if they are the same and 0 if not
 int compare(char *password, char *crypted, char *nonhashedpass) {
   int ret = 0;
-    printf("The password is: %s\n", password);
-    printf("The crypted is: %s\n", crypted);
-    printf("The nonhashedpass is: %s\n", nonhashedpass);
-    if(strcmp(nonhashedpass, "abashed8")==0){
+    // printf("The password is: %s\n", password);
+    // printf("The crypted is: %s\n", crypted);
+    // printf("The nonhashedpass is: %s\n", nonhashedpass);
+    if(strcmp(nonhashedpass, "abase11")==0){
       printf("The nonhashedpass is: %s\n", nonhashedpass);
     }
 
@@ -239,12 +239,14 @@ int onesCheck(char *password, char *word) {
 // checks password to dictionary word with suffixes 10-99
 int tensCheck (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (2 + wordlen * sizeof(char)); // buffer length = 'tens' place + word length
+  int buflen = (3 + wordlen * sizeof(char)); // buffer length = 'tens' place + word length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
   buf[wordlen] = '0';
   buf[wordlen + 1] = '0'; 
+  buf[wordlen+2] = '\0';
+
 
   for (int i = 9; i <= 100; i++) {
       //printf("(tens) buf = %s\n", buf);
@@ -355,18 +357,18 @@ int checkWord(char *password , char *word) {
   // printf("password %s word= %s  ",password, word);
 
 
-  // if (onesCheckPrefix(password, word) == 1)
-  //   return 1;
-  // if (tensCheckPrefix(password, word) == 1)
-  //   return 1;
-  // if (hundsCheckPrefix(password, word) == 1)
-  //   return 1;
-  // if (thousCheckPrefix(password, word) == 1)
-  //   return 1;
+  if (onesCheckPrefix(password, word) == 1)
+    return 1;
+  if (tensCheckPrefix(password, word) == 1)
+    return 1;
+  if (hundsCheckPrefix(password, word) == 1)
+    return 1;
+  if (thousCheckPrefix(password, word) == 1)
+    return 1;
   if (onesCheck(password, word) == 1)
     return 1;
-  // if (tensCheck(password, word ) == 1)
-  //   return 1;
+  if (tensCheck(password, word ) == 1)
+    return 1;
   // if (hundredsCheck(password, word) == 1)
   //   return 1;
   // if (thousandsCheck(password, word) == 1)
