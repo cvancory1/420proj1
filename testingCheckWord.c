@@ -328,9 +328,12 @@ int thousCheckPrefix (char *password, char *word) {
 
 // checks dictionary word for each prefix & suffix size
 int checkWord(char *password , char *word) {
+  printf("CHECKWORD");
+  printf("password %s word= %s  ",password, word);
 
-  if (onesCheckPrefix(password, word) == 1)
-    return 1;
+
+  // if (onesCheckPrefix(password, word) == 1)
+  //   return 1;
   // if (tensCheckPrefix(password, word) == 1)
   //   return 1;
   // if (hundsCheckPrefix(password, word) == 1)
