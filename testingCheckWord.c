@@ -167,6 +167,7 @@ int thousandsCheck (char *password, char *word) {
 // checks password to dictionary word with prefixes 0-9
 // use strcat to add orefix string to the word buf
 int onesCheckPrefix(char *password, char *word) {
+  printf("here in funcion ");
   int wordlen = strlen(word); // store dict word length
   // int buflen = (2 + wordlen * sizeof(char)); // buffer length
   // char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
