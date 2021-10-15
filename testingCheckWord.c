@@ -235,7 +235,7 @@ int hundsCheckPrefix(char *password, char *word) {
   prefix[2] = '0';
   prefix[3] = '\0';
   sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
-  printf("prefixword = %s ", word);
+  // printf("prefixword = %s ", word);
   
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
@@ -280,7 +280,7 @@ int thousCheckPrefix (char *password, char *word) {
   prefix[3] = '0';
   prefix[4] = '\0';
   sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
-  printf("prefixword = %s ", word);
+  // printf("prefixword = %s ", word);
 
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
