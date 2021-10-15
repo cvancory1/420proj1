@@ -19,6 +19,7 @@ Chloe VanCory and Kalyn Howes
  #include<sys/stat.h>
 
 #define ROOT 0
+#include "testingCheckWord.c"
 // #define WORDCOUNT 235888 TODO : change later
 // char *bufArr(int *arr, int n) {
 //   char *buf = malloc(n * (4 + 1) + 1);
@@ -64,47 +65,57 @@ Chloe VanCory and Kalyn Howes
 
   //  malloc the actual pointers then malloc each of hte arrays 
     FILE * shadowPtr;
-    shadowPtr = fopen ("shadow.txt", "r");
+    shadowPtr = fopen ("testShadow.txt", "r");
     char * line= malloc(255* sizeof(char));
     int numUsers = 11;
     Users shadowUsers[numUsers]; // 48 bytes 
     int index = 0;
  
       // printf("here=\n");
-    while(fscanf(shadowPtr,"%s", line )!=EOF){
-      // printf("here1=\n");
+    // if(rank ==ROOT){
+    //   while(fscanf(shadowPtr,"%s", line )!=EOF){
+    //   // printf("here1=\n");
 
       // printf("line=%s\n",line);
-      char * username = strtok(line, ":" );
-      char * alg = strtok(NULL, "$" );
-      char * id = strtok(NULL, "$" );
-      char * pwd = strtok(NULL, "$" );
+      // char * username = strtok(line, ":" );
+      // char * alg = strtok(NULL, "$" );
+      // char * id = strtok(NULL, "$" );
+      // char * pwd = strtok(NULL, "$" );
 
-      shadowUsers[index].username = username;
-      shadowUsers[index].alg = alg;
-      shadowUsers[index].id = id;
-      shadowUsers[index].pwd = pwd;
-      // printf("i= %d username=%s\n",index, shadowUsers[index].username);
-      // printf("alg=%s\n", shadowUsers[index].alg);
-      // printf("id=%s\n", shadowUsers[index].id);
-      // printf("pwd=%s\n\n", shadowUsers[index].pwd);
+      // shadowUsers[index].username = username;
+      // shadowUsers[index].alg = alg;
+      // shadowUsers[index].id = id;
+      // shadowUsers[index].pwd = pwd;
 
-      index++;
+    //   shadowUsers[index].username = strtok(line, ":" );
+    //   printf("line=%s\n",line);
+    //   printf("shadowUsers[index].username=%s\n",shadowUsers[index].username);
+
+
+    //   shadowUsers[index].alg  = strtok(NULL, "$" );
+    //   shadowUsers[index].id = strtok(NULL, "$" );
+    //   shadowUsers[index].pwd  = strtok(NULL, "$" );
+    
+    //   index++;
       
-      // printf("username=%s\n",username);
-      // printf("alg=%s\n",alg);
-      // printf("id=%s\n",id);
-      // printf("pwd=%s\n\n",pwd);
+    //   // printf("username=%s\n",username);
+    //   // printf("alg=%s\n",alg);
+    //   // printf("id=%s\n",id);
+    //   // printf("pwd=%s\n\n",pwd);
 
 
-    }
-    fclose(shadowPtr);
-    printf("checkpt 1 ");
+    //   }
+      
+    // }
+    
+    // fclose(shadowPtr);
+    // printf("checkpt 1 ");
 
     
     /* ERROR CHECKING */
-    // for(int i =0; i < numUsers ;i++){
-    // puts("-------");
+    // if(rank == ROOT){
+    //   for(int i =0; i < numUsers ;i++){
+    //   puts("-------");
 
     //     printf("i= %d username=%s\n",i, shadowUsers[i].username);
     //     printf("alg=%s\n", shadowUsers[i].alg);
@@ -114,6 +125,7 @@ Chloe VanCory and Kalyn Howes
     //   }
 
     // }
+
 
 
     /*  
@@ -131,13 +143,12 @@ Chloe VanCory and Kalyn Howes
 
     }
 
-    // int WORDCOUNT =100;
-    int WORDCOUNT = 235888;
+    int WORDCOUNT =100;
+    // int WORDCOUNT = 235888;
     int * offset;
     int fd;
-    fd= open("words.txt",O_RDONLY);
+    fd= open("testWords.txt",O_RDONLY);
     if (rank == ROOT) {
-   
 
       int numBytes;
       int index =0;
@@ -155,7 +166,7 @@ Chloe VanCory and Kalyn Howes
 
                 if(lineCount == (WORDCOUNT / worldSize)){
                   // printf("here - line count =%d\n",lineCount);
-                // printf("sendcnt[%d]=%d\n",index ,sendcnt[index]);
+                printf("sendcnt[%d]=%d\n",index ,sendcnt[index]);
 
                   lineCount = 0;
                   index++;
@@ -170,8 +181,7 @@ Chloe VanCory and Kalyn Howes
       }
     }
 
-
-    printf("checkpt 2 ");
+    // printf("checkpt 2\n ");
 
     /* ROOT Calculated how much every node needs to read into their local dictionary 
        use scatter to send this amount 
@@ -196,90 +206,125 @@ Chloe VanCory and Kalyn Howes
     displc[0] = 0;
     for(int i =1; i < worldSize ; i++){
       displc[i] = sendcnt[i-1] + displc[i-1];
-      if(rank ==0)
-        printf("i =%d displc= %d\n",i, displc[i]);
+      // if(rank ==0)
+        // printf("i =%d displc= %d\n",i, displc[i]);
 
     }
 
 
 
-    printf("checkpt 3 ");
+    // printf("checkpt 3 ");
 
-   /*
-       use lseek to position file pointers and then read into then in a portion of the words.txt into a local dictionary 
-   */ 
+  //  /*
+  //      use lseek to position file pointers and then read into then in a portion of the words.txt into a local dictionary 
+  //  */ 
     char * localDict = malloc ( sendcnt[rank]+1 * sizeof(char));
     lseek(fd ,displc[rank], SEEK_SET);
     int numRead = read(fd , localDict ,sendcnt[rank] );
     localDict[strlen(localDict)]= 0; // places the NULL term @ the end
+    // printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
 
 
-    /* ERROR CHECKING
-    if(rank == 3){
-      printf("rank = %d \nstring= %sEND\n",rank ,localDict);
-    printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
 
-    }
 
-    if(rank == ROOT){
-        for(int i =0; i < worldSize ;i++){
-      // printf("rank = %d \nstring= %c%c%c END\n",rank ,localDict[displc[i-1]], localDict[displc[i]] , localDict[displc[i+1]]);
-        }
+    //  ERROR CHECKING
+    // if(rank == 3){
+      // printf("rank = %d \nstring= %sEND\n",rank ,localDict);
+    // printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
+
+    // }
+
+    // if(rank == ROOT){
+    //     for(int i =0; i < worldSize ;i++){
+    //   // printf("rank = %d \nstring= %c%c%c END\n",rank ,localDict[displc[i-1]], localDict[displc[i]] , localDict[displc[i+1]]);
+    //     }
       
-    }
-    */
+    // }
+  //   
    
 
 
-  printf("checkpt 4 ");
+  // printf("checkpt 4 ");
 
-  /*
-    set up "shared array " that will indicate whether we have found a users password or not
-  */
+  // /*
+  //   set up "shared array " that will indicate whether we have found a users password or not
+  // */
 
-  int * usrPwd = malloc(worldSize * sizeof(int));
-  for(int i=0; i< worldSize ;i++){
+  int * usrPwd = malloc(numUsers * sizeof(int)); 
+  for(int i=0; i< numUsers ;i++){
     usrPwd[i] = 0;
   }
-  int currentUserIndex =0; // index of the current users paswds all nodes are trying to find 
+  int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
 
 
 
-  printf("checkpt 5 ");
+  // printf("checkpt 5 ");
   
   // /*
-  //   ALL NODES - Parse every words from the nodes local dictionary to crpyt and test ater 
+  //  *ALL NODES - Parse every words from the nodes local dictionary to crpyt and test ater 
+  // * Do this for every username we have
 
   // */
 
-
-    /* ALL NODES - parse their first word in the localdict */ 
-    char * currentWord = strtok(localDict, "\n" );
-    //checkword(currentWord , shadowUsers[currentUserIndex].pwd);
-
-    while(currentWord != NULL ){
-      // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
-     
-      /* KALYN I THINK YOU WOULD INSERT YOUR LOGIC HERE.
-        have to recopy this into main2.c since this is updated now
-
-        Gen Idea : 
-        if the checkwords function returns 1 have all other nodes upadte the usrPwd[index]=1
-        have them check after every 100 or so words. 
-        */
+    fscanf(shadowPtr,"%s", line );
+    char * username = strtok(line, ":" );
+    char * alg = strtok(NULL, "$" );
+    char * id = strtok(NULL, "$" );
+    char * pwd = strtok(NULL, "$" );
 
 
-      // printf("rank = %d currentWord = %s\n", rank, currentWord);
-      currentWord = strtok(NULL, "\n" );
 
+  // for(int i =0 ;i<numUsers ;i++){
+  //   /* ALL NODES - parse their first word in the localdict */ 
+      int check;
+      char * currentWord = strtok(localDict, "\n" );
+      if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
+
+
+      check = checkWord(currentWord , pwd);
+      // if( check == 1 ){
+      //   usrPwd[pswdIndex]=1; // this node found a password
+      // }
+
+  //     int wordCounter = 1; // how many words of the local dict we have checked
+  //     while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
+  //       // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
+  //       // printf("rank = %d currentWord = %s\n", rank, currentWord);
+  //       currentWord = strtok(NULL, "\n" );
+  //       check = checkWord(currentWord , shadowUsers[pswdIndex].pwd);
+  //       if( check == 1 ){
+  //         usrPwd[pswdIndex]= 1; // this node found a password
+  //       }
+
+  //       wordCounter++;
+          
        
-    }
-    
+  //       if(wordCounter == 2000){
+        
+  //         wordCounter = 0; 
+  //         MPI_Allreduce(
+  //             &check,       // send buffer, an array
+  //             &usrPwd[pswdIndex],       // recv buffer
+  //             1,          // count
+  //             MPI_INT,    // datatype
+  //             MPI_MAX,    // operation handle
+  //             world       // comm
+  //         );
+  //           //DO Reduce all - then all other nodes will see that they have a 1 there 
 
+  //         if( usrPwd[pswdIndex] == 1 ){
+  //           pswdIndex++;
+  //         }
+  //       }
 
+  //     }
+        
+      // }
+  // }
 
-  printf("FINAL");
-
+  // printf("FINAL");
+    // close(fd);
+  // fclose(pswdfd);
   MPI_Finalize();
   return 0;
 }
