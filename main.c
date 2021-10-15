@@ -292,8 +292,10 @@ Chloe VanCory and Kalyn Howes
 
       int wordCounter = 1; // how many words of the local dict we have checked
       while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
-        // checkword(currentWord , shadowUsers[currentUserIndex].pwd);
-        // printf("rank = %d currentWord = %s\n", rank, currentWord);
+        if(rank ==ROOT){
+          printf("rank = %d currentWord = %s\n", rank, currentWord);
+
+        }
         currentWord = strtok(NULL, "\n" );
         check = checkWord(currentWord , pwd);
         // if( check == 1 ){
