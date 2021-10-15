@@ -291,23 +291,23 @@ Chloe VanCory and Kalyn Howes
 
       int wordCounter = 1; // how many words of the local dict we have checked
       // while(currentWord != NULL ){
-      while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
-        // if(rank == ROOT){
-      //   //   printf("rank = %d currentWord = %s\n", rank, currentWord);
-        currentWord = strtok(NULL, "\n" );
-        if( currentWord !=NULL ){
-          check = checkWord(currentWord , pwd);
-        }
-        // }
+      // while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
+      //   // if(rank == ROOT){
+      // //   //   printf("rank = %d currentWord = %s\n", rank, currentWord);
+      //   currentWord = strtok(NULL, "\n" );
+      //   if( currentWord !=NULL ){
+      //     check = checkWord(currentWord , pwd);
+      //   }
+      //   // }
       
-      //   // printf("rank = %d currentWord = %s\n", rank, currentWord);
+      // //   // printf("rank = %d currentWord = %s\n", rank, currentWord);
 
-        if( check == 1 ){
-          // usrPwd[pswdIndex]= 1; // this node found a password
-           printf("rank = %d FOUND = %s\n", rank);
+      //   if( check == 1 ){
+      //     // usrPwd[pswdIndex]= 1; // this node found a password
+      //      printf("rank = %d FOUND = %s\n", rank);
 
 
-        }
+      //   }
 
   //       wordCounter++;
           
@@ -333,7 +333,7 @@ Chloe VanCory and Kalyn Howes
       // }
         
       // }
-  }
+  // }
 
   // printf("FINAL");
     // close(fd);

@@ -294,11 +294,17 @@ int thousCheckPrefix (char *password, char *word) {
 
   // int same = compare(password, crypted, prefixword); // compare
 
-    if (strcmp(password, crypted) == 0) {
-      printf("found = %s\n", crypted); 
+  for(int i =0; i< strlen;i++){
+    printf"%c %c %d \n",password[i],crypted[i] , strcmp(password[i], crypted[i]);
 
-      return 1; 
-    }
+
+  }
+
+    // if (strcmp(password, crypted) == 0) {
+    //   printf("found = %s\n", crypted); 
+
+    //   return 1; 
+    // }
           
 
   return 0;
