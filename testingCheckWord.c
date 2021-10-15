@@ -292,7 +292,7 @@ int thousCheckPrefix (char *password, char *word) {
     }
           
 
-
+  return 0;
 }
 
 // // checks password to dictionary word with prefixes 1000-9999
