@@ -221,6 +221,7 @@ int onesCheck(char *password, char *word) {
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
   buf[wordlen] = '0';
+  buf[wordlen+1] = '\0';
   for (int i = 0; i < 10; i++) {
     //printf("(ones) buf = %s\n", buf);
 
