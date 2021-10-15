@@ -232,7 +232,10 @@ int main(int argc, char** argv) {
   // * Do this for every username we have
   // */
 
+
   fscanf(shadowPtr,"%s", line );
+  printf("line=%s\n", line);
+
   char * username = strtok(line, ":" );
   char * pwd = strtok(NULL, "\n" );
   // char * salt = strtok(NULL, "\n" );
@@ -240,8 +243,15 @@ int main(int argc, char** argv) {
   printf("pwd=%s\n", pwd);
   printf("username=%s\n", username);
 
-  // ------ DO CHECK WORD -------
-  while( pswdIndex != numUsers ){
+  // fscanf(shadowPtr,"%s", line );
+  // username = strtok(line, ":" );
+  // printf("username=%s\n", username);
+
+  // pwd = strtok(NULL, "\n" );
+  // printf("pwd=%s\n", pwd);
+
+  // // ------ DO CHECK WORD -------
+  while( pswdIndex != numUsers-1 ){
     int check;
     char * currentWord = strtok(localDict, "\n" );
     check = checkWord(pwd , currentWord);
