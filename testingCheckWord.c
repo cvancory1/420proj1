@@ -21,6 +21,14 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     // printf("The crypted is: %s\n", crypted);
     // printf("The nonhashedpass is: %s\n", nonhashedpass);
 
+    if(strcmp(nonhashedpass,"aardvark123"){
+    printf("The crypted is: %s\n", crypted);
+    printf("The password is: %s\n", password);
+
+
+
+    }
+
   if (strcmp(password, crypted) == 0) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
@@ -389,8 +397,8 @@ int checkWord(char *password , char *word) {
   //   return 1;
   // if (tensCheckPrefix(password, word) == 1)
   //   return 1;
-  // if (hundsCheckPrefix(password, word) == 1)
-  //   return 1;
+  if (hundsCheckPrefix(password, word) == 1)
+    return 1;
   if (thousCheckPrefix(password, word) == 1)
     return 1;
   // if (onesCheck(password, word) == 1)
