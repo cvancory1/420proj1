@@ -271,22 +271,22 @@ Chloe VanCory and Kalyn Howes
     char * alg = strtok(NULL, "$" );
     char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
-      printf("salt=%d", salt);
+      printf("salt=%d\n", salt);
 
 
 
 
   // for(int i =0 ;i<numUsers ;i++){
-  //   /* ALL NODES - parse their first word in the localdict */ 
-      // int check;
-      // char * currentWord = strtok(localDict, "\n" );
-      // // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
+    /* ALL NODES - parse their first word in the localdict */ 
+      int check;
+      char * currentWord = strtok(localDict, "\n" );
+      // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
-      // // if(rank ==ROOT){
-      // check = checkWord(pwd , currentWord);
-      // // printf("IN MAIN");
+      // if(rank ==ROOT){
+      check = checkWord(pwd , currentWord);
+      // printf("IN MAIN");
 
-      // }
+      }
       // printf("RANK = %d BACK IN MAIN\n", rank);
       // if( check == 1 ){
       //   usrPwd[pswdIndex]=1; // this node found a password
