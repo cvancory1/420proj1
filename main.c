@@ -278,7 +278,7 @@ Chloe VanCory and Kalyn Howes
   //   /* ALL NODES - parse their first word in the localdict */ 
       int check;
       char * currentWord = strtok(localDict, "\n" );
-      // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
+      if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
       // if(rank ==ROOT){
       check = checkWord(pwd , currentWord);
