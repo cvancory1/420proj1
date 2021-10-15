@@ -234,9 +234,9 @@ int main(int argc, char** argv) {
 
 
   fscanf(shadowPtr,"%s", line );
-  printf("line=%s\n", line);
+  // printf("line=%s\n", line);
 
-  printf("len of line: %d\n", strlen(line));
+  // printf("len of line: %d\n", strlen(line));
 
   char * username = strtok(line, ":" );
   char * pwd = strtok(NULL, "\n" );
@@ -261,19 +261,19 @@ int main(int argc, char** argv) {
     char * currentWord = strtok(localDict, "\n" );
     check = checkWord(pwd , currentWord);
 
-    // while(currentWord != NULL ){
-    //   currentWord = strtok(NULL, "\n" );
-    //     if( currentWord !=NULL ){
-    //       check = checkWord(pwd , currentWord);
-    //     }
-    // }
+    while(currentWord != NULL ){
+      currentWord = strtok(NULL, "\n" );
+        if( currentWord !=NULL ){
+          check = checkWord(pwd , currentWord);
+        }
+    }
 
     pswdIndex++;
     fscanf(shadowPtr,"%s", line );
     username = strtok(line, ":" );
     pwd = strtok(NULL, "\n" );
-    printf("pwd=%s\n", pwd);
-    printf("username=%s\n", username);
+    // printf("pwd=%s\n", pwd);
+    // printf("username=%s\n", username);
   }
 
   // for(int i =0 ;i<numUsers ;i++){
