@@ -15,7 +15,7 @@ char* crypting(char *password) {
 // checks if hashed word is same as hashed password
 // returns 1 if they are the same and 0 if not
 int compare(char *password, char *crypted, char *nonhashedpass) {
-  // int ret = 0;
+  int ret = 0;
   if (strcmp(password, crypted) == 0) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
