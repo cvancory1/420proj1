@@ -22,7 +22,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     printf("The crypted version is: %s\n", crypted);
     ret = 1; // set to 1 since its found
   } else {
-    printf("Password has not been cracked :(\n");
+    // printf("Password has not been cracked :(\n");
     ret = 0;
   }
   return ret;
