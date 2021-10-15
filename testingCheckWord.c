@@ -204,7 +204,7 @@ int tensCheckPrefix(char *password, char *word) {
   prefix[1] = '0';
   prefix[2] = '\0';
   sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
-  printf("prefixword = %s ", word);
+  // printf("prefixword = %s ", word);
 
   for (int i = 9; i <= 100; i++) {
     //printf("(tens) prefixword = %s\n", prefixword);
