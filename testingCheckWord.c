@@ -171,19 +171,13 @@ int onesCheckPrefix(char *password, char *word) {
 
   int wordlen = strlen(word); // store dict word length
   int buflen = (2 + wordlen * sizeof(char)); // buffer length
-  // printf(" wordlen %s \n", strlen(word));
-
   char *prefixword = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
-  
-  // printf("buf = %s ", word);
-
-
+ 
   char *prefix = malloc(2 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
   prefix[1] = '\0';
   sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
   printf("prefixword = %s ", word);
-
 
   for (int i = 0; i < 10; i++) {
     //printf("(ones) prefixword: %s\n", prefixword);
@@ -194,7 +188,6 @@ int onesCheckPrefix(char *password, char *word) {
     }
     prefixword[0]++;
   }
-  // free(buf);
   return 0;
 }
 
@@ -202,14 +195,14 @@ int onesCheckPrefix(char *password, char *word) {
 int tensCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (2 + wordlen * sizeof(char)); // buffer length
-  char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
-  sprintf(buf, "%s", word); // puts null terminator after inserting word
-
+  char *prefixword = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+ 
   char *prefix = malloc(3 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
   prefix[1] = '0';
   prefix[2] = '\0';
-  char *prefixword = strcat(prefix, buf);
+  sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
+  printf("prefixword = %s ", word);
 
   for (int i = 9; i <= 100; i++) {
     //printf("(tens) prefixword = %s\n", prefixword);
@@ -231,17 +224,16 @@ int tensCheckPrefix(char *password, char *word) {
 // checks password to dictionary word with prefixes 100-999
 int hundsCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (3 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
-  char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
-  sprintf(buf, "%s", word); // puts null terminator after inserting word
-
+  int buflen = (2 + wordlen * sizeof(char)); // buffer length
+  char *prefixword = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+ 
   char *prefix = malloc(4 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
   prefix[1] = '0';
   prefix[2] = '0';
   prefix[3] = '\0';
-  char *prefixword = strcat(prefix, buf);
-  //printf("original prefixword = %s\n", prefixword);
+  sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
+  printf("prefixword = %s ", word);
   
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
@@ -276,18 +268,17 @@ int hundsCheckPrefix(char *password, char *word) {
 // checks password to dictionary word with prefixes 1000-9999
 int thousCheckPrefix (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (4 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
-  char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
-  sprintf(buf, "%s", word); // puts null terminator after inserting word
-
+  int buflen = (2 + wordlen * sizeof(char)); // buffer length
+  char *prefixword = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+ 
   char *prefix = malloc(5 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
   prefix[1] = '0';
   prefix[2] = '0';
   prefix[3] = '0';
   prefix[4] = '\0';
-  char *prefixword = strcat(prefix, buf);
-  //printf("original prefixword = %s\n", prefixword);
+  sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
+  printf("prefixword = %s ", word);
 
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
