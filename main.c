@@ -272,18 +272,19 @@ Chloe VanCory and Kalyn Howes
     char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
       printf("salt=%d\n", salt);
+      printf("line=%d\n", line);
 
 
 
 
   // for(int i =0 ;i<numUsers ;i++){
     /* ALL NODES - parse their first word in the localdict */ 
-      int check;
-      char * currentWord = strtok(localDict, "\n" );
+      // int check;
+      // char * currentWord = strtok(localDict, "\n" );
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
       // if(rank ==ROOT){
-      check = checkWord(pwd , currentWord);
+      // check = checkWord(salt , currentWord);
       // printf("IN MAIN");
 
       // }
