@@ -281,7 +281,7 @@ int main(int argc, char** argv) {
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
-      // printf("Current word: %s\n", currentWord);
+      printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord);
     }
 
