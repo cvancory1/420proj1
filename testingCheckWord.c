@@ -292,7 +292,7 @@ int thousCheckPrefix (char *password, char *word) {
   // printf("prefixword = %s ", word); 
   // printf("crypted = %s\n", crypted); 
 
-  // int same = compare(password, crypted, prefixword); // compare
+  int same = compare(password, crypted, prefixword); // compare
     printf("password=%s crypted=%s \n", password,crypted );
 
   // for(int i =0; i< strlen(password)-1;i++){
