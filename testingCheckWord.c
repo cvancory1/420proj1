@@ -184,17 +184,16 @@ int onesCheckPrefix(char *password, char *word) {
   sprintf(buf, "%s%s", prefix ,word); // puts null terminator after inserting word
   printf("buf = %s ", word);
 
-  // char *prefixword = strcat(prefix, buf);
 
-  // for (int i = 0; i < 10; i++) {
-  //   //printf("(ones) prefixword: %s\n", prefixword);
-  //   char *crypted = crypting(prefixword); // crypt
-  //   int same = compare(password, crypted, prefixword); // compare
-  //   if (same == 1) {
-  //     return 1; 
-  //   }
-  //   prefixword[0]++;
-  // }
+  for (int i = 0; i < 10; i++) {
+    //printf("(ones) prefixword: %s\n", prefixword);
+    char *crypted = crypting(prefixword); // crypt
+    int same = compare(password, crypted, prefixword); // compare
+    if (same == 1) {
+      return 1; 
+    }
+    prefixword[0]++;
+  }
   // free(buf);
   return 0;
 }
