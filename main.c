@@ -271,8 +271,8 @@ Chloe VanCory and Kalyn Howes
     char * alg = strtok(NULL, "$" );
     // char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
-      printf("salt=%d\n", salt);
-      printf("line=%d\n", line);
+      // printf("salt=%d\n", salt);
+      printf("line=%s\n", line);
 
 
 
