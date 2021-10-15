@@ -174,7 +174,7 @@ int onesCheckPrefix(char *password, char *word) {
   printf("FINISH ");
   
   sprintf(buf, "%s", word); // puts null terminator after inserting word
-  printf("FINISH3 ");
+  printf("buf = %s ", word);
 
 
   // char *prefix = malloc(2 * sizeof(char));  // one larger than prefix size for null
