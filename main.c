@@ -272,7 +272,7 @@ Chloe VanCory and Kalyn Howes
     // char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
       printf("pwd=%s\n", pwd);
-      // printf("line=%s\n", line);
+      printf("username=%s\n", username);
 
 
   int check;
