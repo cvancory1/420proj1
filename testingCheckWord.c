@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-// #include <crypt.h> //- mac doesn't know what this is
+#include <crypt.h> //- mac doesn't know what this is
+
+#define _DEFAULT_SOURCE
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -16,7 +18,7 @@ char* crypting(char *password) {
 // checks if hashed word is same as hashed password
 // returns 1 if they are the same and 0 if not
 int compare(char *password, char *crypted, char *nonhashedpass) {
-  int ret = 0;
+  // int ret;
   // printf("The password is: %s\n", password);
   // printf("The crypted is: %s\n", crypted);
   // printf("The nonhashedpass is: %s\n", nonhashedpass);
@@ -32,7 +34,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     return 1;
   } else {
     // printf("Password has not been cracked :(\n");
-    ret = 0;
+    // ret = 0;
     return 0;
 
   }
@@ -151,7 +153,7 @@ int hundsCheckPrefix(char *password, char *word) {
 // checks password to dictionary word with prefixes 1000-9999
 int thousCheckPrefix (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (5 + wordlen * sizeof(char)); // buffer length
+  // int buflen = (5 + wordlen * sizeof(char)); // buffer length
   char *prefixword = malloc(5 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
  
   char *prefix = malloc(5 * sizeof(char));  // one larger than prefix size for null
