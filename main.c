@@ -296,7 +296,7 @@ Chloe VanCory and Kalyn Howes
       // //   //   printf("rank = %d currentWord = %s\n", rank, currentWord);
       //   currentWord = strtok(NULL, "\n" );
       //   if( currentWord !=NULL ){
-      //     check = checkWord(currentWord , pwd);
+      //     check = checkWord(pwd , currentWord);
       //   }
       //   // }
       
