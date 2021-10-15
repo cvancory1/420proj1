@@ -222,7 +222,7 @@ Chloe VanCory and Kalyn Howes
     lseek(fd ,displc[rank], SEEK_SET);
     int numRead = read(fd , localDict ,sendcnt[rank] );
     // localDict[strlen(localDict)]= 0; // places the NULL term @ the end
-    printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
+    // printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
 
 
 
@@ -230,7 +230,7 @@ Chloe VanCory and Kalyn Howes
     //  ERROR CHECKING
     // if(rank == 3){
       // printf("rank = %d \nstring= %sEND\n",rank ,localDict);
-    printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
+    // printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
 
     // }
 
@@ -280,8 +280,12 @@ Chloe VanCory and Kalyn Howes
       char * currentWord = strtok(localDict, "\n" );
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
-
+      if(rank ==ROOT){
       check = checkWord(currentWord , pwd);
+
+
+      }
+      printf("RANK = %d BACK IN MAIN\n", rank);
       // if( check == 1 ){
       //   usrPwd[pswdIndex]=1; // this node found a password
       // }
