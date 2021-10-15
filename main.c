@@ -283,7 +283,7 @@ int main(int argc, char** argv) {
       sprintf(temp, "rank: %d and this is a test!\n", rank);
       long long tempoffset = strlen(temp); // * pswdIndex;
 
-      MPI_Barrier(world);
+      //MPI_Barrier(world);
       MPI_File_write_at(
         fh,                // file handle
         tempoffset,        // offset
@@ -315,7 +315,7 @@ int main(int argc, char** argv) {
         sprintf(temp, "rank: %d and this is a test!\0\n", rank);
         long long tempoffset = strlen(temp); // * pswdIndex;
 
-        MPI_Barrier(world);
+        //MPI_Barrier(world);
         MPI_File_write_at(
           fh,                // file handle
           tempoffset,        // offset
