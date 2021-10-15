@@ -204,22 +204,24 @@ int tensCheckPrefix(char *password, char *word) {
   prefix[1] = '0';
   prefix[2] = '\0';
   sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
-  // printf("prefixword = %s ", word);
+  printf("prefixword = %s ", word);
 
-  // for (int i = 9; i <= 100; i++) {
-  //   //printf("(tens) prefixword = %s\n", prefixword);
-  //   char *crypted = crypting(prefixword); // crypt
-  //   int same = compare(password, crypted, prefixword); // compare
-  //   if (same == 1){
-  //     return 1; 
-  //   }
+  for (int i = 9; i <= 100; i++) {
+    //printf("(tens) prefixword = %s\n", prefixword);
+    char *crypted = crypting(prefixword); // crypt
+    int same = compare(password, crypted, prefixword); // compare
+    if (same == 1){
+      return 1; 
+    }
       
-  //   prefixword[1]++;
-  //   if (i % 10 == 0) {
-  //     prefixword[0]++; // tens 
-  //     prefixword[1]= '0' ; // ones 
-  //   }
-  // }
+    prefixword[1]++;
+    if (i % 10 == 0) {
+      prefixword[0]++; // tens 
+      prefixword[1]= '0' ; // ones 
+    }
+  }
+  free(prefixword);
+
   return 0;
 }
 
@@ -264,6 +266,8 @@ int hundsCheckPrefix(char *password, char *word) {
     prefixword[1]='0';// tens
     prefixword[0]++; // hundreads
   }
+  free(prefixword);
+
   return 0;
 }
 
@@ -314,6 +318,7 @@ int thousCheckPrefix (char *password, char *word) {
     prefixword[1]= '0';// hundreds
     prefixword[0]++; // thousands
   }
+  free(prefixword);
   return 0;
 }
 
@@ -329,8 +334,8 @@ int checkWord(char *password , char *word) {
   //   return 1;
   // if (hundsCheckPrefix(password, word) == 1)
   //   return 1;
-  if (thousCheckPrefix(password, word) == 1)
-    return 1;
+  // if (thousCheckPrefix(password, word) == 1)
+  //   return 1;
   // if (onesCheck(password, word) == 1)
   //   return 1;
   // if (tensCheck(password, word ) == 1)
