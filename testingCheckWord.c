@@ -197,7 +197,7 @@ int onesCheckPrefix(char *password, char *word) {
 int tensCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   // int buflen = (2 + wordlen * sizeof(char)); // buffer length
-  char *prefixword = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+  char *prefixword = malloc(3 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
  
   char *prefix = malloc(3 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
