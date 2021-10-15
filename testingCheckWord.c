@@ -19,7 +19,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   int ret = 0;
     printf("The password is: %s\n", password);
     printf("The password is: %s\n", crypted);
-    
+
   if (strcmp(password, crypted) == 0) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
@@ -393,39 +393,41 @@ int thousCheckPrefix (char *password, char *word) {
   // sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
   sprintf(prefixword, "%s","aardvark123"); // puts null terminator after inserting word
   // printf("prefixword = %s ", word); 
+  int same = compare(prefixword , crypted ,password ); // compare
 
-  for(int i = 0; i < 10; i++) {
-    for(int j = 0; j < 10; j++) {
-      for(int k = 0; k < 10; k++) { 
-        for (int l = 0; l < 10; l++) {
-          // printf("(thousands) prefixword = %s\n", prefixword);
-          char *crypted = crypting(prefixword); // crypt
-          // printf("crypted (hundreds): %s\n", crypted);
-          int same = compare(prefixword , crypted ,password ); // compare
-          // printf("SAME: %d\n", same);
-          if (same == 1) {
-            return 1; 
-          }
+
+  // for(int i = 0; i < 10; i++) {
+  //   for(int j = 0; j < 10; j++) {
+  //     for(int k = 0; k < 10; k++) { 
+  //       for (int l = 0; l < 10; l++) {
+  //         // printf("(thousands) prefixword = %s\n", prefixword);
+  //         char *crypted = crypting(prefixword); // crypt
+  //         // printf("crypted (hundreds): %s\n", crypted);
+  //         int same = compare(prefixword , crypted ,password ); // compare
+  //         // printf("SAME: %d\n", same);
+  //         if (same == 1) {
+  //           return 1; 
+  //         }
           
-          prefixword[3]++; // ones place 
+  //         prefixword[3]++; // ones place 
 
-          // hacking - stops the loop early 
-          if(prefixword[0]==':' && prefixword[1]=='0' && prefixword[2]=='0' && prefixword[3]=='0') {
-            return 0;
-          }
-        }
-        prefixword[3] = '0'; // ones
-        prefixword[2]++; //tens
-      }
-      prefixword[3]= '0'; // ones
-      prefixword[2]= '0';// tens
-      prefixword[1]++; // hundreads
-    }
-    prefixword[3] = '0'; // ones
-    prefixword[2]= '0'; // tens
-    prefixword[1]= '0';// hundreds
-    prefixword[0]++; // thousands
-  }
+  //         // hacking - stops the loop early 
+  //         if(prefixword[0]==':' && prefixword[1]=='0' && prefixword[2]=='0' && prefixword[3]=='0') {
+  //           return 0;
+  //         }
+  //       }
+  //       prefixword[3] = '0'; // ones
+  //       prefixword[2]++; //tens
+  //     }
+  //     prefixword[3]= '0'; // ones
+  //     prefixword[2]= '0';// tens
+  //     prefixword[1]++; // hundreads
+  //   }
+  //   prefixword[3] = '0'; // ones
+  //   prefixword[2]= '0'; // tens
+  //   prefixword[1]= '0';// hundreds
+  //   prefixword[0]++; // thousands
+  // }
   free(prefixword);
   return 0;
 }
