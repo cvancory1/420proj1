@@ -25,8 +25,9 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   } else {
     // printf("Password has not been cracked :(\n");
     ret = 0;
-  }
   return ret;
+
+  }
 }
 
 // ------------------------------------ SUFFIX CHECKS ------------------------------------
