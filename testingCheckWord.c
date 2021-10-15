@@ -6,9 +6,9 @@
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
-  printf("In crypt function -- pasword to be encrypted is %s\n", password);
+  // printf("In crypt function -- pasword to be encrypted is %s\n", password);
   char* result = crypt(password, "$1$ab$"); // hardcode the salt - on Mac salt is second!!
-  printf("In crypt function - your encrypted password is: %s\n", result);
+  // printf("In crypt function - your encrypted password is: %s\n", result);
   return result;
 }
 
@@ -19,6 +19,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   int ret = 0;
     printf("The password is: %s\n", password);
     printf("The password is: %s\n", crypted);
+    printf("The nonhashedpass is: %s\n", nonhashedpass);
 
   if (strcmp(password, crypted) == 0) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
