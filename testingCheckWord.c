@@ -387,7 +387,8 @@ int thousCheckPrefix (char *password, char *word) {
   prefix[2] = '0';
   prefix[3] = '0';
   prefix[4] = '\0';
-  sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
+  // sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
+  sprintf(prefixword, "%s","aardvark123"); // puts null terminator after inserting word
   // printf("prefixword = %s ", word); 
 
   for(int i = 0; i < 10; i++) {
