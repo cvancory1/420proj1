@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <crypt.h> //- mac doesn't know what this is
+// #include <crypt.h> //- mac doesn't know what this is
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -320,41 +320,41 @@ int checkWord(char *password , char *word) {
 
   if (onesCheckPrefix(password, word) == 1)
     return 1;
-  if (tensCheckPrefix(password, word) == 1)
-    return 1;
-  if (hundsCheckPrefix(password, word) == 1)
-    return 1;
-  if (thousCheckPrefix(password, word) == 1)
-    return 1;
-  if (onesCheck(password, word) == 1)
-    return 1;
-  if (tensCheck(password, word ) == 1)
-    return 1;
-  if (hundredsCheck(password, word) == 1)
-    return 1;
-  if (thousandsCheck(password, word) == 1)
-    return 1;
+  // if (tensCheckPrefix(password, word) == 1)
+  //   return 1;
+  // if (hundsCheckPrefix(password, word) == 1)
+  //   return 1;
+  // if (thousCheckPrefix(password, word) == 1)
+  //   return 1;
+  // if (onesCheck(password, word) == 1)
+  //   return 1;
+  // if (tensCheck(password, word ) == 1)
+  //   return 1;
+  // if (hundredsCheck(password, word) == 1)
+  //   return 1;
+  // if (thousandsCheck(password, word) == 1)
+  //   return 1;
   
   return 0; // false
 }
 
-int main () {
-  char *word = "aardvark";
-  //char *testing = "aardvark123";
+// int main () {
+//   char *word = "aardvark";
+//   //char *testing = "aardvark123";
 
-  // suffix checking
-  char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
-  //char *password = "$1$ab$EN4HdMyFfvk9VYCCEIIJs0"; //abandon9365
-  //char *password = "$1$ab$nceComwr03PR64UjgZOTM/"; // abashed8
-  //char *password = "$1$ab$6mj6pLEZbyGKA9.J6InfW0"; // abase11
+//   // suffix checking
+//   char *password = "$1$ab$koTc2TaVJm9d6HbDymlZO/"; // aardvark123
+//   //char *password = "$1$ab$EN4HdMyFfvk9VYCCEIIJs0"; //abandon9365
+//   //char *password = "$1$ab$nceComwr03PR64UjgZOTM/"; // abashed8
+//   //char *password = "$1$ab$6mj6pLEZbyGKA9.J6InfW0"; // abase11
 
-  // prefix checking
-  //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
-  //char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
-  //char *password = "$1$ab$i05qx2WzHLm2O92sVdTwm0"; // 997abandon
-  //char *password = "$1$ab$2uYJbJ8oxDCDv9Haijjp9/"; // 8569aardvark
+//   // prefix checking
+//   //char *password = "$1$ab$hNU8w62rGJrVyGwCWeCXq/"; // 4abashed
+//   //char *password = "$1$ab$AVH5ZeCRu0OFiaX7eM.2a0"; // 34abase
+//   //char *password = "$1$ab$i05qx2WzHLm2O92sVdTwm0"; // 997abandon
+//   //char *password = "$1$ab$2uYJbJ8oxDCDv9Haijjp9/"; // 8569aardvark
 
-  checkWord(password, word);
+//   checkWord(password, word);
 
-  return 0;
-}
+//   return 0;
+// }
