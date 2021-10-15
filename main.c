@@ -267,12 +267,12 @@ Chloe VanCory and Kalyn Howes
   // */
 
     fscanf(shadowPtr,"%s", line );
-    char * username = strtok(line, ":" );
-    char * alg = strtok(NULL, "\n" );
+    char * username = strtok(line, "$1" );
+    char * pwd = strtok(NULL, "\n" );
     // char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
-      // printf("salt=%d\n", salt);
-      printf("line=%s\n", line);
+      // printf("alg=%s\n", alg);
+      // printf("line=%s\n", line);
 
 
 
@@ -280,11 +280,11 @@ Chloe VanCory and Kalyn Howes
   // for(int i =0 ;i<numUsers ;i++){
     /* ALL NODES - parse their first word in the localdict */ 
       // int check;
-      // char * currentWord = strtok(localDict, "\n" );
+      char * currentWord = strtok(localDict, "\n" );
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
       // if(rank ==ROOT){
-      // check = checkWord(salt , currentWord);
+      check = checkWord(pwd , currentWord);
       // printf("IN MAIN");
 
       // }
