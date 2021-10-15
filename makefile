@@ -5,7 +5,7 @@ program: main.o
 	mpirun -n 5 ./main
 
 main.o: main.c
-	mpicc -std=c99 -c main.c
+	mpicc -lcrypt -std=c99 -c main.c
 val:
 	valgrind mpirun -n 5 ./main
 
