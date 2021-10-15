@@ -120,7 +120,7 @@ int main(int argc, char** argv) {
   */
 
   int * sendcnt;
-  if(rank==ROOT){
+  if(rank == ROOT){
     sendcnt = malloc(worldSize * sizeof(int));
       for(int i =0; i< worldSize ;i++){
         sendcnt[i] =0;
@@ -175,10 +175,10 @@ int main(int argc, char** argv) {
   MPI_Bcast(sendcnt, worldSize, MPI_INT, ROOT, world);
   // printf("rank = %d sendcnt= %d\n",rank ,sendcnt[rank]);
 
-/*
+  /*
     calcs the displacement for each proccessor to lseek ( move file pointer ) to a specific place
     in the file
-*/
+  */
 
   int * displc = malloc(worldSize * sizeof(int));
   displc[0] = 0;
@@ -213,112 +213,113 @@ int main(int argc, char** argv) {
     
   // }
 
-// printf("checkpt 4 ");
+  // printf("checkpt 4 ");
 
-// /*
-//   set up "shared array " that will indicate whether we have found a users password or not
-// */
+  // /*
+  //   set up "shared array " that will indicate whether we have found a users password or not
+  // */
 
-int * usrPwd = malloc(numUsers * sizeof(int)); 
-for(int i=0; i< numUsers ;i++){
-  usrPwd[i] = 0;
-}
-int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
+  int * usrPwd = malloc(numUsers * sizeof(int)); 
+  for(int i=0; i< numUsers ;i++){
+    usrPwd[i] = 0;
+  }
+  int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
 
-// printf("checkpt 5 ");
+  // printf("checkpt 5 ");
 
-// /*
-//  *ALL NODES - Parse every words from the nodes local dictionary to crpyt and test ater 
-// * Do this for every username we have
-// */
+  // /*
+  //  *ALL NODES - Parse every words from the nodes local dictionary to crpyt and test ater 
+  // * Do this for every username we have
+  // */
 
-fscanf(shadowPtr,"%s", line );
-char * username = strtok(line, ":" );
-char * pwd = strtok(NULL, "\n" );
-// char * salt = strtok(NULL, "\n" );
-// char * pwd = strtok(NULL, "$" );
-printf("pwd=%s\n", pwd);
-printf("username=%s\n", username);
-
-while( pswdIndex != numUsers ){
-  int check;
-  char * currentWord = strtok(localDict, "\n" );
-  check = checkWord(pwd , currentWord);
-
-  // while(currentWord != NULL ){
-  //   currentWord = strtok(NULL, "\n" );
-  //     if( currentWord !=NULL ){
-  //       check = checkWord(pwd , currentWord);
-  //     }
-  // }
-
-  pswdIndex++;
   fscanf(shadowPtr,"%s", line );
-  username = strtok(line, ":" );
-  pwd = strtok(NULL, "\n" );
+  char * username = strtok(line, ":" );
+  char * pwd = strtok(NULL, "\n" );
+  // char * salt = strtok(NULL, "\n" );
+  // char * pwd = strtok(NULL, "$" );
   printf("pwd=%s\n", pwd);
   printf("username=%s\n", username);
-}
 
-// for(int i =0 ;i<numUsers ;i++){
-  /* ALL NODES - parse their first word in the localdict */ 
-  // int check;
-  // char * currentWord = strtok(localDict, "\n" );
-  // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
+  // ------ DO CHECK WORD -------
+  while( pswdIndex != numUsers ){
+    int check;
+    char * currentWord = strtok(localDict, "\n" );
+    check = checkWord(pwd , currentWord);
 
-  // if(rank ==ROOT){
-    // check = checkWord(pwd , currentWord);
-    // printf("IN MAIN");
-  // }
+    // while(currentWord != NULL ){
+    //   currentWord = strtok(NULL, "\n" );
+    //     if( currentWord !=NULL ){
+    //       check = checkWord(pwd , currentWord);
+    //     }
+    // }
 
-  // printf("RANK = %d BACK IN MAIN\n", rank);
-  // if( check == 1 ){
-      // usrPwd[pswdIndex]=1; // this node found a password
-  // }
+    pswdIndex++;
+    fscanf(shadowPtr,"%s", line );
+    username = strtok(line, ":" );
+    pwd = strtok(NULL, "\n" );
+    printf("pwd=%s\n", pwd);
+    printf("username=%s\n", username);
+  }
 
-  // int wordCounter = 1; // how many words of the local dict we have checked
-  // while(currentWord != NULL ){
-  // while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
-    // if(rank == ROOT){
-      // printf("rank = %d currentWord = %s\n", rank, currentWord);
-      // currentWord = strtok(NULL, "\n" );
-    // if( currentWord !=NULL ){
-    //   check = checkWord(pwd , currentWord);
-    //  }
-  // }
+  // for(int i =0 ;i<numUsers ;i++){
+    /* ALL NODES - parse their first word in the localdict */ 
+    // int check;
+    // char * currentWord = strtok(localDict, "\n" );
+    // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
+
+    // if(rank ==ROOT){
+      // check = checkWord(pwd , currentWord);
+      // printf("IN MAIN");
+    // }
+
+    // printf("RANK = %d BACK IN MAIN\n", rank);
+    // if( check == 1 ){
+        // usrPwd[pswdIndex]=1; // this node found a password
+    // }
+
+    // int wordCounter = 1; // how many words of the local dict we have checked
+    // while(currentWord != NULL ){
+    // while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
+      // if(rank == ROOT){
+        // printf("rank = %d currentWord = %s\n", rank, currentWord);
+        // currentWord = strtok(NULL, "\n" );
+      // if( currentWord !=NULL ){
+      //   check = checkWord(pwd , currentWord);
+      //  }
+    // }
+      
+    // printf("rank = %d currentWord = %s\n", rank, currentWord);
+
+    // if( check == 1 ){
+      // usrPwd[pswdIndex]= 1; // this node found a password
+      // printf("rank = %d FOUND = %s\n", rank);
+    // }
+
+    // wordCounter++;
     
-  // printf("rank = %d currentWord = %s\n", rank, currentWord);
+    // if(wordCounter == 2000) {
+      // wordCounter = 0; 
+      // MPI_Allreduce(
+      // &check,       // send buffer, an array
+      // &usrPwd[pswdIndex],       // recv buffer
+      // 1,          // count
+      // MPI_INT,    // datatype
+      // MPI_MAX,    // operation handle
+      // world       // comm
+      // );
+    // DO Reduce all - then all other nodes will see that they have a 1 there 
 
-  // if( check == 1 ){
-    // usrPwd[pswdIndex]= 1; // this node found a password
-    // printf("rank = %d FOUND = %s\n", rank);
-  // }
-
-  // wordCounter++;
-   
-  // if(wordCounter == 2000) {
-    // wordCounter = 0; 
-    // MPI_Allreduce(
-    // &check,       // send buffer, an array
-    // &usrPwd[pswdIndex],       // recv buffer
-    // 1,          // count
-    // MPI_INT,    // datatype
-    // MPI_MAX,    // operation handle
-    // world       // comm
-    // );
-  // DO Reduce all - then all other nodes will see that they have a 1 there 
-
-    // if( usrPwd[pswdIndex] == 1 ){
-      // pswdIndex++;
+      // if( usrPwd[pswdIndex] == 1 ){
+        // pswdIndex++;
+      // }
     // }
-  // }
-  // }
     // }
-// }
+      // }
+  // }
 
-// printf("FINAL");
+  // printf("FINAL");
   // close(fd);
-// fclose(pswdfd);
-MPI_Finalize();
-return 0;
+  // fclose(pswdfd);
+  MPI_Finalize();
+  return 0;
 }
