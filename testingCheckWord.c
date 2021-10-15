@@ -290,7 +290,7 @@ int thousCheckPrefix (char *password, char *word) {
   sprintf(prefixword, "%s%s", prefix ,"aardvark"); // puts null terminator after inserting word
   char *crypted = crypting("8569aardvark"); // crypt
   // printf("prefixword = %s ", word); 
-  printf("crypted = %s\n", crypted); 
+  // printf("crypted = %s\n", crypted); 
 
   // int same = compare(password, crypted, prefixword); // compare
 
