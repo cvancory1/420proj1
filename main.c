@@ -277,8 +277,12 @@ Chloe VanCory and Kalyn Howes
 
   int check;
   char * currentWord = strtok(localDict, "\n" );
+      check = checkWord(pwd , currentWord);
+
   while(currentWord != NULL ){
     currentWord = strtok(NULL, "\n" );
+      check = checkWord(pwd , currentWord);
+
 
   }
 
