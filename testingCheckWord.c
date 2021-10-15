@@ -302,11 +302,11 @@ int thousCheckPrefix (char *password, char *word) {
 
   // }
 
-    // if (strcmp(password, crypted) == 0) {
-    //   printf("found = %s\n", crypted); 
+    if (strcmp(password, crypted) == 0) {
+      printf("found = %s\n", crypted); 
 
-    //   return 1; 
-    // }
+      return 1; 
+    }
           
 
   return 0;
