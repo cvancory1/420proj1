@@ -262,15 +262,25 @@ int main(int argc, char** argv) {
     // char * currentWord = strtok(localDict, "\n" );
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
-    test = scanf("%s\n", curentWord);
+    test = sscanf(localDict, "%s\n", currentWord);
     printf("Current word: %s\n", currentWord);
     check = checkWord(pwd , currentWord);
 
+    /*
     while(currentWord != NULL ){
       currentWord = strtok(NULL, "\n" );
         if( currentWord != NULL ){
           check = checkWord(pwd , currentWord);
         }
+    }
+    */
+
+    int offset = strlen(currentWord) + 1;
+    while(test != EOF){
+	sscanf(localDict + offset, "%s\n", currentWord);
+	offset += strlen(currentWord) + 1;
+	printf("Current word: %s\n", currentWord);
+	check = checkWord(pwd, currentWord);
     }
 
     pswdIndex++;
