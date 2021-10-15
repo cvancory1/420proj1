@@ -189,6 +189,7 @@ int onesCheckPrefix(char *password, char *word) {
     }
     prefixword[0]++;
   }
+  free(prefixword);
   return 0;
 }
 
