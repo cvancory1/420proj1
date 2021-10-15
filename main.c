@@ -196,8 +196,8 @@ int main(int argc, char** argv) {
   char * localDict = malloc ( sendcnt[rank]+1 * sizeof(char));
   lseek(fd ,displc[rank], SEEK_SET);
   int numRead = read(fd , localDict ,sendcnt[rank] );
-  localDict[strlen(localDict)]= 0; // places the NULL term @ the end
-  printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
+  localDict[strlen(localDict)]= '\0'; // places the NULL term @ the end
+  printf(" rank = %d \nstring= %sEND\n",rank ,localDict);
 
 
   //  ERROR CHECKING
@@ -264,7 +264,7 @@ int main(int argc, char** argv) {
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
     test = sscanf(localDict, "%s\n", currentWord);
-    printf("Current word: %s\n", currentWord);
+    // printf("Current word: %s\n", currentWord);
     check = checkWord(pwd , currentWord);
 
     /*
@@ -281,7 +281,7 @@ int main(int argc, char** argv) {
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
-      printf("Current word: %s\n", currentWord);
+      // printf("Current word: %s\n", currentWord);
       check = checkWord(pwd, currentWord);
     }
 
@@ -289,8 +289,8 @@ int main(int argc, char** argv) {
     fscanf(shadowPtr,"%s", line );
     username = strtok(line, ":" );
     pwd = strtok(NULL, "\n" );
-    printf("pwd=%s\n", pwd);
-    printf("username=%s\n", username);
+    // printf("pwd=%s\n", pwd);
+    // printf("username=%s\n", username);
   }
 
   // for(int i =0 ;i<numUsers ;i++){
