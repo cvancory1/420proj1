@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-// #include <crypt.h> //- mac doesn't know what this is
+#include <crypt.h> //- mac doesn't know what this is
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -393,6 +393,8 @@ int thousCheckPrefix (char *password, char *word) {
   // sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
   sprintf(prefixword, "%s","aardvark123"); // puts null terminator after inserting word
   // printf("prefixword = %s ", word); 
+    char *crypted = crypting(prefixword); // crypt
+
   int same = compare(prefixword , crypted ,password ); // compare
 
 
