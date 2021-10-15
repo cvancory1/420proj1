@@ -286,7 +286,7 @@ Chloe VanCory and Kalyn Howes
       check = checkWord(pwd , currentWord);
       // printf("IN MAIN");
 
-      }
+      // }
       // printf("RANK = %d BACK IN MAIN\n", rank);
       // if( check == 1 ){
       //   usrPwd[pswdIndex]=1; // this node found a password
