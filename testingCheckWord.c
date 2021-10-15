@@ -18,7 +18,7 @@ char* crypting(char *password) {
 int compare(char *password, char *crypted, char *nonhashedpass) {
   int ret = 0;
     printf("The password is: %s\n", password);
-    printf("The password is: %s\n", crypted);
+    printf("The crypted is: %s\n", crypted);
     printf("The nonhashedpass is: %s\n", nonhashedpass);
 
   if (strcmp(password, crypted) == 0) {
