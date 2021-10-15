@@ -277,7 +277,7 @@ int main(int argc, char** argv) {
     // printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
 
-    //i if found, write to file that is already open
+    // if found, write to file that is already open
     if (check == 1) {
       char *temp = malloc(29);
       sprintf(temp, "rank: %d and this is a test!\n", rank);
@@ -311,7 +311,7 @@ int main(int argc, char** argv) {
       //printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord);
       if (check == 1) {
-        char *temp = malloc(29);
+        char *temp = malloc(30);
         sprintf(temp, "rank: %d and this is a test!\n", rank);
         long long tempoffset = strlen(temp); // * pswdIndex;
 
@@ -320,7 +320,7 @@ int main(int argc, char** argv) {
           fh,                // file handle
           tempoffset,        // offset
           temp,              // buf to be written
-          29,                // size
+          30,                // size
           MPI_CHAR,          // type
           MPI_STATUS_IGNORE  // status
         );
