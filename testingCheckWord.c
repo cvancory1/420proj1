@@ -192,7 +192,7 @@ int onesCheckPrefix(char *password, char *word) {
   //   prefixword[0]++;
   // }
   free(buf);
-  // return 0;
+  return 0;
 }
 
 // checks password to dictionary word with prefixes 10-99
