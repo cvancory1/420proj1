@@ -271,8 +271,8 @@ Chloe VanCory and Kalyn Howes
     char * pwd = strtok(NULL, "\n" );
     // char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
-      printf("pwd=%s\n", pwd);
-      printf("username=%s\n", username);
+      // printf("pwd=%s\n", pwd);
+      // printf("username=%s\n", username);
 
 
   int check;
