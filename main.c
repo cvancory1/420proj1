@@ -234,7 +234,7 @@ int main(int argc, char** argv) {
 
 
   fscanf(shadowPtr,"%s", line );
-  printf("line=%s\n", line);
+  // printf("line=%s\n", line);
 
   char * username = strtok(line, ":" );
   char * pwd = strtok(NULL, "\n" );
