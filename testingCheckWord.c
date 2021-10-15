@@ -47,6 +47,7 @@ int onesCheck(char *password, char *word) {
     }
     buf[wordlen]++;
   }
+  free(buf);
   return 0;
 }
 
