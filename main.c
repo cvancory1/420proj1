@@ -282,7 +282,7 @@ Chloe VanCory and Kalyn Howes
 
       // if(rank ==ROOT){
       check = checkWord(pwd , currentWord);
-      printf("IN MAIN");
+      // printf("IN MAIN");
 
       // }
       // printf("RANK = %d BACK IN MAIN\n", rank);
