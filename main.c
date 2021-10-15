@@ -300,10 +300,8 @@ Chloe VanCory and Kalyn Howes
         currentWord = strtok(NULL, "\n" );
         if(currentWord !=NULL){
           check = checkWord(currentWord , pwd);
-
-
         }
-          // printf("rank = %d currentWord = %s\n", rank, currentWord);
+          printf("rank = %d currentWord = %s\n", rank, currentWord);
 
         // if( check == 1 ){
         //   usrPwd[pswdIndex]= 1; // this node found a password
