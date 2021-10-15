@@ -373,8 +373,8 @@ int checkWord(char *password , char *word) {
     return 1;
   if (hundredsCheck(password, word) == 1)
     return 1;
-  // if (thousandsCheck(password, word) == 1)
-  //   return 1;
+  if (thousandsCheck(password, word) == 1)
+    return 1;
   
   return 0; // false
 }
