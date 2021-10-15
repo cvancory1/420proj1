@@ -327,10 +327,10 @@ int checkWord(char *password , char *word) {
   //   return 1;
   // if (tensCheckPrefix(password, word) == 1)
   //   return 1;
-  if (hundsCheckPrefix(password, word) == 1)
-    return 1;
-  // if (thousCheckPrefix(password, word) == 1)
+  // if (hundsCheckPrefix(password, word) == 1)
   //   return 1;
+  if (thousCheckPrefix(password, word) == 1)
+    return 1;
   // if (onesCheck(password, word) == 1)
   //   return 1;
   // if (tensCheck(password, word ) == 1)
