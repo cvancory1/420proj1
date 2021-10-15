@@ -281,7 +281,7 @@ Chloe VanCory and Kalyn Howes
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
 
-      // check = checkWord(currentWord , pwd);
+      check = checkWord(currentWord , pwd);
       // if( check == 1 ){
       //   usrPwd[pswdIndex]=1; // this node found a password
       // }
