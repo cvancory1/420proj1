@@ -293,7 +293,7 @@ Chloe VanCory and Kalyn Howes
       //   usrPwd[pswdIndex]=1; // this node found a password
       // }
 
-      int wordCounter = 1; // how many words of the local dict we have checked
+      // int wordCounter = 1; // how many words of the local dict we have checked
       // while(currentWord != NULL ){
       // while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
       //   // if(rank == ROOT){
