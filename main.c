@@ -240,8 +240,8 @@ int main(int argc, char** argv) {
   char * pwd = strtok(NULL, "\n" );
   // char * salt = strtok(NULL, "\n" );
   // char * pwd = strtok(NULL, "$" );
-  printf("pwd=%s\n", pwd);
-  printf("username=%s\n", username);
+  // printf("pwd=%s\n", pwd);
+  // printf("username=%s\n", username);
 
   // fscanf(shadowPtr,"%s", line );
   // username = strtok(line, ":" );
@@ -267,8 +267,8 @@ int main(int argc, char** argv) {
     fscanf(shadowPtr,"%s", line );
     username = strtok(line, ":" );
     pwd = strtok(NULL, "\n" );
-    printf("pwd=%s\n", pwd);
-    printf("username=%s\n", username);
+    // printf("pwd=%s\n", pwd);
+    // printf("username=%s\n", username);
   }
 
   // for(int i =0 ;i<numUsers ;i++){
