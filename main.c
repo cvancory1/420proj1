@@ -288,7 +288,7 @@ int main(int argc, char** argv) {
         fh,                // file handle
         tempoffset,        // offset
         temp,              // buf to be written
-        31,                // size
+        30,                // size
         MPI_CHAR,          // type
         MPI_STATUS_IGNORE  // status
       );
@@ -320,7 +320,7 @@ int main(int argc, char** argv) {
           fh,                // file handle
           tempoffset,        // offset
           temp,              // buf to be written
-          31,                // size
+          30,                // size
           MPI_CHAR,          // type
           MPI_STATUS_IGNORE  // status
         );
