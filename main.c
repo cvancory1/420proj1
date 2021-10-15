@@ -256,9 +256,14 @@ int main(int argc, char** argv) {
   // printf("pwd=%s\n", pwd);
 
   // // ------ DO CHECK WORD -------
+  int test;
   while( pswdIndex != numUsers-1 ){
     int check;
-    char * currentWord = strtok(localDict, "\n" );
+    // char * currentWord = strtok(localDict, "\n" );
+    char *currentWord = malloc(100);
+    memset(currentWord, 0, 100);
+    test = scanf("%s\n", curentWord);
+    printf("Current word: %s\n", currentWord);
     check = checkWord(pwd , currentWord);
 
     while(currentWord != NULL ){
