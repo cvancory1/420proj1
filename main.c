@@ -67,7 +67,7 @@ Chloe VanCory and Kalyn Howes
     FILE * shadowPtr;
     shadowPtr = fopen ("testShadow.txt", "r");
     char * line= malloc(255* sizeof(char));
-    int numUsers = 11;
+    int numUsers = 4;
     Users shadowUsers[numUsers]; // 48 bytes 
     int index = 0;
  
@@ -271,23 +271,28 @@ Chloe VanCory and Kalyn Howes
     char * pwd = strtok(NULL, "\n" );
     // char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
-      // printf("pwd=%s\n", pwd);
-      // printf("username=%s\n", username);
+      printf("pwd=%s\n", pwd);
+      printf("username=%s\n", username);
 
+  while( pswdIndex != numUsers ){
+    int check;
+    char * currentWord = strtok(localDict, "\n" );
+    check = checkWord(pwd , currentWord);
 
-  int check;
-  char * currentWord = strtok(localDict, "\n" );
-      check = checkWord(pwd , currentWord);
+    // while(currentWord != NULL ){
+    //   currentWord = strtok(NULL, "\n" );
+    //     if( currentWord !=NULL ){
+    //       check = checkWord(pwd , currentWord);
+    //     }
 
-  while(currentWord != NULL ){
-    currentWord = strtok(NULL, "\n" );
-      if( currentWord !=NULL ){
-        check = checkWord(pwd , currentWord);
-      }
-
-
+    // }
+    pswdIndex++;
+    fscanf(shadowPtr,"%s", line );
+    username = strtok(line, ":" );
+    pwd = strtok(NULL, "\n" );
+    printf("pwd=%s\n", pwd);
+    printf("username=%s\n", username);
   }
-
 
   // for(int i =0 ;i<numUsers ;i++){
     /* ALL NODES - parse their first word in the localdict */ 
@@ -321,8 +326,6 @@ Chloe VanCory and Kalyn Howes
       //   if( check == 1 ){
       //     // usrPwd[pswdIndex]= 1; // this node found a password
       //      printf("rank = %d FOUND = %s\n", rank);
-
-
         // }
 
   //       wordCounter++;
