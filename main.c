@@ -279,8 +279,8 @@ int main(int argc, char** argv) {
 
     // if found, write to file that is already open
     if (check == 1) {
-      char *temp = malloc(29);
-      sprintf(temp, "rank: %d and this is a test!\n", rank);
+      char *temp = malloc(31);
+      sprintf(temp, "rank: %d and this is a test!\0\n", rank);
       long long tempoffset = strlen(temp); // * pswdIndex;
 
       //MPI_Barrier(world);
@@ -288,7 +288,7 @@ int main(int argc, char** argv) {
         fh,                // file handle
         tempoffset,        // offset
         temp,              // buf to be written
-        29,                // size
+        31,                // size
         MPI_CHAR,          // type
         MPI_STATUS_IGNORE  // status
       );
