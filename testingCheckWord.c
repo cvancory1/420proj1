@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-// #include <crypt.h> //- mac doesn't know what this is
+#include <crypt.h> //- mac doesn't know what this is
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -11,6 +11,7 @@ char* crypting(char *password) {
   //printf("In crypt function - your encrypted password is: %s\n", result);
   return result;
 }
+
 
 // checks if hashed word is same as hashed password
 // returns 1 if they are the same and 0 if not
@@ -31,6 +32,52 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     // return ret;
 
 }
+
+
+
+// TODO- Left off 
+/*
+hard coded aardvark123 and still not getting the output that the passowrd was found 
+
+*/
+
+
+int thousCheckPrefix (char *password, char *word) {
+  int wordlen = strlen(word); // store dict word length
+  int buflen = (5 + wordlen * sizeof(char)); // buffer length
+  char *prefixword = malloc(5 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+ 
+  char *prefix = malloc(5 * sizeof(char));  // one larger than prefix size for null
+  prefix[0] = '8';
+  prefix[1] = '5';
+  prefix[2] = '6';
+  prefix[3] = '9';
+  prefix[4] = '\0';
+  // sprintf(prefixword, "%s%s", prefix ,"aardvark"); // puts null terminator after inserting word
+  char *crypted = crypting("aardvark123"); // crypt
+  // printf("prefixword = %s ", word); 
+  // printf("crypted = %s\n", crypted); 
+
+  int same = compare(prefixword, crypted, password ); // compare
+  printf("same = %d\n", same); 
+
+  printf("password=%s crypted=%s \n", password, crypted );
+
+  // for(int i =0; i< strlen(password)-1;i++){
+  //   // printf("%c %c %d \n",password[i],crypted[i] , strcmp(password[i], crypted[i]));
+  //   // printf("%c %c \n", password[i],crypted[i]  );
+  // }
+
+    if (strcmp(password, crypted) == 0) {
+      printf("PASSWORD CRACKED = %s\n", crypted); 
+
+      return 1; 
+    }
+          
+
+  return 0;
+}
+
 
 // ------------------------------------ SUFFIX CHECKS ------------------------------------
 // checks password to dictionary word with suffixes 0-10
@@ -252,7 +299,7 @@ int hundsCheckPrefix(char *password, char *word) {
         //printf("(hundreds) prefixword = %s\n", prefixword);
         char *crypted = crypting(prefixword); // crypt
         //printf("crypted (hundreds): %s\n", crypted);
-        int same = compare(prefixword,crypted , password,  ); // compare
+        int same = compare(prefixword,crypted , password ); // compare
         //printf("SAME: %d", same);
         if (same == 1) { // compare returns 1 if found, not 0
           return 1; 
@@ -279,50 +326,6 @@ int hundsCheckPrefix(char *password, char *word) {
 }
 
 
-
-
-// TODO- Left off 
-/*
-hard coded aardvark123 and still not getting the output that the passowrd was found 
-
-*/
-
-
-int thousCheckPrefix (char *password, char *word) {
-  int wordlen = strlen(word); // store dict word length
-  int buflen = (5 + wordlen * sizeof(char)); // buffer length
-  char *prefixword = malloc(5 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
- 
-  char *prefix = malloc(5 * sizeof(char));  // one larger than prefix size for null
-  prefix[0] = '8';
-  prefix[1] = '5';
-  prefix[2] = '6';
-  prefix[3] = '9';
-  prefix[4] = '\0';
-  // sprintf(prefixword, "%s%s", prefix ,"aardvark"); // puts null terminator after inserting word
-  char *crypted = crypting("aardvark123"); // crypt
-  // printf("prefixword = %s ", word); 
-  // printf("crypted = %s\n", crypted); 
-
-  int same = compare(password, crypted, prefixword); // compare
-  printf("same = %d\n", same); 
-
-  printf("password=%s crypted=%s \n", password, crypted );
-
-  // for(int i =0; i< strlen(password)-1;i++){
-  //   // printf("%c %c %d \n",password[i],crypted[i] , strcmp(password[i], crypted[i]));
-  //   // printf("%c %c \n", password[i],crypted[i]  );
-  // }
-
-    if (strcmp(password, crypted) == 0) {
-      printf("PASSWORD CRACKED = %s\n", crypted); 
-
-      return 1; 
-    }
-          
-
-  return 0;
-}
 
 
 
