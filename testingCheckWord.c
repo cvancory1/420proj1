@@ -182,7 +182,7 @@ int onesCheckPrefix(char *password, char *word) {
   char *prefix = malloc(2 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
   prefix[1] = '\0';
-  char *prefixword = strcat(prefix, buf);
+  // char *prefixword = strcat(prefix, buf);
 
   // for (int i = 0; i < 10; i++) {
   //   //printf("(ones) prefixword: %s\n", prefixword);
