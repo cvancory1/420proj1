@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <crypt.h> //- mac doesn't know what this is
+//#include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
 
@@ -22,7 +22,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   // printf("The password is: %s\n", password);
   // printf("The crypted is: %s\n", crypted);
   // printf("The nonhashedpass is: %s\n", nonhashedpass);
-  // if(strcmp(nonhashedpass, "abase11")==0){
+  // if(strcmp(nonhashedpass, "abase11")==0){s
   //   printf("The nonhashedpass is: %s\n", nonhashedpass);
   // }
 
@@ -30,15 +30,11 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
-    // ret = 1; // set to 1 since its found
     return 1;
   } else {
     // printf("Password has not been cracked :(\n");
-    // ret = 0;
     return 0;
-
   }
-  // return ret;
 }
 
 // ------------------------------------ PREFIX CHECKS ------------------------------------
@@ -102,8 +98,6 @@ int tensCheckPrefix(char *password, char *word) {
   return 0;
 }
 
-
-
 // checks password to dictionary word with prefixes 100-999
 int hundsCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
@@ -124,7 +118,7 @@ int hundsCheckPrefix(char *password, char *word) {
         //printf("(hundreds) prefixword = %s\n", prefixword);
         char *crypted = crypting(prefixword); // crypt
         //printf("crypted (hundreds): %s\n", crypted);
-        int same = compare(prefixword,crypted , password ); // compare
+        int same = compare(prefixword,crypted , password); // compare
         //printf("SAME: %d", same);
         if (same == 1) { // compare returns 1 if found, not 0
           return 1; 
@@ -356,7 +350,7 @@ int checkWord(char *password , char *word) {
     return 1;
   if (onesCheck(password, word) == 1)
     return 1;
-  if (tensCheck(password, word ) == 1)
+  if (tensCheck(password, word) == 1)
     return 1;
   if (hundredsCheck(password, word) == 1)
     return 1;
