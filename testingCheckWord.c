@@ -318,7 +318,7 @@ int thousandsCheck (char *password, char *word) {
   buf[wordlen+1] = '0'; 
   buf[wordlen+2] = '0'; 
   buf[wordlen+3] = '0'; 
-  buf[wordlen+3] = '\0'; 
+  buf[wordlen+4] = '\0'; 
 
   for(int i = 0; i < 9; i++) {
     for(int j = 0; j < 10; j++) {
