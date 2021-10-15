@@ -226,8 +226,8 @@ int tensCheckPrefix(char *password, char *word) {
 // checks password to dictionary word with prefixes 100-999
 int hundsCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (2 + wordlen * sizeof(char)); // buffer length
-  char *prefixword = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+  int buflen = (4 + wordlen * sizeof(char)); // buffer length
+  char *prefixword = malloc(4 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
  
   char *prefix = malloc(4 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
@@ -270,8 +270,8 @@ int hundsCheckPrefix(char *password, char *word) {
 // checks password to dictionary word with prefixes 1000-9999
 int thousCheckPrefix (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (2 + wordlen * sizeof(char)); // buffer length
-  char *prefixword = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+  int buflen = (5 + wordlen * sizeof(char)); // buffer length
+  char *prefixword = malloc(5 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
  
   char *prefix = malloc(5 * sizeof(char));  // one larger than prefix size for null
   prefix[0] = '0';
@@ -327,10 +327,10 @@ int checkWord(char *password , char *word) {
     return 1;
   if (tensCheckPrefix(password, word) == 1)
     return 1;
-  // if (hundsCheckPrefix(password, word) == 1)
-  //   return 1;
-  // if (thousCheckPrefix(password, word) == 1)
-  //   return 1;
+  if (hundsCheckPrefix(password, word) == 1)
+    return 1;
+  if (thousCheckPrefix(password, word) == 1)
+    return 1;
   // if (onesCheck(password, word) == 1)
   //   return 1;
   // if (tensCheck(password, word ) == 1)
