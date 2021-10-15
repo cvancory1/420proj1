@@ -295,6 +295,8 @@ int thousCheckPrefix (char *password, char *word) {
   // int same = compare(password, crypted, prefixword); // compare
 
     if (compare(password, crypted, prefixword) == 1) {
+  printf("found = %s\n", crypted); 
+
       return 1; 
     }
           
