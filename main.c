@@ -286,9 +286,9 @@ Chloe VanCory and Kalyn Howes
 
       // }
       // printf("RANK = %d BACK IN MAIN\n", rank);
-      if( check == 1 ){
-        usrPwd[pswdIndex]=1; // this node found a password
-      }
+      // if( check == 1 ){
+      //   usrPwd[pswdIndex]=1; // this node found a password
+      // }
 
       int wordCounter = 1; // how many words of the local dict we have checked
       while(currentWord != NULL ){
