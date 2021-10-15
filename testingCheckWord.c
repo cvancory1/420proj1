@@ -20,7 +20,8 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
-    ret = 1; // set to 1 since its found
+    // ret = 1; // set to 1 since its found
+    return 1;
   } else {
     // printf("Password has not been cracked :(\n");
     ret = 0;
