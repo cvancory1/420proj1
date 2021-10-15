@@ -17,6 +17,9 @@ char* crypting(char *password) {
 // returns 1 if they are the same and 0 if not
 int compare(char *password, char *crypted, char *nonhashedpass) {
   int ret = 0;
+    printf("The password is: %s\n", password);
+    printf("The password is: %s\n", crypted);
+    
   if (strcmp(password, crypted) == 0) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
@@ -397,9 +400,9 @@ int thousCheckPrefix (char *password, char *word) {
         for (int l = 0; l < 10; l++) {
           // printf("(thousands) prefixword = %s\n", prefixword);
           char *crypted = crypting(prefixword); // crypt
-          printf("crypted (hundreds): %s\n", crypted);
+          // printf("crypted (hundreds): %s\n", crypted);
           int same = compare(prefixword , crypted ,password ); // compare
-          printf("SAME: %d\n", same);
+          // printf("SAME: %d\n", same);
           if (same == 1) {
             return 1; 
           }
