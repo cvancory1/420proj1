@@ -256,12 +256,12 @@ int main(int argc, char** argv) {
     char * currentWord = strtok(localDict, "\n" );
     check = checkWord(pwd , currentWord);
 
-    // while(currentWord != NULL ){
-    //   currentWord = strtok(NULL, "\n" );
-    //     if( currentWord !=NULL ){
-    //       check = checkWord(pwd , currentWord);
-    //     }
-    // }
+    while(currentWord != NULL ){
+      currentWord = strtok(NULL, "\n" );
+        if( currentWord !=NULL ){
+          check = checkWord(pwd , currentWord);
+        }
+    }
 
     pswdIndex++;
     fscanf(shadowPtr,"%s", line );
