@@ -219,10 +219,10 @@ Chloe VanCory and Kalyn Howes
   //      use lseek to position file pointers and then read into then in a portion of the words.txt into a local dictionary 
   //  */ 
     char * localDict = malloc ( sendcnt[rank]+1 * sizeof(char));
-    // lseek(fd ,displc[rank], SEEK_SET);
-    // int numRead = read(fd , localDict ,sendcnt[rank] );
+    lseek(fd ,displc[rank], SEEK_SET);
+    int numRead = read(fd , localDict ,sendcnt[rank] );
     // localDict[strlen(localDict)]= 0; // places the NULL term @ the end
-    // // printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
+    printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
 
 
 
