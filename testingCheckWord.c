@@ -21,10 +21,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     // printf("The crypted is: %s\n", crypted);
     // printf("The nonhashedpass is: %s\n", nonhashedpass);
     if(strcmp(nonhashedpass, "abashed8")==0){
-    printf("The nonhashedpass is: %s\n", nonhashedpass);
-
-
-
+      printf("The nonhashedpass is: %s\n", nonhashedpass);
     }
 
 
