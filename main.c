@@ -268,7 +268,7 @@ Chloe VanCory and Kalyn Howes
 
     fscanf(shadowPtr,"%s", line );
     char * username = strtok(line, ":" );
-    char * alg = strtok(NULL, "$" );
+    char * alg = strtok(NULL, "\n" );
     // char * salt = strtok(NULL, "\n" );
     // char * pwd = strtok(NULL, "$" );
       // printf("salt=%d\n", salt);
