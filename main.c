@@ -230,7 +230,7 @@ Chloe VanCory and Kalyn Howes
     //  ERROR CHECKING
     // if(rank == 3){
       // printf("rank = %d \nstring= %sEND\n",rank ,localDict);
-    // printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
+    printf("Rank = %d numRead = %d   MALLOC  = %d  strlen(localDict)  =%lu\n",rank, numRead ,sendcnt[rank] , strlen(localDict ) );
 
     // }
 
@@ -250,11 +250,11 @@ Chloe VanCory and Kalyn Howes
   //   set up "shared array " that will indicate whether we have found a users password or not
   // */
 
-  // int * usrPwd = malloc(numUsers * sizeof(int)); 
-  // for(int i=0; i< numUsers ;i++){
-  //   usrPwd[i] = 0;
-  // }
-  // int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
+  int * usrPwd = malloc(numUsers * sizeof(int)); 
+  for(int i=0; i< numUsers ;i++){
+    usrPwd[i] = 0;
+  }
+  int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
 
 
 
