@@ -6,9 +6,9 @@
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
-  // printf("In crypt function -- pasword to be encrypted is %s\n", password);
+  printf("In crypt function -- pasword to be encrypted is %s\n", password);
   char* result = crypt(password, "$1$ab$"); // hardcode the salt - on Mac salt is second!!
-  //printf("In crypt function - your encrypted password is: %s\n", result);
+  printf("In crypt function - your encrypted password is: %s\n", result);
   return result;
 }
 
