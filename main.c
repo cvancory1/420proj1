@@ -281,7 +281,7 @@ Chloe VanCory and Kalyn Howes
       // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
       // if(rank ==ROOT){
-      check = checkWord(currentWord , pwd);
+      check = checkWord(pwd , currentWord);
 
       // }
       // printf("RANK = %d BACK IN MAIN\n", rank);
