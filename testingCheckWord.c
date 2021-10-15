@@ -172,21 +172,21 @@ int onesCheckPrefix(char *password, char *word) {
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
-  char *prefix = malloc(2 * sizeof(char));  // one larger than prefix size for null
-  prefix[0] = '0';
-  prefix[1] = '\0';
-  char *prefixword = strcat(prefix, buf);
+  // char *prefix = malloc(2 * sizeof(char));  // one larger than prefix size for null
+  // prefix[0] = '0';
+  // prefix[1] = '\0';
+  // char *prefixword = strcat(prefix, buf);
 
-  for (int i = 0; i < 10; i++) {
-    //printf("(ones) prefixword: %s\n", prefixword);
-    char *crypted = crypting(prefixword); // crypt
-    int same = compare(password, crypted, prefixword); // compare
-    if (same == 1) {
-      return 1; 
-    }
-    prefixword[0]++;
-  }
-  return 0;
+  // for (int i = 0; i < 10; i++) {
+  //   //printf("(ones) prefixword: %s\n", prefixword);
+  //   char *crypted = crypting(prefixword); // crypt
+  //   int same = compare(password, crypted, prefixword); // compare
+  //   if (same == 1) {
+  //     return 1; 
+  //   }
+  //   prefixword[0]++;
+  // }
+  // return 0;
 }
 
 // checks password to dictionary word with prefixes 10-99
