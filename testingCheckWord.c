@@ -252,7 +252,7 @@ int hundsCheckPrefix(char *password, char *word) {
         //printf("(hundreds) prefixword = %s\n", prefixword);
         char *crypted = crypting(prefixword); // crypt
         //printf("crypted (hundreds): %s\n", crypted);
-        int same = compare(password, crypted, prefixword); // compare
+        int same = compare(prefixword,crypted , password,  ); // compare
         //printf("SAME: %d", same);
         if (same == 1) { // compare returns 1 if found, not 0
           return 1; 
@@ -278,6 +278,16 @@ int hundsCheckPrefix(char *password, char *word) {
   return 0;
 }
 
+
+
+
+// TODO- Left off 
+/*
+hard coded aardvark123 and still not getting the output that the passowrd was found 
+
+*/
+
+
 int thousCheckPrefix (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (5 + wordlen * sizeof(char)); // buffer length
@@ -297,7 +307,7 @@ int thousCheckPrefix (char *password, char *word) {
   int same = compare(password, crypted, prefixword); // compare
   printf("same = %d\n", same); 
 
-  printf("password=%s crypted=%s \n", password,crypted );
+  printf("password=%s crypted=%s \n", password, crypted );
 
   // for(int i =0; i< strlen(password)-1;i++){
   //   // printf("%c %c %d \n",password[i],crypted[i] , strcmp(password[i], crypted[i]));
@@ -313,6 +323,11 @@ int thousCheckPrefix (char *password, char *word) {
 
   return 0;
 }
+
+
+
+
+
 
 // // checks password to dictionary word with prefixes 1000-9999
 // int thousCheckPrefix (char *password, char *word) {
