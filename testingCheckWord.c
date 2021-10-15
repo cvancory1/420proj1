@@ -310,7 +310,7 @@ int hundredsCheck (char *password, char *word) {
 // checks password to dictionary word with suffixes 1000-9999
 int thousandsCheck (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (4 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
+  int buflen = (5 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
@@ -318,6 +318,7 @@ int thousandsCheck (char *password, char *word) {
   buf[wordlen+1] = '0'; 
   buf[wordlen+2] = '0'; 
   buf[wordlen+3] = '0'; 
+  buf[wordlen+3] = '\0'; 
 
   for(int i = 0; i < 9; i++) {
     for(int j = 0; j < 10; j++) {
