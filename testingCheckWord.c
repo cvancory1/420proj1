@@ -167,16 +167,13 @@ int thousandsCheck (char *password, char *word) {
 // checks password to dictionary word with prefixes 0-9
 // use strcat to add orefix string to the word buf
 int onesCheckPrefix(char *password, char *word) {
-  printf("password %s word= %s  ",password, word);
+  // printf("password %s word= %s  ",password, word);
 
-  printf("here in funcion ");
-
-
-  // int wordlen = strlen(word); // store dict word length
-  // int buflen = (2 + wordlen * sizeof(char)); // buffer length
+  int wordlen = strlen(word); // store dict word length
+  int buflen = (2 + wordlen * sizeof(char)); // buffer length
   // printf(" wordlen %s \n", strlen(word));
 
-  // char *buf = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+  char *buf = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
   
   // sprintf(buf, "%s", word); // puts null terminator after inserting word
   // printf("buf = %s ", word);
@@ -328,12 +325,12 @@ int thousCheckPrefix (char *password, char *word) {
 
 // checks dictionary word for each prefix & suffix size
 int checkWord(char *password , char *word) {
-  printf("CHECKWORD");
-  printf("password %s word= %s  ",password, word);
+  // printf("CHECKWORD");
+  // printf("password %s word= %s  ",password, word);
 
 
-  // if (onesCheckPrefix(password, word) == 1)
-  //   return 1;
+  if (onesCheckPrefix(password, word) == 1)
+    return 1;
   // if (tensCheckPrefix(password, word) == 1)
   //   return 1;
   // if (hundsCheckPrefix(password, word) == 1)
