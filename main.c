@@ -263,7 +263,7 @@ int main(int argc, char** argv) {
 
     while(currentWord != NULL ){
       currentWord = strtok(NULL, "\n" );
-        if( currentWord !=NULL ){
+        if( currentWord != NULL ){
           check = checkWord(pwd , currentWord);
         }
     }
