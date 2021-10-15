@@ -25,7 +25,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   } else {
     // printf("Password has not been cracked :(\n");
     ret = 0;
-  return ret;
+    return ret;
 
   }
 }
@@ -292,9 +292,9 @@ int thousCheckPrefix (char *password, char *word) {
   // printf("prefixword = %s ", word); 
   printf("crypted = %s\n", crypted); 
 
-  int same = compare(password, crypted, prefixword); // compare
+  // int same = compare(password, crypted, prefixword); // compare
 
-    if (same == 1) {
+    if (compare(password, crypted, prefixword) == 1) {
       return 1; 
     }
           
