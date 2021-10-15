@@ -20,9 +20,9 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     // printf("The password is: %s\n", password);
     // printf("The crypted is: %s\n", crypted);
     // printf("The nonhashedpass is: %s\n", nonhashedpass);
-    if(strcmp(nonhashedpass, "abase11")==0){
-      printf("The nonhashedpass is: %s\n", nonhashedpass);
-    }
+    // if(strcmp(nonhashedpass, "abase11")==0){
+    //   printf("The nonhashedpass is: %s\n", nonhashedpass);
+    // }
 
 
   if (strcmp(password, crypted) == 0) {
@@ -119,7 +119,7 @@ int hundsCheckPrefix(char *password, char *word) {
   prefix[2] = '0';
   prefix[3] = '\0';
   sprintf(prefixword, "%s%s", prefix ,word); // puts null terminator after inserting word
-  printf("prefixword = %s ", word);
+  // printf("prefixword = %s ", word);
   
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
@@ -268,13 +268,14 @@ int tensCheck (char *password, char *word) {
 // checks password to dictionary word with suffixes 100-999
 int hundredsCheck (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
-  int buflen = (3 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
+  int buflen = (4 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
   sprintf(buf, "%s", word); // puts null terminator after inserting word
 
   buf[wordlen] = '1';
   buf[wordlen+1] = '0'; 
   buf[wordlen+2] = '0'; 
+  buf[wordlen+3] = '\0'; 
 
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 10; j++) {
@@ -369,8 +370,8 @@ int checkWord(char *password , char *word) {
     return 1;
   if (tensCheck(password, word ) == 1)
     return 1;
-  // if (hundredsCheck(password, word) == 1)
-  //   return 1;
+  if (hundredsCheck(password, word) == 1)
+    return 1;
   // if (thousandsCheck(password, word) == 1)
   //   return 1;
   
