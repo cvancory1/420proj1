@@ -16,7 +16,7 @@ Chloe VanCory and Kalyn Howes
  #include <fcntl.h>
  #include <ctype.h>
  #include <sys/types.h>
- #include<sys/stat.h>
+ #include <sys/stat.h>
 
 #define ROOT 0
 #include "testingCheckWord.c"
@@ -166,7 +166,7 @@ Chloe VanCory and Kalyn Howes
 
                 if(lineCount == (WORDCOUNT / worldSize)){
                   // printf("here - line count =%d\n",lineCount);
-                printf("sendcnt[%d]=%d\n",index ,sendcnt[index]);
+                // printf("sendcnt[%d]=%d\n",index ,sendcnt[index]);
 
                   lineCount = 0;
                   index++;
@@ -219,10 +219,10 @@ Chloe VanCory and Kalyn Howes
   //      use lseek to position file pointers and then read into then in a portion of the words.txt into a local dictionary 
   //  */ 
     char * localDict = malloc ( sendcnt[rank]+1 * sizeof(char));
-    lseek(fd ,displc[rank], SEEK_SET);
-    int numRead = read(fd , localDict ,sendcnt[rank] );
-    localDict[strlen(localDict)]= 0; // places the NULL term @ the end
-    // printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
+    // lseek(fd ,displc[rank], SEEK_SET);
+    // int numRead = read(fd , localDict ,sendcnt[rank] );
+    // localDict[strlen(localDict)]= 0; // places the NULL term @ the end
+    // // printf("HERE rank = %d \nstring= %sEND\n",rank ,localDict);
 
 
 
@@ -250,11 +250,11 @@ Chloe VanCory and Kalyn Howes
   //   set up "shared array " that will indicate whether we have found a users password or not
   // */
 
-  int * usrPwd = malloc(numUsers * sizeof(int)); 
-  for(int i=0; i< numUsers ;i++){
-    usrPwd[i] = 0;
-  }
-  int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
+  // int * usrPwd = malloc(numUsers * sizeof(int)); 
+  // for(int i=0; i< numUsers ;i++){
+  //   usrPwd[i] = 0;
+  // }
+  // int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
 
 
 
@@ -266,22 +266,22 @@ Chloe VanCory and Kalyn Howes
 
   // */
 
-    fscanf(shadowPtr,"%s", line );
-    char * username = strtok(line, ":" );
-    char * alg = strtok(NULL, "$" );
-    char * id = strtok(NULL, "$" );
-    char * pwd = strtok(NULL, "$" );
+    // fscanf(shadowPtr,"%s", line );
+    // char * username = strtok(line, ":" );
+    // char * alg = strtok(NULL, "$" );
+    // char * id = strtok(NULL, "$" );
+    // char * pwd = strtok(NULL, "$" );
 
 
 
   // for(int i =0 ;i<numUsers ;i++){
   //   /* ALL NODES - parse their first word in the localdict */ 
-      int check;
-      char * currentWord = strtok(localDict, "\n" );
-      if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
+      // int check;
+      // char * currentWord = strtok(localDict, "\n" );
+      // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
 
 
-      check = checkWord(currentWord , pwd);
+      // check = checkWord(currentWord , pwd);
       // if( check == 1 ){
       //   usrPwd[pswdIndex]=1; // this node found a password
       // }
