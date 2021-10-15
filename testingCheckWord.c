@@ -171,6 +171,8 @@ int onesCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   // int buflen = (2 + wordlen * sizeof(char)); // buffer length
   char *buf = malloc(2 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
+  printf("FINISH ");
+  
   // sprintf(buf, "%s", word); // puts null terminator after inserting word
 
   // char *prefix = malloc(2 * sizeof(char));  // one larger than prefix size for null
