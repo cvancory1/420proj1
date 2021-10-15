@@ -293,13 +293,13 @@ int thousCheckPrefix (char *password, char *word) {
   // printf("crypted = %s\n", crypted); 
 
   int same = compare(password, crypted, prefixword); // compare
-    printf("password=%s crypted=%s \n", password,crypted );
+      printf("found = %s\n", crypted); 
+
+  printf("password=%s crypted=%s \n", password,crypted );
 
   // for(int i =0; i< strlen(password)-1;i++){
   //   // printf("%c %c %d \n",password[i],crypted[i] , strcmp(password[i], crypted[i]));
   //   // printf("%c %c \n", password[i],crypted[i]  );
-
-
   // }
 
     if (strcmp(password, crypted) == 0) {
