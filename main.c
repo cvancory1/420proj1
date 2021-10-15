@@ -283,7 +283,6 @@ Chloe VanCory and Kalyn Howes
       // if(rank ==ROOT){
       check = checkWord(currentWord , pwd);
 
-
       // }
       // printf("RANK = %d BACK IN MAIN\n", rank);
       // if( check == 1 ){
@@ -302,9 +301,12 @@ Chloe VanCory and Kalyn Howes
         }
       //   // printf("rank = %d currentWord = %s\n", rank, currentWord);
 
-      //   if( check == 1 ){
-      //     usrPwd[pswdIndex]= 1; // this node found a password
-      //   }
+        if( check == 1 ){
+          // usrPwd[pswdIndex]= 1; // this node found a password
+           printf("rank = %d FOUND = %s\n", rank);
+
+
+        }
 
   //       wordCounter++;
           
