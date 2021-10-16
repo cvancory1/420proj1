@@ -274,14 +274,14 @@ MPI_File fh;
   // printf("pwd=%s\n", pwd);
 
   // // ------ DO CHECK WORD -------
-  // /*int test;
+    int test;
   // while( pswdIndex != numUsers-1 ){
     int check;
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
     test = sscanf(localDict, "%s\n", currentWord);
     printf("Current word: %s\n", currentWord);
-    check = checkWord(pwd, currentWord);*/
+    check = checkWord(pwd, currentWord);
     // printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
