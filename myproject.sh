@@ -10,8 +10,5 @@
 
 module load mpi/mpich-3.2-x86_64
 
-# For a python3 project
-# mpirun python3 ~/Projects/myproject/myproject.py
-
 # For a C MPI project
-mpirun ~/Projects/myproject/a.out 
+mpirun ~/Documents/cosc420/myproject/a.out
