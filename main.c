@@ -33,7 +33,6 @@ Chloe VanCory and Kalyn Howes
 
 //   return buf;
 // }
-MPI_File fh;
 
 typedef struct Users {
   char *  username;
@@ -52,6 +51,9 @@ int main(int argc, char** argv) {
   MPI_Comm_size(world, &worldSize);
   MPI_Comm_rank(world, &rank);
   MPI_Get_processor_name(name, &nameLen);
+
+
+MPI_File fh;
 
   // open file
   MPI_File_open(
