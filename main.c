@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
 
   // malloc the actual pointers then malloc each of the arrays 
   FILE * shadowPtr;
-  shadowPtr = fopen ("testShadow.txt", "r");
+  shadowPtr = fopen ("shadow.txt", "r");
   char * line= malloc(255* sizeof(char));
   int numUsers = 4;
   Users shadowUsers[numUsers]; // 48 bytes 
@@ -150,7 +150,7 @@ int main(int argc, char** argv) {
   int WORDCOUNT = 235888;
   int * offset;
   int fd;
-  fd= open("testWords.txt",O_RDONLY);
+  fd= open("words.txt",O_RDONLY);
   if (rank == ROOT) {
     int numBytes;
     int index =0;
@@ -280,9 +280,9 @@ int main(int argc, char** argv) {
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
     test = sscanf(localDict, "%s\n", currentWord);
-    printf("Current word: %s\n", currentWord);
+    // printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
-    // printf("check %s for word  %s\n", check, currentWord);
+    printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
     // if (check ==1 ) {
