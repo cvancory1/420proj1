@@ -44,7 +44,11 @@ int main(int argc, char** argv) {
   MPI_Comm_rank(world, &rank);
   MPI_Get_processor_name(name, &nameLen);
   
-
+// MPI_Comm world;
+// int worldSize, rank;
+// char name[MPI_MAX_PROCESSOR_NAME];
+// int nameLen;
+MPI_File fh;
   // open file
   MPI_File_open(
     world,                             // comm
