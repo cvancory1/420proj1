@@ -5,11 +5,11 @@
 //#include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
-MPI_Comm world;
-int worldSize, rank;
-char name[MPI_MAX_PROCESSOR_NAME];
-int nameLen;
-MPI_File fh;
+// MPI_Comm world;
+// int worldSize, rank;
+// char name[MPI_MAX_PROCESSOR_NAME];
+// int nameLen;
+// MPI_File fh;
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -40,14 +40,14 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     char * printingBuf = malloc(length +1);
     sprintf(printingBuf, "%s\n", nonhashedpass ); // puts null terminator after inserting word
     
-     MPI_File_write_at(
-          fh,                // file handle
-          length*rank,        // offset
-          printingBuf,              // buf to be written
-          length+1,                // size
-          MPI_CHAR,          // type
-          MPI_STATUS_IGNORE  // status
-        );
+    //  MPI_File_write_at(
+    //       fh,                // file handle
+    //       length*rank,        // offset
+    //       printingBuf,              // buf to be written
+    //       length+1,                // size
+    //       MPI_CHAR,          // type
+    //       MPI_STATUS_IGNORE  // status
+    //     );
 
     return 1;
   } else {
@@ -359,22 +359,22 @@ int checkWord(char *password , char *word) {
   // printf("IN CHECKWORD");
   // printf("password %s word= %s", password, word);
 
-  // if (onesCheckPrefix(password, word) == 1)
-  //   return 1;
-  // if (tensCheckPrefix(password, word) == 1)
-  //   return 1;
-  // if (hundsCheckPrefix(password, word) == 1)
-  //   return 1;
-  // if (thousCheckPrefix(password, word) == 1)
-  //   return 1;
+  if (onesCheckPrefix(password, word) == 1)
+    return 1;
+  if (tensCheckPrefix(password, word) == 1)
+    return 1;
+  if (hundsCheckPrefix(password, word) == 1)
+    return 1;
+  if (thousCheckPrefix(password, word) == 1)
+    return 1;
   if (onesCheck(password, word) == 1)
     return 1;
-  // if (tensCheck(password, word) == 1)
-  //   return 1;
-  // if (hundredsCheck(password, word) == 1)
-  //   return 1;
-  // if (thousandsCheck(password, word) == 1)
-  //   return 1;
+  if (tensCheck(password, word) == 1)
+    return 1;
+  if (hundredsCheck(password, word) == 1)
+    return 1;
+  if (thousandsCheck(password, word) == 1)
+    return 1;
   
   return 0; // false
 }

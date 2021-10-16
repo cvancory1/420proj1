@@ -23,9 +23,6 @@ Chloe VanCory and Kalyn Howes
 
 
 
-
-
-
 typedef struct Users {
   char *  username;
   char *  id;
@@ -35,28 +32,27 @@ typedef struct Users {
 
 int main(int argc, char** argv) {
   
-  /* OLD VERSION 
+  // OLD VERSION 
   MPI_Init(&argc, &argv);
-  // MPI_Comm world = MPI_COMM_WORLD;
    MPI_Comm world = MPI_COMM_WORLD;
-
-  // char name[MPI_MAX_PROCESSOR_NAME];
-  int worldSize, rank, nameLen;
-
-  MPI_Comm_size(world, &worldSize);
-  MPI_Comm_rank(world, &rank);
-  MPI_Get_processor_name(name, &nameLen); */
-
-  MPI_Init(&argc, &argv);
 
   char name[MPI_MAX_PROCESSOR_NAME];
   int worldSize, rank, nameLen;
-  world = MPI_COMM_WORLD;
-
 
   MPI_Comm_size(world, &worldSize);
   MPI_Comm_rank(world, &rank);
   MPI_Get_processor_name(name, &nameLen); 
+
+  // MPI_Init(&argc, &argv);
+
+  // char name[MPI_MAX_PROCESSOR_NAME];
+  // int worldSize, rank, nameLen;
+  // world = MPI_COMM_WORLD;
+
+
+  // MPI_Comm_size(world, &worldSize);
+  // MPI_Comm_rank(world, &rank);
+  // MPI_Get_processor_name(name, &nameLen); 
 
   
   
@@ -64,7 +60,7 @@ int main(int argc, char** argv) {
 // int worldSize, rank;
 // char name[MPI_MAX_PROCESSOR_NAME];
 // int nameLen;
-// MPI_File fh;
+MPI_File fh;
   // open file
   MPI_File_open(
     world,                             // comm
