@@ -23,12 +23,12 @@ Chloe VanCory and Kalyn Howes
 
 
 
-// typedef struct Users {
-//   char *  username;
-//   char *  id;
-//   char *  alg;
-//   char *  pwd;
-// } Users;
+typedef struct Users {
+  char *  username;
+  char *  id;
+  char *  alg;
+  char *  pwd;
+} Users;
 
 int main(int argc, char** argv) {
   
