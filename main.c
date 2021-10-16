@@ -276,6 +276,7 @@ MPI_File fh;
     test = sscanf(localDict, "%s\n", currentWord);
     printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
+    printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
     if (check != NULL) {
