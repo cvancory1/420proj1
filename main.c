@@ -33,6 +33,7 @@ Chloe VanCory and Kalyn Howes
 
 //   return buf;
 // }
+MPI_File fh;
 
 typedef struct Users {
   char *  username;
@@ -53,7 +54,6 @@ int main(int argc, char** argv) {
   MPI_Get_processor_name(name, &nameLen);
 
   // open file
-  MPI_File fh;
   MPI_File_open(
     world,                             // comm
     "crackedPasswords.txt",            // filename
@@ -281,16 +281,15 @@ int main(int argc, char** argv) {
       sprintf(temp, "rank: %d and this is a test!\n", rank);
       long long tempoffset = 31; // * pswdIndex;
 
-      // MPI_Barrier(world);
-      MPI_File_write_at(
-        fh,                // file handle
-        tempoffset,        // offset
-        temp,              // buf to be written
-        31,                // size
-        MPI_CHAR,          // type
-        MPI_STATUS_IGNORE  // status
-      );
-    }
+    //   MPI_File_write_at(
+    //     fh,                // file handle
+    //     tempoffset,        // offset
+    //     temp,              // buf to be written
+    //     31,                // size
+    //     MPI_CHAR,          // type
+    //     MPI_STATUS_IGNORE  // status
+    //   );
+    // }
 
 
     int offset = strlen(currentWord) + 1;
@@ -305,7 +304,6 @@ int main(int argc, char** argv) {
         // sprintf(temp, "rank: %d and this is a test!\n", rank);
         // long long tempoffset = 31; // * pswdIndex;
 
-        //MPI_Barrier(world);
         // MPI_File_write_at(
         //   fh,                // file handle
         //   14*rank,        // offset
