@@ -32,16 +32,19 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   // }
 
   if (strcmp(password, crypted) == 0) {
-    puts("****** PASSWORD HAS BEEN CRACKED!******");
+    puts("****** PASSWORD HAS BEEN CRACKED !******");
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
+
+    int length = strlen(nonhashedpass);
+    char * printingBuf = malloc(length +1);
+    sprintf(printingBuf, "%s\n", nonhashedpass ); // puts null terminator after inserting word
     
-    int length = strlen(password);
      MPI_File_write_at(
           fh,                // file handle
           length*rank,        // offset
-          password,              // buf to be written
-          length,                // size
+          printingBuf,              // buf to be written
+          length+1,                // size
           MPI_CHAR,          // type
           MPI_STATUS_IGNORE  // status
         );
