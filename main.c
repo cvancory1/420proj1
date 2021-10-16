@@ -246,15 +246,14 @@ int main(int argc, char** argv) {
 
   fscanf(shadowPtr,"%s", line );
   // printf("line=%s\n", line);
-
   // printf("len of line: %d\n", strlen(line));
 
   char * username = strtok(line, ":" );
   char * pwd = strtok(NULL, "\n" );
   // char * salt = strtok(NULL, "\n" );
   // char * pwd = strtok(NULL, "$" );
-  // printf("pwd=%s\n", pwd);
-  // printf("username=%s\n", username);
+  printf("pwd=%s\n", pwd);
+  printf("username=%s\n", username);
 
   // fscanf(shadowPtr,"%s", line );
   // username = strtok(line, ":" );
@@ -270,69 +269,60 @@ int main(int argc, char** argv) {
   int test;
   while( pswdIndex != numUsers-1 ){
     int check;
-    // char * currentWord = strtok(localDict, "\n" );
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
     test = sscanf(localDict, "%s\n", currentWord);
-    // printf("Current word: %s\n", currentWord);
+    printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
 
     // if found, write to file that is already open
-    if (check == 1) {
-      char *temp = malloc(30);
-      sprintf(temp, "rank: %d and this is a test!\n\0", rank);
-      long long tempoffset = strlen(temp); // * pswdIndex;
+    // if (check == 1) {
+    //   char *temp = malloc(30);
+    //   sprintf(temp, "rank: %d and this is a test!\n", rank);
+    //   long long tempoffset = 31; // * pswdIndex;
 
       //MPI_Barrier(world);
-      MPI_File_write_at(
-        fh,                // file handle
-        tempoffset,        // offset
-        temp,              // buf to be written
-        31,                // size
-        MPI_CHAR,          // type
-        MPI_STATUS_IGNORE  // status
-      );
-    }
+      // MPI_File_write_at(
+      //   fh,                // file handle
+      //   tempoffset,        // offset
+      //   temp,              // buf to be written
+      //   31,                // size
+      //   MPI_CHAR,          // type
+      //   MPI_STATUS_IGNORE  // status
+      // );
+    // }
 
-    /*
-    while(currentWord != NULL ){
-      currentWord = strtok(NULL, "\n" );
-        if( currentWord != NULL ){
-          check = checkWord(pwd , currentWord);
-        }
-    }
-    */
 
     int offset = strlen(currentWord) + 1;
     int localDict_len= strlen(localDict);
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
-      //printf("Rank %d checking: %s\n", rank, currentWord);
+      printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord);
-      if (check == 1) {
-        char *temp = malloc(31);
-        sprintf(temp, "rank: %d and this is a test!\n\0", rank);
-        long long tempoffset = strlen(temp); // * pswdIndex;
+      // if (check == 1) {
+      //   char *temp = malloc(31);
+      //   sprintf(temp, "rank: %d and this is a test!\n", rank);
+      //   long long tempoffset = 31; // * pswdIndex;
 
-        //MPI_Barrier(world);
-        MPI_File_write_at(
-          fh,                // file handle
-          tempoffset,        // offset
-          temp,              // buf to be written
-          31,                // size
-          MPI_CHAR,          // type
-          MPI_STATUS_IGNORE  // status
-        );
-      } 
+      //   //MPI_Barrier(world);
+      //   MPI_File_write_at(
+      //     fh,                // file handle
+      //     tempoffset,        // offset
+      //     temp,              // buf to be written
+      //     31,                // size
+      //     MPI_CHAR,          // type
+      //     MPI_STATUS_IGNORE  // status
+      //   );
+      // } 
     }
 
     pswdIndex++;
     fscanf(shadowPtr,"%s", line );
     username = strtok(line, ":" );
     pwd = strtok(NULL, "\n" );
-    // printf("pwd=%s\n", pwd);
-    // printf("username=%s\n", username);
+    printf("pwd=%s\n", pwd);
+    printf("username=%s\n", username);
   }
 
   // for(int i =0 ;i<numUsers ;i++){
