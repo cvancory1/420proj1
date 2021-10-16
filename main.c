@@ -279,10 +279,11 @@ MPI_File fh;
     int check;
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
-    test = sscanf(localDict, "%s\n", currentWord);
-    printf("Current word: %s\n", currentWord);
-    check = checkWord(pwd, currentWord);
-    printf("check %s for word  %s\n", check, currentWord);
+    // test = sscanf(localDict, "%s\n", currentWord);
+    // printf("Current word: %s\n", currentWord);
+    // check = checkWord(pwd, currentWord);
+    check = checkWord(pwd, "test");
+    // printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
     // if (check ==1 ) {
