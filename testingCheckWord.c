@@ -81,7 +81,7 @@ int onesCheckPrefix(char *password, char *word) {
     }
     prefixword[0]++;
   }
-  //free(prefixword);
+  free(prefixword);
   return 0;
 }
 
@@ -112,7 +112,7 @@ int tensCheckPrefix(char *password, char *word) {
       prefixword[1]= '0' ; // ones 
     }
   }
-  //free(prefixword);
+  free(prefixword);
 
   return 0;
 }
@@ -158,7 +158,7 @@ int hundsCheckPrefix(char *password, char *word) {
     prefixword[1]='0';// tens
     prefixword[0]++; // hundreads
   }
-  //(prefixword);
+  free(prefixword);
 
   return 0;
 }
@@ -210,7 +210,7 @@ int thousCheckPrefix (char *password, char *word) {
     prefixword[1]= '0';// hundreds
     prefixword[0]++; // thousands
   }
-  //free(prefixword);
+  free(prefixword);
   return 0;
 }
 
@@ -234,7 +234,7 @@ int onesCheck(char *password, char *word) {
     }
     buf[wordlen]++;
   }
-  //free(buf);
+  free(buf);
   return 0;
 }
 
@@ -263,6 +263,7 @@ int tensCheck (char *password, char *word) {
         buf[wordlen+1]= '0' ; // ones 
       }
   }
+    free(buf);
   return 0;
 }
 
@@ -305,6 +306,7 @@ int hundredsCheck (char *password, char *word) {
     buf[wordlen+1]='0';// tens
     buf[wordlen]++; // hundreads
   }
+  free(buf);
   return 0;
 }
 
@@ -351,6 +353,7 @@ int thousandsCheck (char *password, char *word) {
     buf[wordlen+1]= '0';// hundreds
     buf[wordlen]++; // thousands
   }
+  free(buf);
   return 0;
 }
 
