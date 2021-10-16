@@ -56,19 +56,19 @@ int main(int argc, char** argv) {
 
   
   
-// MPI_Comm world;
-// int worldSize, rank;
-// char name[MPI_MAX_PROCESSOR_NAME];
-// int nameLen;
-MPI_File fh;
-  // open file
-  MPI_File_open(
-    world,                             // comm
-    "crackedPasswords.txt",            // filename
-    MPI_MODE_CREATE | MPI_MODE_RDWR,   // mode
-    MPI_INFO_NULL,                     // info structure
-    &fh                                // file handle
-  );
+  // MPI_Comm world;
+  // int worldSize, rank;
+  // char name[MPI_MAX_PROCESSOR_NAME];
+  // int nameLen;
+  // MPI_File fh;
+  // // open file
+  // MPI_File_open(
+  //   world,                             // comm
+  //   "crackedPasswords.txt",            // filename
+  //   MPI_MODE_CREATE | MPI_MODE_RDWR,   // mode
+  //   MPI_INFO_NULL,                     // info structure
+  //   &fh                                // file handle
+  // );
 
   /*
     read and parse the shadow txt file to get the username,id,salt, password
@@ -323,7 +323,7 @@ MPI_File fh;
       //       MPI_STATUS_IGNORE  // status
       //     );
       // }
-    // }
+    }
 
   
     pswdIndex++;
@@ -331,7 +331,7 @@ MPI_File fh;
     username = strtok(line, ":" );
     pwd = strtok(NULL, "\n" );
     printf("pwd=%s\n", pwd);
-    printf("username=%s\n", username);*/
+    printf("username=%s\n", username);
   }
 
   // for(int i =0 ;i<numUsers ;i++){
