@@ -2,9 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <crypt.h> //- mac doesn't know what this is
+//#include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
+MPI_Comm world;
+int worldSize, rank;
+char name[MPI_MAX_PROCESSOR_NAME];
+int nameLen;
+MPI_File fh;
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -30,6 +35,17 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
+    
+    int length = strlen(password);
+     MPI_File_write_at(
+          fh,                // file handle
+          length*rank,        // offset
+          password,              // buf to be written
+          length,                // size
+          MPI_CHAR,          // type
+          MPI_STATUS_IGNORE  // status
+        );
+
     return 1;
   } else {
     // printf("Password has not been cracked :(\n");
