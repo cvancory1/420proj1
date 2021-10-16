@@ -96,7 +96,7 @@ char * tensCheckPrefix(char *password, char *word) {
   }
   //free(prefixword);
 
-  NULL;
+  return NULL;
 }
 
 // checks password to dictionary word with prefixes 100-999
@@ -217,7 +217,7 @@ char *  onesCheck(char *password, char *word) {
     buf[wordlen]++;
   }
   //free(buf);
-  NULL;
+  return NULL;
 }
 
 // checks password to dictionary word with suffixes 10-99

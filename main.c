@@ -270,7 +270,7 @@ MPI_File fh;
   // // ------ DO CHECK WORD -------
   int test;
   while( pswdIndex != numUsers-1 ){
-    int check;
+    char * check;
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
     test = sscanf(localDict, "%s\n", currentWord);
@@ -278,20 +278,21 @@ MPI_File fh;
     check = checkWord(pwd, currentWord);
 
     // if found, write to file that is already open
-    // if (check == 1) {
+    if (check != NULL) {
     //   char *temp = malloc(30);
     //   sprintf(temp, "rank: %d and this is a test!\n", rank);
     //   long long tempoffset = 31; // * pswdIndex;
 
-    //   MPI_File_write_at(
-    //     fh,                // file handle
-    //     tempoffset,        // offset
-    //     temp,              // buf to be written
-    //     31,                // size
-    //     MPI_CHAR,          // type
-    //     MPI_STATUS_IGNORE  // status
-    //   );
-    // }
+      int length = strlen(check);
+      MPI_File_write_at(
+            fh,                // file handle
+            length*rank,        // offset
+            check,              // buf to be written
+            length,                // size
+            MPI_CHAR,          // type
+            MPI_STATUS_IGNORE  // status
+          );
+    }
 
 
     int offset = strlen(currentWord) + 1;
@@ -301,20 +302,21 @@ MPI_File fh;
       offset += strlen(currentWord) + 1;
       printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord);
-      // if (check == 1) {
+      if (check != NULL) {
         // char *temp = malloc(31);
         // sprintf(temp, "rank: %d and this is a test!\n", rank);
         // long long tempoffset = 31; // * pswdIndex;
 
-        // MPI_File_write_at(
-        //   fh,                // file handle
-        //   14*rank,        // offset
-        //   "PSWD cracked\n",              // buf to be written
-        //   14,                // size
-        //   MPI_CHAR,          // type
-        //   MPI_STATUS_IGNORE  // status
-        // );
-      // } 
+      int length = strlen(check);
+      MPI_File_write_at(
+            fh,                // file handle
+            length*rank,        // offset
+            check,              // buf to be written
+            length,                // size
+            MPI_CHAR,          // type
+            MPI_STATUS_IGNORE  // status
+          );
+      }
     }
 
     pswdIndex++;
