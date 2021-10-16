@@ -11,4 +11,4 @@
 module load mpi/mpich-3.2-x86_64
 
 # For a C MPI project
-mpirun ~/Documents/cosc420/myproject/a.out
+mpirun ~/Documents/cosc420/420proj1/myproject/./main
