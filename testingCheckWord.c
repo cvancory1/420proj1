@@ -36,15 +36,15 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
     
-    int length = strlen(password);
-     MPI_File_write_at(
-          fh,                // file handle
-          length*rank,        // offset
-          password,              // buf to be written
-          length,                // size
-          MPI_CHAR,          // type
-          MPI_STATUS_IGNORE  // status
-        );
+    // int length = strlen(password);
+    //  MPI_File_write_at(
+    //       fh,                // file handle
+    //       length*rank,        // offset
+    //       password,              // buf to be written
+    //       length,                // size
+    //       MPI_CHAR,          // type
+    //       MPI_STATUS_IGNORE  // status
+    //     );
 
     return 1;
   } else {
