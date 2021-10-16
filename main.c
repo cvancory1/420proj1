@@ -308,9 +308,9 @@ int main(int argc, char** argv) {
         //MPI_Barrier(world);
         MPI_File_write_at(
           fh,                // file handle
-          tempoffset,        // offset
+          14*rank,        // offset
           "PSWD cracked\n",              // buf to be written
-          14*rank,                // size
+          14,                // size
           MPI_CHAR,          // type
           MPI_STATUS_IGNORE  // status
         );
