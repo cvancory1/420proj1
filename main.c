@@ -276,21 +276,21 @@ int main(int argc, char** argv) {
     check = checkWord(pwd, currentWord);
 
     // if found, write to file that is already open
-    // if (check == 1) {
-    //   char *temp = malloc(30);
-    //   sprintf(temp, "rank: %d and this is a test!\n", rank);
-    //   long long tempoffset = 31; // * pswdIndex;
+    if (check == 1) {
+      char *temp = malloc(30);
+      sprintf(temp, "rank: %d and this is a test!\n", rank);
+      long long tempoffset = 31; // * pswdIndex;
 
-      //MPI_Barrier(world);
-      // MPI_File_write_at(
-      //   fh,                // file handle
-      //   tempoffset,        // offset
-      //   temp,              // buf to be written
-      //   31,                // size
-      //   MPI_CHAR,          // type
-      //   MPI_STATUS_IGNORE  // status
-      // );
-    // }
+      // MPI_Barrier(world);
+      MPI_File_write_at(
+        fh,                // file handle
+        tempoffset,        // offset
+        temp,              // buf to be written
+        31,                // size
+        MPI_CHAR,          // type
+        MPI_STATUS_IGNORE  // status
+      );
+    }
 
 
     int offset = strlen(currentWord) + 1;
@@ -306,14 +306,14 @@ int main(int argc, char** argv) {
         // long long tempoffset = 31; // * pswdIndex;
 
         //MPI_Barrier(world);
-        MPI_File_write_at(
-          fh,                // file handle
-          14*rank,        // offset
-          "PSWD cracked\n",              // buf to be written
-          14,                // size
-          MPI_CHAR,          // type
-          MPI_STATUS_IGNORE  // status
-        );
+        // MPI_File_write_at(
+        //   fh,                // file handle
+        //   14*rank,        // offset
+        //   "PSWD cracked\n",              // buf to be written
+        //   14,                // size
+        //   MPI_CHAR,          // type
+        //   MPI_STATUS_IGNORE  // status
+        // );
       } 
     }
 
