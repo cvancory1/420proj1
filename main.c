@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
   
   // OLD VERSION 
   MPI_Init(&argc, &argv);
-   MPI_Comm world = MPI_COMM_WORLD;
+  MPI_Comm world = MPI_COMM_WORLD;
 
   char name[MPI_MAX_PROCESSOR_NAME];
   int worldSize, rank, nameLen;
@@ -76,7 +76,7 @@ MPI_File fh;
 
   // malloc the actual pointers then malloc each of the arrays 
   FILE * shadowPtr;
-  shadowPtr = fopen ("testShadow.txt", "r");
+  shadowPtr = fopen ("shadow.txt", "r");
   char * line= malloc(255* sizeof(char));
   int numUsers = 4;
   Users shadowUsers[numUsers]; // 48 bytes 
@@ -146,11 +146,11 @@ MPI_File fh;
     }
   }
 
-  int WORDCOUNT =100;
-  // int WORDCOUNT = 235888;
+  // int WORDCOUNT =100;
+  int WORDCOUNT = 235888;
   int * offset;
   int fd;
-  fd= open("testWords.txt",O_RDONLY);
+  fd= open("words.txt",O_RDONLY);
   if (rank == ROOT) {
     int numBytes;
     int index =0;
@@ -275,14 +275,14 @@ MPI_File fh;
 
   // // ------ DO CHECK WORD -------
     int test;
-  // while( pswdIndex != numUsers-1 ){
+  while( pswdIndex != numUsers-1 ){
     int check;
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
-    // test = sscanf(localDict, "%s\n", currentWord);
+    test = sscanf(localDict, "%s\n", currentWord);
     // printf("Current word: %s\n", currentWord);
-    // check = checkWord(pwd, currentWord);
-    // check = checkWord(pwd, "test"); 
+    check = checkWord(pwd, currentWord);
+    check = checkWord(pwd, "test"); 
     // printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
@@ -302,13 +302,13 @@ MPI_File fh;
     // }
 
 
-   /* int offset = strlen(currentWord) + 1;
+    int offset = strlen(currentWord) + 1;
     int localDict_len= strlen(localDict);
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
       printf("Rank %d checking: %s\n", rank, currentWord);
-      check = checkWord(pwd, currentWord); */
+      check = checkWord(pwd, currentWord); 
       // if (check == 1) {
         // char *temp = malloc(31);
         // sprintf(temp, "rank: %d and this is a test!\n", rank);
@@ -325,14 +325,14 @@ MPI_File fh;
       // }
     // }
 
-  /*
+  
     pswdIndex++;
     fscanf(shadowPtr,"%s", line );
     username = strtok(line, ":" );
     pwd = strtok(NULL, "\n" );
     printf("pwd=%s\n", pwd);
     printf("username=%s\n", username);*/
-  // }
+  }
 
   // for(int i =0 ;i<numUsers ;i++){
     /* ALL NODES - parse their first word in the localdict */ 

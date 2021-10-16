@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-//#include <crypt.h> //- mac doesn't know what this is
+#include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
 // MPI_Comm world;
@@ -36,9 +36,9 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
 
-    int length = strlen(nonhashedpass);
-    char * printingBuf = malloc(length +1);
-    sprintf(printingBuf, "%s\n", nonhashedpass ); // puts null terminator after inserting word
+    // int length = strlen(nonhashedpass);
+    // char * printingBuf = malloc(length +1);
+    // sprintf(printingBuf, "%s\n", nonhashedpass ); // puts null terminator after inserting word
     
     //  MPI_File_write_at(
     //       fh,                // file handle
