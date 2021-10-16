@@ -23,12 +23,12 @@ Chloe VanCory and Kalyn Howes
 
 
 
-typedef struct Users {
-  char *  username;
-  char *  id;
-  char *  alg;
-  char *  pwd;
-} Users;
+// typedef struct Users {
+//   char *  username;
+//   char *  id;
+//   char *  alg;
+//   char *  pwd;
+// } Users;
 
 int main(int argc, char** argv) {
   
@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
 
   // malloc the actual pointers then malloc each of the arrays 
   FILE * shadowPtr;
-  shadowPtr = fopen ("shadow.txt", "r");
+  shadowPtr = fopen ("testShadow.txt", "r");
   char * line= malloc(255* sizeof(char));
   int numUsers = 4;
   Users shadowUsers[numUsers]; // 48 bytes 
@@ -150,7 +150,7 @@ int main(int argc, char** argv) {
   int WORDCOUNT = 235888;
   int * offset;
   int fd;
-  fd= open("words.txt",O_RDONLY);
+  fd= open("testWords.txt",O_RDONLY);
   if (rank == ROOT) {
     int numBytes;
     int index =0;
@@ -260,8 +260,8 @@ int main(int argc, char** argv) {
   char * pwd = strtok(NULL, "\n" );
   // char * salt = strtok(NULL, "\n" );
   // char * pwd = strtok(NULL, "$" );
-  printf("pwd=%s\n", pwd);
-  printf("username=%s\n", username);
+  // printf("pwd=%s\n", pwd);
+  // printf("username=%s\n", username);
 
   // fscanf(shadowPtr,"%s", line );
   // username = strtok(line, ":" );
@@ -280,9 +280,8 @@ int main(int argc, char** argv) {
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
     test = sscanf(localDict, "%s\n", currentWord);
-    // printf("Current word: %s\n", currentWord);
+    printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
-    check = checkWord(pwd, "test"); 
     // printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
@@ -307,7 +306,7 @@ int main(int argc, char** argv) {
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
-      printf("Rank %d checking: %s\n", rank, currentWord);
+      // printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord); 
       // if (check == 1) {
         // char *temp = malloc(31);
