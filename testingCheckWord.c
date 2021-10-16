@@ -5,6 +5,11 @@
 //#include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
+MPI_Comm world;
+int worldSize, rank;
+char name[MPI_MAX_PROCESSOR_NAME];
+int nameLen;
+MPI_File fh;
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -17,7 +22,7 @@ char* crypting(char *password) {
 
 // checks if hashed word is same as hashed password
 // returns 1 if they are the same and 0 if not
-char *  compare(char *password, char *crypted, char *nonhashedpass) {
+int compare(char *password, char *crypted, char *nonhashedpass) {
   // int ret;
   // printf("The password is: %s\n", password);
   // printf("The crypted is: %s\n", crypted);
@@ -30,18 +35,28 @@ char *  compare(char *password, char *crypted, char *nonhashedpass) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
+    
+    int length = strlen(password);
+     MPI_File_write_at(
+          fh,                // file handle
+          length*rank,        // offset
+          password,              // buf to be written
+          length,                // size
+          MPI_CHAR,          // type
+          MPI_STATUS_IGNORE  // status
+        );
 
-    return password;
+    return 1;
   } else {
     // printf("Password has not been cracked :(\n");
-    return NULL;
+    return 0;
   }
 }
 
 // ------------------------------------ PREFIX CHECKS ------------------------------------
 // checks password to dictionary word with prefixes 0-9
 // use strcat to add orefix string to the word buf
-char *  onesCheckPrefix(char *password, char *word) {
+int onesCheckPrefix(char *password, char *word) {
   // printf("password %s word= %s  ",password, word);
 
   int wordlen = strlen(word); // store dict word length
@@ -57,18 +72,18 @@ char *  onesCheckPrefix(char *password, char *word) {
   for (int i = 0; i < 10; i++) {
     //printf("(ones) prefixword: %s\n", prefixword);
     char *crypted = crypting(prefixword); // crypt
-    char * same = compare(password, crypted, prefixword); // compare
-    if (same != NULL) {
-      return same; 
+    int same = compare(password, crypted, prefixword); // compare
+    if (same == 1) {
+      return 1; 
     }
     prefixword[0]++;
   }
   //free(prefixword);
-  return NULL;
+  return 0;
 }
 
 // checks password to dictionary word with prefixes 10-99
-char * tensCheckPrefix(char *password, char *word) {
+int tensCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   // int buflen = (2 + wordlen * sizeof(char)); // buffer length
   char *prefixword = malloc(3 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
@@ -83,9 +98,9 @@ char * tensCheckPrefix(char *password, char *word) {
   for (int i = 9; i <= 100; i++) {
     //printf("(tens) prefixword = %s\n", prefixword);
     char *crypted = crypting(prefixword); // crypt
-    char *  same = compare(password, crypted, prefixword); // compare
-    if (same != NULL){
-      return same; 
+    int same = compare(password, crypted, prefixword); // compare
+    if (same == 1){
+      return 1; 
     }
       
     prefixword[1]++;
@@ -96,11 +111,11 @@ char * tensCheckPrefix(char *password, char *word) {
   }
   //free(prefixword);
 
-  return NULL;
+  return 0;
 }
 
 // checks password to dictionary word with prefixes 100-999
-char *  hundsCheckPrefix(char *password, char *word) {
+int hundsCheckPrefix(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (4 + wordlen * sizeof(char)); // buffer length
   char *prefixword = malloc(4 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
@@ -119,17 +134,17 @@ char *  hundsCheckPrefix(char *password, char *word) {
         //printf("(hundreds) prefixword = %s\n", prefixword);
         char *crypted = crypting(prefixword); // crypt
         //printf("crypted (hundreds): %s\n", crypted);
-        char * same = compare(prefixword, crypted , password); // compare
+        int same = compare(prefixword,crypted , password); // compare
         //printf("SAME: %d", same);
-        if (same != NULL) { // compare returns 1 if found, not 0
-          return same; 
+        if (same == 1) { // compare returns 1 if found, not 0
+          return 1; 
         }
         
         prefixword[2]++; // ones place 
 
         // hacking - stops the loop early 
         if (prefixword[2]==':' && prefixword[1]=='9' && prefixword[0]=='9') {
-          return NULL;
+          return 0;
         }
       
       }
@@ -142,11 +157,11 @@ char *  hundsCheckPrefix(char *password, char *word) {
   }
   //(prefixword);
 
-  return NULL;
+  return 0;
 }
 
 // checks password to dictionary word with prefixes 1000-9999
-char *  thousCheckPrefix (char *password, char *word) {
+int thousCheckPrefix (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   // int buflen = (5 + wordlen * sizeof(char)); // buffer length
   char *prefixword = malloc(5 + wordlen * sizeof(char)); // buffer to hold the dictionary word and the prefix/suffix
@@ -167,17 +182,17 @@ char *  thousCheckPrefix (char *password, char *word) {
           //printf("(thousands) prefixword = %s\n", prefixword);
           char *crypted = crypting(prefixword); // crypt
           //printf("crypted (hundreds): %s\n", crypted);
-          char *  same = compare(password, crypted, prefixword); // compare
+          int same = compare(password, crypted, prefixword); // compare
           //printf("SAME: %d\n", same);
-          if (same != NULL) {
-            return same; 
+          if (same == 1) {
+            return 1; 
           }
           
           prefixword[3]++; // ones place 
 
           // hacking - stops the loop early 
           if(prefixword[0]==':' && prefixword[1]=='0' && prefixword[2]=='0' && prefixword[3]=='0') {
-            NULL;
+            return 0;
           }
         }
         prefixword[3] = '0'; // ones
@@ -193,13 +208,13 @@ char *  thousCheckPrefix (char *password, char *word) {
     prefixword[0]++; // thousands
   }
   //free(prefixword);
-  return NULL;
+  return 0;
 }
 
 
 // ------------------------------------ SUFFIX CHECKS ------------------------------------
 // checks password to dictionary word with suffixes 0-10
-char *  onesCheck(char *password, char *word) {
+int onesCheck(char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (2 + wordlen * sizeof(char)); // buffer length = 'tens' place + word length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
@@ -210,18 +225,18 @@ char *  onesCheck(char *password, char *word) {
   for (int i = 0; i < 10; i++) {
     //printf("(ones) buf = %s\n", buf);
     char *crypted = crypting(buf); // crypt
-    char *  same = compare(password, crypted, buf); // compare
-    if (same != NULL) {
-      return same; 
+    int same = compare(password, crypted, buf); // compare
+    if (same == 1) {
+      return 1; 
     }
     buf[wordlen]++;
   }
   //free(buf);
-  return NULL;
+  return 0;
 }
 
 // checks password to dictionary word with suffixes 10-99
-char * tensCheck (char *password, char *word) {
+int tensCheck (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (3 + wordlen * sizeof(char)); // buffer length = 'tens' place + word length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
@@ -234,9 +249,9 @@ char * tensCheck (char *password, char *word) {
   for (int i = 9; i <= 100; i++) {
       //printf("(tens) buf = %s\n", buf);
       char *crypted = crypting(buf); // crypt
-      char * same = compare(password, crypted, buf); // compare
-      if (same != NULL){
-        return same; 
+      int same = compare(password, crypted, buf); // compare
+      if (same == 1){
+        return 1; 
       }
       
       buf[wordlen+1]++;
@@ -245,11 +260,11 @@ char * tensCheck (char *password, char *word) {
         buf[wordlen+1]= '0' ; // ones 
       }
   }
-  return NULL;
+  return 0;
 }
 
 // checks password to dictionary word with suffixes 100-999
-char *  hundredsCheck (char *password, char *word) {
+int hundredsCheck (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (4 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
@@ -266,17 +281,17 @@ char *  hundredsCheck (char *password, char *word) {
         //printf("(hundreds) buf = %s\n", buf);
         char *crypted = crypting(buf); // crypt
         //printf("crypted buf (hundreds): %s\n", crypted);
-        char *  same = compare(password, crypted, buf); // compare
+        int same = compare(password, crypted, buf); // compare
         //printf("SAME: %d", same);
-        if (same != NULL) { // compare returns 1 if found, not 0
-          return same; 
+        if (same == 1) { // compare returns 1 if found, not 0
+          return 1; 
         }
         
         buf[wordlen+2]++; // ones place 
 
         // hacking - stops the loop early 
         if (buf[wordlen+2]==':' && buf[wordlen+1]=='9' && buf[wordlen]=='9') {
-          return NULL;
+          return 0;
         }
       
       }
@@ -287,11 +302,11 @@ char *  hundredsCheck (char *password, char *word) {
     buf[wordlen+1]='0';// tens
     buf[wordlen]++; // hundreads
   }
-  return NULL;
+  return 0;
 }
 
 // checks password to dictionary word with suffixes 1000-9999
-char *  thousandsCheck (char *password, char *word) {
+int thousandsCheck (char *password, char *word) {
   int wordlen = strlen(word); // store dict word length
   int buflen = (5 + wordlen * sizeof(char)); // buffer length = 'hundreds' place + word length
   char *buf = malloc(buflen); // buffer to hold the dictionary word and the prefix/suffix
@@ -309,16 +324,16 @@ char *  thousandsCheck (char *password, char *word) {
         for (int l = 0; l < 10; l++) {
           //printf("(thousands) buf = %s\n", buf);
           char *crypted = crypting(buf); // crypt
-          char * same = compare(password, crypted, buf); // compare
-          if (same != NULL){
-            return same; 
+          int same = compare(password, crypted, buf); // compare
+          if (same == 1){
+            return 1; 
           }
           
           buf[wordlen+3]++; // ones place 
 
           // hacking - stops the loop early 
           if(buf[wordlen]==':' && buf[wordlen+1]=='0' && buf[wordlen+2]=='0' && buf[wordlen+3]=='0') {
-            return NULL;
+            return 0;
           }
         }
         buf[wordlen+3] = '0'; // ones
@@ -333,42 +348,32 @@ char *  thousandsCheck (char *password, char *word) {
     buf[wordlen+1]= '0';// hundreds
     buf[wordlen]++; // thousands
   }
-  return NULL;
+  return 0;
 }
 
 // checks dictionary word for each prefix & suffix size
-char *  checkWord(char *password , char *word) {
+int checkWord(char *password , char *word) {
   // printf("IN CHECKWORD");
   // printf("password %s word= %s", password, word);
-  char * pwd ;
-  pwd = onesCheckPrefix(password, word);
-  if (pwd != NULL)
-    return pwd;
-  pwd = tensCheckPrefix(password, word);
-  if (pwd != NULL)
-    return pwd;
-  pwd = hundsCheckPrefix(password, word);
-  if (pwd != NULL)
-    return pwd;
-  pwd = thousCheckPrefix(password, word);
-   if (pwd != NULL)
-    return pwd;
 
-  pwd = onesCheck(password, word);
-  if (pwd != NULL)
-    return pwd;
-  pwd = tensCheck(password, word);
-  if (pwd != NULL)
-    return pwd;
-  pwd = hundredsCheck(password, word);
-  if (pwd != NULL)
-    return pwd;
-  pwd = thousandsCheck(password, word);
-  if (pwd != NULL)
-    return pwd;
+  if (onesCheckPrefix(password, word) == 1)
+    return 1;
+  if (tensCheckPrefix(password, word) == 1)
+    return 1;
+  if (hundsCheckPrefix(password, word) == 1)
+    return 1;
+  if (thousCheckPrefix(password, word) == 1)
+    return 1;
+  if (onesCheck(password, word) == 1)
+    return 1;
+  if (tensCheck(password, word) == 1)
+    return 1;
+  if (hundredsCheck(password, word) == 1)
+    return 1;
+  if (thousandsCheck(password, word) == 1)
+    return 1;
   
-  
-  return NULL; // false
+  return 0; // false
 }
 
 // int main () {
