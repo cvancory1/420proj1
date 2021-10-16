@@ -2,10 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-//#include <crypt.h> //- mac doesn't know what this is
+#include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
-
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -31,17 +30,6 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     puts("****** PASSWORD HAS BEEN CRACKED!******");
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
-    
-    // int length = strlen(password);
-    //  MPI_File_write_at(
-    //       fh,                // file handle
-    //       length*rank,        // offset
-    //       password,              // buf to be written
-    //       length,                // size
-    //       MPI_CHAR,          // type
-    //       MPI_STATUS_IGNORE  // status
-    //     );
-
     return 1;
   } else {
     // printf("Password has not been cracked :(\n");
@@ -349,7 +337,7 @@ int thousandsCheck (char *password, char *word) {
 
 // checks dictionary word for each prefix & suffix size
 int checkWord(char *password , char *word) {
-  printf("IN CHECKWORD");
+  // printf("IN CHECKWORD");
   // printf("password %s word= %s", password, word);
 
   if (onesCheckPrefix(password, word) == 1)

@@ -1,4 +1,3 @@
-
 /*
 Chloe VanCory and Kalyn Howes
 420 Project 1
@@ -18,13 +17,21 @@ Chloe VanCory and Kalyn Howes
 
 #define ROOT 0
 #include "testingCheckWord.c"
+// #define WORDCOUNT 235888 TODO : change later
+// char *bufArr(int *arr, int n) {
+//   char *buf = malloc(n * (4 + 1) + 1);
+//   buf[0] = '\0';
 
+//   const char *fmt = "%4d ";
+//   char tmp[4 + 1 + 1];  // same width as fmt plus a null term
 
+//   for (int i = 0; i < n; i++) {
+//     sprintf(tmp, fmt, arr[i]);
+//     strcat(buf, tmp);
+//   }
 
-
-
-
-
+//   return buf;
+// }
 
 typedef struct Users {
   char *  username;
@@ -43,13 +50,9 @@ int main(int argc, char** argv) {
   MPI_Comm_size(world, &worldSize);
   MPI_Comm_rank(world, &rank);
   MPI_Get_processor_name(name, &nameLen);
-  
-// MPI_Comm world;
-// int worldSize, rank;
-// char name[MPI_MAX_PROCESSOR_NAME];
-// int nameLen;
-MPI_File fh;
+
   // open file
+  MPI_File fh;
   MPI_File_open(
     world,                             // comm
     "crackedPasswords.txt",            // filename
@@ -270,23 +273,23 @@ MPI_File fh;
     test = sscanf(localDict, "%s\n", currentWord);
     printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
-    // printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
-    // if (check ==1 ) {
-    //   char *temp = malloc(30);
-    //   sprintf(temp, "rank: %d and this is a test!\n", rank);
-    //   long long tempoffset = 31; // * pswdIndex;
+    if (check == 1) {
+      char *temp = malloc(30);
+      sprintf(temp, "rank: %d and this is a test!\n", rank);
+      long long tempoffset = 31; // * pswdIndex;
 
+      // MPI_Barrier(world);
       // MPI_File_write_at(
-      //       fh,                // file handle
-      //       length*rank,        // offset
-      //       check,              // buf to be written
-      //       length,                // size
-      //       MPI_CHAR,          // type
-      //       MPI_STATUS_IGNORE  // status
-      //     );
-    // }
+      //   fh,                // file handle
+      //   tempoffset,        // offset
+      //   temp,              // buf to be written
+      //   31,                // size
+      //   MPI_CHAR,          // type
+      //   MPI_STATUS_IGNORE  // status
+      // );
+    }
 
 
     int offset = strlen(currentWord) + 1;
@@ -296,20 +299,21 @@ MPI_File fh;
       offset += strlen(currentWord) + 1;
       printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord);
-      // if (check == 1) {
+      if (check == 1) {
         // char *temp = malloc(31);
         // sprintf(temp, "rank: %d and this is a test!\n", rank);
         // long long tempoffset = 31; // * pswdIndex;
 
-      // MPI_File_write_at(
-      //       fh,                // file handle
-      //       length*rank,        // offset
-      //       check,              // buf to be written
-      //       length,                // size
-      //       MPI_CHAR,          // type
-      //       MPI_STATUS_IGNORE  // status
-      //     );
-      // }
+        //MPI_Barrier(world);
+        // MPI_File_write_at(
+        //   fh,                // file handle
+        //   14*rank,        // offset
+        //   "PSWD cracked\n",              // buf to be written
+        //   14,                // size
+        //   MPI_CHAR,          // type
+        //   MPI_STATUS_IGNORE  // status
+        // );
+      } 
     }
 
     pswdIndex++;
