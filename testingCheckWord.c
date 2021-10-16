@@ -353,7 +353,7 @@ int thousandsCheck (char *password, char *word) {
 
 // checks dictionary word for each prefix & suffix size
 int checkWord(char *password , char *word) {
-  // printf("IN CHECKWORD");
+  printf("IN CHECKWORD");
   // printf("password %s word= %s", password, word);
 
   if (onesCheckPrefix(password, word) == 1)
