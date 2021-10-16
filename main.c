@@ -301,13 +301,13 @@ MPI_File fh;
     // }
 
 
-    int offset = strlen(currentWord) + 1;
+   /* int offset = strlen(currentWord) + 1;
     int localDict_len= strlen(localDict);
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
       printf("Rank %d checking: %s\n", rank, currentWord);
-      check = checkWord(pwd, currentWord);
+      check = checkWord(pwd, currentWord); */
       // if (check == 1) {
         // char *temp = malloc(31);
         // sprintf(temp, "rank: %d and this is a test!\n", rank);
@@ -324,12 +324,13 @@ MPI_File fh;
       // }
     }
 
+  /*
     pswdIndex++;
     fscanf(shadowPtr,"%s", line );
     username = strtok(line, ":" );
     pwd = strtok(NULL, "\n" );
     printf("pwd=%s\n", pwd);
-    printf("username=%s\n", username);
+    printf("username=%s\n", username);*/
   }
 
   // for(int i =0 ;i<numUsers ;i++){
