@@ -282,7 +282,7 @@ int main(int argc, char** argv) {
     test = sscanf(localDict, "%s\n", currentWord);
     // printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
-    printf("check %s for word  %s\n", check, currentWord);
+    // printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
     // if (check ==1 ) {
@@ -306,7 +306,7 @@ int main(int argc, char** argv) {
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
-      // printf("Rank %d checking: %s\n", rank, currentWord);
+      printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord); 
       // if (check == 1) {
         // char *temp = malloc(31);
