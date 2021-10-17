@@ -260,8 +260,8 @@ int main(int argc, char** argv) {
   char * pwd = strtok(NULL, "\n" );
   // char * salt = strtok(NULL, "\n" );
   // char * pwd = strtok(NULL, "$" );
-  printf("pwd=%s\n", pwd);
-  printf("username=%s\n", username);
+  // printf("pwd=%s\n", pwd);
+  // printf("username=%s\n", username);
 
   // fscanf(shadowPtr,"%s", line );
   // username = strtok(line, ":" );
@@ -282,7 +282,6 @@ int main(int argc, char** argv) {
     test = sscanf(localDict, "%s\n", currentWord);
     // printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
-    check = checkWord(pwd, "test"); 
     // printf("check %s for word  %s\n", check, currentWord);
 
     // if found, write to file that is already open
