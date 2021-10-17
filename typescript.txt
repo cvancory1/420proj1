@@ -1,0 +1,37 @@
+An example from one of the sbatch logs:
+
+Rank 79 checking: holographical
+Rank 7 checking: anchieutectic
+Rank 213 checking: withstand
+Rank 119 checking: Old
+Rank 70 checking: gerefa
+Rank 163 checking: sensible
+Rank 128 checking: passover
+Rank 170 checking: spathaceous
+Rank 66 checking: foreshoulder
+Rank 19 checking: berberid
+Rank 56 checking: enapt
+Rank 136 checking: ploy
+Rank 131 checking: perspectived
+Rank 85 checking: inconveniently
+Rank 203 checking: unridged
+Rank 116 checking: nonprohibitable
+Rank 183 checking: tenpin
+Rank 8 checking: anomaloflorous
+Rank 37 checking: Conchucu
+Rank 5 checking: almeriite
+Rank 43 checking: cyanhydric
+Rank 112 checking: natantly
+Rank 137 checking: poltophagy
+Rank 166 checking: silverwork
+Rank 205 checking: untogaed
+Rank 126 checking: panarchy
+
+-----------------------------------------------------------------------------------
+An example of when the password has been found: 
+
+****** PASSWORD HAS BEEN CRACKED !******
+The password is: aardvark123
+The crypted version is: $1$ab$koTc2TaVJm9d6HbDymlZO/
+
+
