@@ -28,8 +28,10 @@ Notes:
     This number however was only timed once and would greatly depend on the length of the word at hand. Looking at Chloe's timing, the program
     was going through about 85 words per minute, while for Kalyn it was about 93 words per minute.
 
-(c) Consider the problem of brute-forcing passwords under only maximum string length. How much time would it take to complete this hack, extrapolating from your measurements?
-
+(c) Lets say we know the password has 10 chars at most, then we would have to brute force 10^128 characters since there are 128 on the ASCII table.
+    Some of these don't need to be included since they are null characters but that is the main idea. Checking a password this way is similar to a bike lock,
+    where you first try 0000, 0001 etc. In our case this would be like aaaaaaaaaa, aaaaaaaaab, aaaaaaaaac, etc. This obviously takes a lot longer
+    than our version since it is checking the entire password and not justa 4-digit prefix or suffix.
 
 (d) Hackers could use this in real-life situations, or maybe even the opposite. Knowing this is how easily some passwords can be hacked, it tells
     me the importance of complex passwords for cybersecurity. However if hackers were using our program it would take them years & would need
