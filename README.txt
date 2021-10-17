@@ -3,6 +3,13 @@ Chloe VanCory & Kalyn Howes
 10/17/21
 README!
 
+Cracked passwords:
+    - Maria: password123
+    - George: red32
+    - Alice: in the works...
+    - Bob: was not found
+    - Spickler: was not found
+
 Notes:
     - 8 separate functions were created for checking the different prefix and suffix possibilities, 
         this may not be the most efficient way to do so, but we mimimized the use of string operations by using []++
